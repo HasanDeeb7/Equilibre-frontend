@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import AppRoutes from "./routes/AppRoutes";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
+export const UserContext = createContext();
 
 function App() {
+  axios.defaults.withCredentials = true;
+  const [user, setUser] = useState();
+  async function getUser() {
+    try {
+      if (!user) {
+        const response = await axios.post(
+          `${process.env.REACT_APP_ENDPOINT}user/login`
+        );
+        if (response) {
+          console.log(response.data);
+          setUser(response.data);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserContext.Provider value={{ user, setUser }}>
+        <AppRoutes />
+      </UserContext.Provider>
     </div>
   );
 }
