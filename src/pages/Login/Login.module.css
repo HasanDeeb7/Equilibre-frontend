@@ -1,0 +1,27 @@
+.loginPageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.loginFormContainer {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 1px;
+}
+.loginButton {
+  padding: 8px;
+  border: 1px solid blue;
+  background: blue;
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.loginButton:hover {
+  background-color: transparent;
+  color: blue;
+}
