@@ -11,9 +11,6 @@ function Login() {
     username: "",
     password: "",
   });
-  function handleChange(e) {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  }
   async function handleLogin() {
     try {
       const response = await axios.post(
@@ -22,10 +19,14 @@ function Login() {
       );
       if (response.status) {
         setUser(response.data);
-        toast.success(`Welcome Back ${response.data .firstName}`);
+        toast.success(`Welcome Back ${response.data.firstName}`);
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "Network Error") {
+        console.log(error);
+        toast.error("Server Error");
+        return;
+      }
       toast.error(error.response.data.error);
     }
   }

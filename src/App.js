@@ -3,11 +3,13 @@ import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useUserStore } from "./Store";
+
 export const UserContext = createContext();
 
 function App() {
   axios.defaults.withCredentials = true;
-  const [user, setUser] = useState();
+  const { user, setUser, removeUser } = useUserStore();
   async function getUser() {
     try {
       if (!user) {
