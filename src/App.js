@@ -5,7 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useUserStore } from "./Store";
 
-export const UserContext = createContext();
+
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -30,9 +30,8 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <UserContext.Provider value={{ user, setUser }}>
+      
         <AppRoutes />
-      </UserContext.Provider>
     </div>
   );
 }

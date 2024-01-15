@@ -10,10 +10,10 @@ import Checkout from "../pages/Checkout/Checkout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import { useContext, useEffect } from "react";
-import { UserContext } from "../App";
+import { useUserStore } from "../Store";
 
 function AppRoutes() {
-  const { user } = useContext(UserContext);
+  const { user } = useUserStore();
 
   return (
     <div>

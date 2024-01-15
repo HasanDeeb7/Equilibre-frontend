@@ -1,7 +1,10 @@
 import { create } from "zustand";
-
-export const useUserStore = create((set) => ({
-  user: null,
-  setUser: (data) => set(() => ({ user: data })),
-  removeUser: () => set(() => ({ user: null })),
-}));
+import zukeeper from "zukeeper";
+export const useUserStore = create(
+  zukeeper((set) => ({
+    user: null,
+    setUser: (data) => set(() => ({ user: data })),
+    removeUser: () => set(() => ({ user: null })),
+  }))
+);
+window.store = useUserStore;

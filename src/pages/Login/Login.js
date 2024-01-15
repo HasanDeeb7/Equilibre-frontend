@@ -2,11 +2,11 @@ import { useContext, useState } from "react";
 import style from "./Login.module.css";
 import Input from "../../components/Input/Input";
 import axios from "axios";
-import { UserContext } from "../../App";
 import { toast } from "react-toastify";
+import { useUserStore } from "../../Store";
 
 function Login() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useUserStore();
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
