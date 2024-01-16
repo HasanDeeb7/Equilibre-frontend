@@ -4,7 +4,6 @@ import AppRoutes from "./routes/AppRoutes";
 import { useEffect } from "react";
 import axios from "axios";
 import { useUserStore } from "./Store";
-import Footer from "./components/Footer/Footer";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -31,7 +30,6 @@ function App() {
     <div className="App">
       
         <AppRoutes />
-        <Footer/>
     </div>
   );
 }
