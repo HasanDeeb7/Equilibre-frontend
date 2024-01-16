@@ -3,11 +3,13 @@ import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-export const UserContext = createContext();
+import { useUserStore } from "./Store";
+
+
 
 function App() {
   axios.defaults.withCredentials = true;
-  const [user, setUser] = useState();
+  const { user, setUser, removeUser } = useUserStore();
   async function getUser() {
     try {
       if (!user) {
@@ -28,9 +30,8 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <UserContext.Provider value={{ user, setUser }}>
+      
         <AppRoutes />
-      </UserContext.Provider>
     </div>
   );
 }

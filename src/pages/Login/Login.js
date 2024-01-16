@@ -2,18 +2,15 @@ import { useContext, useState } from "react";
 import style from "./Login.module.css";
 import Input from "../../components/Input/Input";
 import axios from "axios";
-import { UserContext } from "../../App";
 import { toast } from "react-toastify";
+import { useUserStore } from "../../Store";
 
 function Login() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useUserStore();
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
-  function handleChange(e) {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  }
   async function handleLogin() {
     try {
       const response = await axios.post(
@@ -22,10 +19,14 @@ function Login() {
       );
       if (response.status) {
         setUser(response.data);
-        toast.success(`Welcome Back ${response.data .firstName}`);
+        toast.success(`Welcome Back ${response.data.firstName}`);
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "Network Error") {
+        console.log(error);
+        toast.error("Server Error");
+        return;
+      }
       toast.error(error.response.data.error);
     }
   }

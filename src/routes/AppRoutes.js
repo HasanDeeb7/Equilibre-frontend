@@ -9,11 +9,12 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Checkout from "../pages/Checkout/Checkout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
-import { useContext } from "react";
-import { UserContext } from "../App";
+import { useContext, useEffect } from "react";
+import { useUserStore } from "../Store";
 
 function AppRoutes() {
-  const { user } = useContext(UserContext);
+  const { user } = useUserStore();
+
   return (
     <div>
       <Routes>
