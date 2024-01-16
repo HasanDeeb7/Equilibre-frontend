@@ -16,7 +16,7 @@ root.render(
   <React.StrictMode>
     <ToastContainer
       position="top-right"
-      autoClose={5000}
+      autoClose={4000}
       limit={2}
       hideProgressBar={false}
       newestOnTop={false}
