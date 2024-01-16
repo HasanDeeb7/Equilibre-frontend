@@ -1,11 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
-import { createContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useUserStore } from "./Store";
-
-
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -30,8 +28,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      
-        <AppRoutes />
+      <AppRoutes />
     </div>
   );
 }

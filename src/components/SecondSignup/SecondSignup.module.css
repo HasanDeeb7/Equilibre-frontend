@@ -1,0 +1,31 @@
+.inputsContainer {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  box-shadow: 1px;
+}
+.genderContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.genderWrapper {
+  display: flex;
+  gap: 10px;
+}
+.signUpButton {
+  padding: 8px 30px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.signUpButton:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+}
