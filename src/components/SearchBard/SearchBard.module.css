@@ -1,0 +1,29 @@
+.inputContainer {
+  border: 2px solid #bdbdbd;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 250px;
+}
+.inputSearch {
+  height: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+.inputSearch:focus {
+  outline: none;
+}
+.searchBtn {
+  height: 100%;
+  width: 50px;
+  cursor: pointer;
+  border: none;
+  background-color: #b7cf33 ;
+
+}
+.searchIcon {
+  height: 30px;
+}
