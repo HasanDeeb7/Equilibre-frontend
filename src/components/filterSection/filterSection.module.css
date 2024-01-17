@@ -1,0 +1,40 @@
+.FilterSection {
+  width: 20%;
+  height: fit-content;
+  background: red;
+  border-radius: 10px;
+  margin: 150px 0 0 30px;
+  padding-bottom: 25px  ;
+}
+.title > span {
+  color: #595959;
+}
+.title,
+.categories {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 25px ;
+    align-items: center;
+
+}
+.checkContent {
+  display: flex;
+  align-items: center;justify-content: center;
+}
+.checkbox {
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin: 0 10px;
+}
+.checkbox:checked {
+  border: none;
+  color: red;
+}
+.line{
+    border: #7f7c7c solid 0.5px;
+    width: 70%;
+    margin: auto;
+    margin-top: 25px;
+    
+}

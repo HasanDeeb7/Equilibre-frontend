@@ -1,8 +1,15 @@
 import React from 'react'
+import FilterSection from '../../components/filterSection/filterSection'
 
 function Products() {
   return (
-    <div>Products</div>
+    <div>
+      <p>Products</p>
+<section>
+<FilterSection/>
+
+</section>
+      </div>
   )
 }
 

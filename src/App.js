@@ -4,6 +4,7 @@ import AppRoutes from "./routes/AppRoutes";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useUserStore } from "./Store";
+import Footer from "./components/Footer/Footer";
 
 
 
@@ -32,6 +33,7 @@ function App() {
     <div className="App">
       
         <AppRoutes />
+        <Footer/>
     </div>
   );
 }
