@@ -13,6 +13,9 @@ import { useContext, useEffect } from "react";
 import { useUserStore } from "../Store";
 import NavBar from "../Layout/NavBar/NavBar";
 import ConsultingSection from "../components/ConsultingSection/ConsultingSection";
+import NotFound from "../pages/NotFound/NotFound";
+import UserProfile from "../pages/UserProfile/UserProfile";
+
 function AppRoutes() {
   const { user } = useUserStore();
 
@@ -31,6 +34,10 @@ function AppRoutes() {
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/about" element={<AboutUs />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/user-profile" element={<UserProfile />}></Route>
         <Route
           path="/dashboard"
           element={
@@ -39,6 +46,8 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         ></Route>
+        <Route path="/*" element={<NotFound />}></Route>
+
       </Routes>
     </div>
   );

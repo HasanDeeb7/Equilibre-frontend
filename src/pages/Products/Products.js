@@ -3,6 +3,8 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import FilterSection from '../../components/filterSection/filterSection'
+
 const Products = () => {
   const [Products, setProducts] = useState();
   const [loading, setLoading] = useState(false);
@@ -32,18 +34,22 @@ const Products = () => {
         <section className={style.cardsContainer}>
           <SearchBar />
           <div className={style.cardsWrapper}>
-          {Products &&
-            Products.map((product, index) => (
-              <ProductCard
-              id={product._id}
-                key={index}
-                name={product.name}
-                description={product.description}
-                price={product.soldQuantityCounter}
-                imgurl={product.image}
-              />
-            ))}
-            </div>
+            {Products &&
+              Products.map((product, index) => (
+                <ProductCard
+                  id={product._id}
+                  key={index}
+                  name={product.name}
+                  description={product.description}
+                  price={product.soldQuantityCounter}
+                  imgurl={product.image}
+                />
+              ))}
+          </div>
+        </section>
+        <section>
+          <FilterSection />
+
         </section>
       </main>
     </>
