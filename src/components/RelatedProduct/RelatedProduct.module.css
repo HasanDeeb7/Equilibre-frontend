@@ -1,0 +1,25 @@
+.secondSectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.nutritionalInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border: 1px solid #b8b8b8;
+  border-radius: 20px;
+  padding: 30px;
+}
+.nutritionalInfo {
+  color: #4f4f4f;
+}
+@media screen and (max-width: 425px) {
+  .nutritionalInfo {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .nutritionalInfoContainer {
+    padding: 15px;
+  }
+}
