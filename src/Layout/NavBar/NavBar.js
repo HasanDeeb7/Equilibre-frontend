@@ -71,32 +71,38 @@ const NavBar = () => {
                 </ul>
               </li>
 
-              <NavLink to='/consultation' className={style.navLinks}>
+              <NavLink to='/consultation' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                 <li>
                   <p>Consultation</p>
                 </li>
               </NavLink>
-              <NavLink to='/about' className={style.navLinks}>
+              <NavLink to='/about' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                 <li>
                   <p>About US</p>
                 </li>
               </NavLink>
-              <NavLink to='/contactUs' className={style.navLinks}>
+              <NavLink to='/contactUs' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                 <li>
                   <p>Contact</p>
                 </li>
               </NavLink>
-              <NavLink to='/profile' className={style.navLinks}>
+              <NavLink to='/profile' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                 <li>
                   <p>Profile</p>
                 </li>
               </NavLink>
-              <NavLink to='/login' className={style.navLinks}>
+              <NavLink to='/login' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                 <li>
                   <p>Login</p>
                 </li>
               </NavLink>
-              <NavLink to='/cart' className={style.navLinks}>
+              <NavLink to='/cart' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                 <li>
                   <p>Cart</p>
                 </li>
@@ -129,17 +135,20 @@ const NavBar = () => {
                   </ul>
                 </li>
                 </NavLink >
-                <NavLink to='/consultation' className={style.navLinks}>
+                <NavLink to='/consultation' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                   <li>
                     <p>Consultation</p>
                   </li>
                 </NavLink>
-                <NavLink to='/about' className={style.navLinks}>
+                <NavLink to='/about' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                   <li>
                     <p>About us</p>
                   </li>
                 </NavLink>
-                <NavLink to='/contact' className={style.navLinks}>
+                <NavLink to='/contact' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                   <li>
                     <p>Contact</p>
                   </li>
@@ -160,7 +169,8 @@ const NavBar = () => {
                       color: 'black',
                     }}
                   />
-                  <NavLink to='/cart' className={style.navLinks}>
+                  <NavLink to='/cart' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
+>
                     <ShoppingCartOutlined
                       sx={{
                         cursor: 'pointer',
