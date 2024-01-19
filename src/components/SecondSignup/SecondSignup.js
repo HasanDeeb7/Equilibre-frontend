@@ -19,7 +19,7 @@ function SecondSignup({ newUser, setNewUser, setCurrentStep }) {
       if (response) {
         console.log(response.data);
         toast.success("Account Created Successfully, you can login now");
-        return navigate("login", { replace: true });
+        return navigate("/login", { replace: true });
       }
     } catch (error) {
       console.log(error);

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
-import ShoppingCartOutlined from '@mui/icons-material/ShoppingCartOutlined';
-import PersonOutline from '@mui/icons-material/PersonOutline';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import { AccountPopover } from './accountPopover.js';
-import { usePopover } from './usePopover.js';
-import logo from '../../assets/logo.jpeg';
-import { useUserStore } from '../../Store.js';
-import style from './NavBar.module.css';
-import styled from '@emotion/styled';
+import React, { useEffect, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
+import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
+import PersonOutline from "@mui/icons-material/PersonOutline";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import { AccountPopover } from "./accountPopover.js";
+import { usePopover } from "./usePopover.js";
+import logo from "../../assets/logo.jpeg";
+import { useUserStore } from "../../Store.js";
+import style from "./NavBar.module.css";
+import styled from "@emotion/styled";
 
 const NavBar = () => {
   const accountPopover = usePopover();
@@ -17,7 +17,7 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  let categories = ['Category 1', 'Category 2', 'Category 3'];
+  let categories = ["Category 1", "Category 2", "Category 3"];
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,18 +25,18 @@ const NavBar = () => {
       setIsOpen(false);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
     <>
       <nav className={style.container}>
-        <NavLink to='/'>
-          <img src={logo} alt='Equilibre' height={70} />
+        <NavLink to="/">
+          <img src={logo} alt="Equilibre" height={70} />
         </NavLink>
 
         {windowWidth < 750 ? (
@@ -46,13 +46,18 @@ const NavBar = () => {
             <div className={style.iconWrapper}>
               <label className={style.hamburger}>
                 <input className={style.hamburgerInput} type="checkbox" />
-                <span className={`${style.hamburgerLine} ${style.first}`}></span>
-                <span className={`${style.hamburgerLine} ${style.second}`}></span>
-                <span className={`${style.hamburgerLine} ${style.third}`}></span>
+                <span
+                  className={`${style.hamburgerLine} ${style.first}`}
+                ></span>
+                <span
+                  className={`${style.hamburgerLine} ${style.second}`}
+                ></span>
+                <span
+                  className={`${style.hamburgerLine} ${style.third}`}
+                ></span>
               </label>
             </div>
             <ul className={style.itemList}>
-
               <li>
                 <p>
                   Products
@@ -60,49 +65,73 @@ const NavBar = () => {
                 </p>
                 <ul className={style.dropdownMenu}>
                   <div className={style.categories}>
-                  {categories.map((category) => (
-                    <li key={category} >
-                      <NavLink to={`/products/${category}`}>
-                        {category}
-                      </NavLink>
-                    </li>
-                  ))}
+                    {categories.map((category) => (
+                      <li key={category}>
+                        <NavLink to={`/products/${category}`}>
+                          {category}
+                        </NavLink>
+                      </li>
+                    ))}
                   </div>
                 </ul>
               </li>
 
-              <NavLink to='/consultation' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+              <NavLink
+                to="/consultation"
+                className={({ isActive }) =>
+                  isActive ? style.activeLinks : style.navLinks
+                }
+              >
                 <li>
                   <p>Consultation</p>
                 </li>
               </NavLink>
-              <NavLink to='/about' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? style.activeLinks : style.navLinks
+                }
+              >
                 <li>
                   <p>About US</p>
                 </li>
               </NavLink>
-              <NavLink to='/contactUs' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+              <NavLink
+                to="/contactUs"
+                className={({ isActive }) =>
+                  isActive ? style.activeLinks : style.navLinks
+                }
+              >
                 <li>
                   <p>Contact</p>
                 </li>
               </NavLink>
-              <NavLink to='/profile' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive ? style.activeLinks : style.navLinks
+                }
+              >
                 <li>
                   <p>Profile</p>
                 </li>
               </NavLink>
-              <NavLink to='/login' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  isActive ? style.activeLinks : style.navLinks
+                }
+              >
                 <li>
                   <p>Login</p>
                 </li>
               </NavLink>
-              <NavLink to='/cart' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+              <NavLink
+                to="/cart"
+                className={({ isActive }) =>
+                  isActive ? style.activeLinks : style.navLinks
+                }
+              >
                 <li>
                   <p>Cart</p>
                 </li>
@@ -112,43 +141,65 @@ const NavBar = () => {
         ) : (
           <>
             <div className={`${style.navbar}`}>
-              <ul className={`${style.navbarLinks} ${isOpen ? style.open : ''}`}>
-              <NavLink  className={`${style.navLinks} ${style.dropDownContainer}`}>
-                <li>
-                  <p  style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                    Products
-                    <div>
-                      <KeyboardArrowDown />
-                    </div>
-                  </p>
-                  {/* Dropdown Menu for Desktop */}
-                  <ul className={style.dropdownMenuDesktop}>
-                    <div className={style.categories}>
-                    {categories.map((category) => (
-                      <li key={category} className={style.categories}>
-                        <NavLink to={`/products/${category}`}>
-                          {category}
-                        </NavLink>
-                      </li>
-                    ))}
-                    </div>
-                  </ul>
-                </li>
-                </NavLink >
-                <NavLink to='/consultation' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+              <ul
+                className={`${style.navbarLinks} ${isOpen ? style.open : ""}`}
+              >
+                <NavLink
+                  className={`${style.navLinks} ${style.dropDownContainer}`}
+                >
+                  <li>
+                    <p
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignContent: "center",
+                      }}
+                    >
+                      Products
+                      <div>
+                        <KeyboardArrowDown />
+                      </div>
+                    </p>
+                    {/* Dropdown Menu for Desktop */}
+                    <ul className={style.dropdownMenuDesktop}>
+                      <div className={style.categories}>
+                        {categories.map((category) => (
+                          <li key={category} className={style.categories}>
+                            <NavLink to={`/products/${category}`}>
+                              {category}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </div>
+                    </ul>
+                  </li>
+                </NavLink>
+                <NavLink
+                  to="/consultation"
+                  className={({ isActive }) =>
+                    isActive ? style.activeLinks : style.navLinks
+                  }
+                >
                   <li>
                     <p>Consultation</p>
                   </li>
                 </NavLink>
-                <NavLink to='/about' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive ? style.activeLinks : style.navLinks
+                  }
+                >
                   <li>
                     <p>About us</p>
                   </li>
                 </NavLink>
-                <NavLink to='/contact' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    isActive ? style.activeLinks : style.navLinks
+                  }
+                >
                   <li>
                     <p>Contact</p>
                   </li>
@@ -162,36 +213,45 @@ const NavBar = () => {
                     onClick={accountPopover.handleOpen}
                     ref={accountPopover.anchorRef}
                     sx={{
-                      cursor: 'pointer',
+                      cursor: "pointer",
                       height: 35,
                       width: 35,
                       marginLeft: 1.5,
-                      color: 'black',
+                      color: "black",
                     }}
                   />
-                  <NavLink to='/cart' className={({ isActive }) => (isActive ? style.activeLinks : style.navLinks)}
->
+                  <NavLink
+                    to="/cart"
+                    className={({ isActive }) =>
+                      isActive ? style.activeLinks : style.navLinks
+                    }
+                  >
                     <ShoppingCartOutlined
                       sx={{
-                        cursor: 'pointer',
+                        cursor: "pointer",
                         height: 30,
                         width: 35,
                         marginLeft: 1.5,
-                        color: 'black',
+                        color: "black",
                       }}
                     />
                   </NavLink>
                 </>
               ) : (
-                <NavLink to='/login'>
+                <NavLink to="/login">
                   <button className={style.loginButton}>Login</button>
                 </NavLink>
               )}
             </div>
           </>
         )}
-
-        <AccountPopover anchorEl={accountPopover.anchorRef.current} open={accountPopover.open} onClose={accountPopover.handleClose} />
+        {user && (
+          <AccountPopover
+            anchorEl={accountPopover.anchorRef.current}
+            open={accountPopover.open}
+            onClose={accountPopover.handleClose}
+          />
+        )}
       </nav>
       <Outlet />
     </>

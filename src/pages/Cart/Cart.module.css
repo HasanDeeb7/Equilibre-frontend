@@ -1,0 +1,84 @@
+.cartPageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 100px;
+}
+.cartItemsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  overflow-y: scroll;
+}
+.cartItemsHeader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.cartItemsHeader > p:nth-child(1) {
+  flex-basis: 40%;
+}
+.cartItemsHeader > p:nth-child(2) {
+  flex-basis: 20%;
+}
+.cartItemsHeader > p:nth-child(3) {
+  flex-basis: 20%;
+}
+.cartItemsHeader > p:nth-child(4) {
+  flex-basis: 20%;
+}
+.actionsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.proceedActionsContainer {
+  display: flex;
+  gap: 20px;
+}
+.summaryWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+}
+.shippingNoe {
+  color: #838383;
+}
+.buttonsContainer {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.secondaryBtn {
+  padding: 10px 15px;
+  width: 150px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: fit-content;
+}
+.secondaryBtn:hover {
+  background-color: transparent;
+  color: var(--secondary-color);
+}
+.primaryBtn {
+  padding: 10px 30px;
+  /* width: 150px; */
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.primaryBtn:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+}
