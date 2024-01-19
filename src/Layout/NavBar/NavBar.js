@@ -107,7 +107,7 @@ const NavBar = () => {
           <>
             <div className={`${style.navbar}`}>
               <ul className={`${style.navbarLinks} ${isOpen ? style.open : ''}`}>
-              <NavLink  className={style.navLinks}>
+              <NavLink  className={`${style.navLinks} ${style.dropDownContainer}`}>
                 <li>
                   <p  style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
                     Products

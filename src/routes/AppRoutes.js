@@ -19,18 +19,18 @@ function AppRoutes() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<NavBar />}>
-          {/* <Route path="/" element={<Home />}></Route> */}
+        <Route  element={<NavBar />}>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/consultation" element={<Products />}></Route>
           <Route path="/profile" element={<Products />}></Route>
           <Route path="/single" element={<SingleProduct />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
         </Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
         <Route
           path="/dashboard"
           element={

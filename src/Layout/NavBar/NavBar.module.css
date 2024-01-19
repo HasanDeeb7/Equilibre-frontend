@@ -34,23 +34,68 @@
 }
 
 .loginButton {
-  padding: 10px;
-  width: 100px;
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 5px;
-  font-weight: 600;
-  color: #ffffff;
+  padding: 10px 30px;
+  width:80px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
+
+.loginButton:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+}
 .navLinks.active {
   border-bottom: 4px solid var(--primary-color);
 }
+.dropDownContainer{
+  position: relative;
+}
 
+.dropdownMenuDesktop {
+  display: none;
+  position: absolute;
+  margin-top: 11px;
+  width: 190px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 15px;
+  z-index: 100;
+  transition: all .4s ease;
+}  
+.dropDownContainer:hover .dropdownMenuDesktop {
+  display: block;
+  /* flex-direction: column; */
+  background: white;
+  box-shadow: 4px 8px 35px -10px rgba(191,180,180,0.75);
+}
+.categories{
+  display: flex;
+  flex-direction: column;
+  /* gap: 5px; */
+  padding: 12px 0;
+  align-items: center;
+}
+.categories >li{
+  width: 100%;
+  transition: all .3s ease;
+  border-radius: 10px;
+}
+.categories > li:hover{
+  background-color: var(--primary-color);
+}
+.categories > li > a{
+  color: black;
+  text-decoration: none;
+  transition: all .3s ease;
+}
 
-.navLinks:hover {
-  border-bottom: 4px solid var(--primary-color);
-  transition: all 0.2s ease-out;
+.categories > li:hover > a{
+  color: white;
 }
 
 .containerRight {
@@ -63,56 +108,19 @@
 }
 
 
-.navbarLinks li:first-child {
-  transition: all 0.4s ease-in-out;
+.navLinks:hover {
+  border-bottom: 4px solid var(--primary-color);
+  transition: all 0.2s ease-out;
 }
-
-
-
-.dropdownMenu {
-  display: none;
-}
-
-
-.itemList li:first-child:hover .dropdownMenu {
-  display: block;
-}
-
-
-
-.categories>li>a {
-
-  color: black;
-  text-decoration: none;
-}
-
-.dropdownMenuDesktop {
-  margin-top: 5px;
-  width: 150px;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 15px;
-  position: absolute;
-  z-index: 100;
-}
-
-.dropdownMenuDesktop {
-  display: none;
-  /* opacity: 0; */
-  /* transition: all 0.4s ease;  */
-}
-
 .dropdownMenuDesktop .categories>li {
   list-style: none;
   margin-bottom: 3px;
   font-size: 16px;
-
 }
 
-.navLinks > li:first-child:hover .dropdownMenuDesktop {
-  display: block;
-  /* opacity: 1; */
-}
+
+
+
 
 /* .navLinks li:first-child {
   transition: all 2s ease-in-out; 
@@ -123,9 +131,7 @@
   position: relative;
 }
 
-.dropdownMenuDesktop {
-  transition: all 0.4s ease-in-out;
-}
+
 
 
 
