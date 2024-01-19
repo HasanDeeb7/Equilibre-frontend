@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import image from "../../assets/Hero2Eq2.png";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 function SingleProductOverview({ product }) {
   const [options, setOptions] = useState({
@@ -11,6 +12,17 @@ function SingleProductOverview({ product }) {
   });
   const [stock, setStock] = useState();
   const [price, setPrice] = useState(product.sizes[0].price);
+
+  function addToCart() {
+    const currentCart = JSON.parse(localStorage.getItem("Cart")) || [];
+    currentCart.push({
+      ...product,
+      quantity: options.quantity,
+      size: options.size,
+    });
+    localStorage.setItem("Cart", JSON.stringify(currentCart));
+    toast.success("Item Added to Cart");
+  }
 
   function handleIncrease() {
     setOptions({ ...options, quantity: options.quantity + 1 });
@@ -99,7 +111,7 @@ function SingleProductOverview({ product }) {
             {options.quantity >= stock && "Out of stock!"}
           </span>
         </section>
-        <button className={style.addToCartBtn}>
+        <button className={style.addToCartBtn} onClick={addToCart}>
           <MdOutlineShoppingCart className={style.cartIcon} /> Add to cart
         </button>
       </section>

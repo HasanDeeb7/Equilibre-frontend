@@ -11,7 +11,9 @@ const ProductCard = ({ name, description, price }) => {
         </div>
         <img className={ProductStyle.image} src={pic} alt="product pricture" />
         <h2 className={ProductStyle.productName}>{name}</h2>
-        <p className={ProductStyle.description}>{description.substring(0, 76)}...</p>
+        <p className={ProductStyle.description}>
+          {description?.substring(0, 76)}...
+        </p>
         <div className={ProductStyle.PricingPart}>
           <div className={ProductStyle.priceContainer}>
             <p className={ProductStyle.originalPrice}>
