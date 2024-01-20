@@ -21,7 +21,7 @@ function AppRoutes() {
     <div>
       <Routes>
         <Route  element={<NavBar />}>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<ConsultingSection />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/consultation" element={<Products />}></Route>
           <Route path="/profile" element={<Products />}></Route>
