@@ -1,7 +1,7 @@
 .container {
   display: flex;
   width: 90%;
-  margin: 4% auto;
+  margin: 2% auto;
   justify-content: space-between;
 }
 .title {
@@ -17,7 +17,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 189.5%;
-  width: 437px;
+  width: 460px;
   height: 220px;
 }
 .textWrapper {

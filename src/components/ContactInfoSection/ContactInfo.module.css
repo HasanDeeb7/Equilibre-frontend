@@ -2,7 +2,7 @@
   display: flex;
   width: 90%;
   height: 100px;
-  margin: auto;
+  margin: 5% auto;
   justify-content: space-between;
 }
 .phoneContainer {
