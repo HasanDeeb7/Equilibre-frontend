@@ -1,13 +1,18 @@
-.aboutUsSection {
+.consultingSection {
   display: flex;
-  background-color: rgba(183, 207, 51, 0.1);
   height: 500px;
-  width: 100%;
+  width: 90%;
+  margin: 2% auto;
 }
 .textContainer {
-  flex-basis: 45%;
+  width:35%;
   align-self: center;
   margin: 0 auto;
+  color: #1D252C;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 57.6px; /* 360% */
 }
 .btn {
   border: none;
@@ -35,11 +40,10 @@
   letter-spacing: -0.9px;
   margin-bottom: 2%;
 }
-.video {
-  flex-basis: 45%;
+.img {
+  width: 60%;
   margin: auto 2%;
-  height: 400px;
-
+  height: 500px;
 }
 
 .point::before {
@@ -52,27 +56,28 @@
   margin-right: 0.5rem;
   background-color: #383737;
 }
-.point{
+.point {
   margin-top: 20px;
 }
-.text, .point {
+.text,
+.point {
   color: #383737;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 28.8px;
-  width:90%;
+  width: 90%;
 }
 
-@media screen and (max-width: 700px) {
-  .aboutUsSection {
+@media screen and (max-width: 1300px) {
+  .consultingSection {
     flex-direction: column;
     height: 800px;
   }
-  .video {
+  .img {
     width: 90%;
     align-self: center;
-    height: 300%;
+    height: 50%;
   }
   .textContainer {
     width: 90%;
@@ -82,3 +87,13 @@
     padding: 10px 15px;
   }
 }
+@media screen and (max-width: 600px) {
+    .textContainer {
+        margin: 5% 0;
+        font-size: 14px;
+        line-height: 2;
+      }
+      .consultingSection {
+        height: 600px;
+      }
+  }
