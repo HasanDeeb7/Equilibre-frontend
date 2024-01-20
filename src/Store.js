@@ -7,4 +7,11 @@ export const useUserStore = create(
     removeUser: () => set(() => ({ user: null })),
   }))
 );
+export const useProductStore = create(
+  zukeeper((set) => ({
+    products: [],
+    setProducts: (data) => set(() => ({ products: data })),
+  }))
+);
 window.store = useUserStore;
+window.store = useProductStore;
