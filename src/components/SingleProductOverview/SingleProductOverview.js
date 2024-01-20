@@ -21,6 +21,8 @@ function SingleProductOverview({ product }) {
       quantity: options.quantity,
       size: options.size,
       price: price,
+      stock: stock,
+      quantityPrice: price * options.quantity,
     });
     localStorage.setItem("Cart", JSON.stringify(currentCart));
     toast.success("Item Added to Cart");

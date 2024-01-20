@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartItem from "../../components/CartItem/CartItem";
 import style from "./Cart.module.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 function Cart() {
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("Cart")) || null
   );
-  // const [subtotal, setSubtotal] = useState(cartItems)
+  const [subtotal, setSubtotal] = useState(0);
+  const navigate = useNavigate();
+
+  function clearCart() {
+    setCartItems(null);
+    localStorage.removeItem("Cart");
+    toast.success("Cart Cleared");
+  }
+  useEffect(() => {
+    const totalQuantity = cartItems.reduce((accumulator, item) => {
+      return accumulator + item.quantityPrice;
+    }, 0);
+    setSubtotal(totalQuantity);
+  }, []);
   return !cartItems ? (
     <section>Cart is empty</section>
   ) : (
@@ -24,23 +39,35 @@ function Cart() {
               name={item.name}
               price={item.price}
               initialQuantity={item.quantity}
+              initialStock={item.stock}
+              setSubtotal={setSubtotal}
+              subtotal={subtotal}
             />
           ))}
         </section>
       </section>
       <section className={style.actionsContainer}>
-        <button className={style.secondaryBtn}>Clear cart</button>
+        <button onClick={clearCart} className={style.secondaryBtn}>
+          Clear cart
+        </button>
         <section className={style.proceedActionsContainer}>
           <section className={style.summaryWrapper}>
             <section className={style.subtotal}>
               <p>Subtotal</p>
-              <span>price</span>
+              <span>${subtotal}</span>
             </section>
-            <span className={style.shippingNoe}>Tax and shipping cost will be calculated later</span>
+            <span className={style.shippingNoe}>
+              Tax and shipping cost will be calculated later
+            </span>
           </section>
           <section className={style.buttonsContainer}>
             <button className={style.primaryBtn}>Check out</button>
-            <button className={style.primaryBtn}>Continue Shopping</button>
+            <button
+              className={style.primaryBtn}
+              onClick={() => navigate("/products")}
+            >
+              Continue Shopping
+            </button>
           </section>
         </section>
       </section>

@@ -16,16 +16,20 @@
   justify-content: space-between;
 }
 .cartItemsHeader > p:nth-child(1) {
-  flex-basis: 40%;
+  flex-basis: 55%;
+  min-width: 231px;
 }
 .cartItemsHeader > p:nth-child(2) {
-  flex-basis: 20%;
+  flex-basis: 15%;
+  min-width: 82px;
 }
 .cartItemsHeader > p:nth-child(3) {
-  flex-basis: 20%;
+  min-width: 142px;
+  flex-basis: 15%;
 }
 .cartItemsHeader > p:nth-child(4) {
-  flex-basis: 20%;
+  flex-basis: 15%;
+  min-width: 82px;
 }
 .actionsContainer {
   display: flex;
@@ -54,8 +58,8 @@
   flex-direction: column;
 }
 .secondaryBtn {
-  padding: 10px 15px;
-  width: 150px;
+  padding: 10px 30px;
+  width: 180px;
   border: 1px solid var(--secondary-color);
   background: var(--secondary-color);
   color: white;
@@ -70,7 +74,7 @@
 }
 .primaryBtn {
   padding: 10px 30px;
-  /* width: 150px; */
+  width: 180px;
   border: 1px solid var(--primary-color);
   background: var(--primary-color);
   color: white;
@@ -81,4 +85,29 @@
 .primaryBtn:hover {
   background-color: transparent;
   color: var(--primary-color);
+}
+
+@media screen and (max-width: 800px) {
+  .cartPageContainer {
+    margin: 50px;
+  }
+  .cartItemsContainer {
+    height: 500px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .actionsContainer {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .proceedActionsContainer {
+    width: 100%;
+    flex-direction: column;
+  }
+  .buttonsContainer {
+    align-items: flex-end;
+  }
+  .secondaryBtn {
+    align-self: end;
+  }
 }
