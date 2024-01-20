@@ -12,6 +12,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import { useContext, useEffect } from "react";
 import { useUserStore } from "../Store";
 import NavBar from "../Layout/NavBar/NavBar";
+import Shipping from "../components/shipping/Shipping";
 
 function AppRoutes() {
   const { user } = useUserStore();
@@ -28,6 +29,7 @@ function AppRoutes() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/shipping" element={<Shipping />}></Route>
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
