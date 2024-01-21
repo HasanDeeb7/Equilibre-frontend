@@ -13,7 +13,7 @@ import { useContext, useEffect } from "react";
 import { useUserStore } from "../Store";
 import NavBar from "../Layout/NavBar/NavBar";
 import Shipping from "../components/shipping/Shipping";
-
+import ConsultingSection from '../components/ConsultingSection/ConsultingSection'
 function AppRoutes() {
   const { user } = useUserStore();
 

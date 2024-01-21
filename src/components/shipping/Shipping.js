@@ -1,10 +1,57 @@
 import React, { useState } from 'react';
 import { useUserStore } from '../../Store.js';
 import style from './Shipping.module.css';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Select from 'react-select';
 const Shipping = () => {
+    const customStyles = {
+        control: (defaultStyles, state) => ({
+            ...defaultStyles,
+            ...style.selector,
+            border: '0 !important',
+            boxShadow: '0 !important',
+            '&:hover': {
+                border: '0 !important'
+            }
+        }),
+        option: (defaultStyles, state) => ({
+            ...defaultStyles,
+            color: 'black',
+            backgroundColor: state.isFocused ? '#B7CF33' : 'white',
+        })
+    };
+
+    const countries = [
+        { value: 'lebanon', label: 'Lebanon' },
+        { value: 'Qatar', label: 'Qatar' },
+        { value: 'Emirat', label: 'Emirat' },
+        { value: 'Egypt', label: 'Egypt' },
+        { value: 'Moroco', label: 'Moroco' },
+        { value: 'France', label: 'France' },
+        { value: 'Australia', label: 'Australia' },
+    ];
+
+    const cities = {
+        lebanon: [
+            { value: 'Beirut', label: 'Beirut' },
+            { value: 'Tripoli', label: 'Tripoli' },
+            { value: 'Sidon', label: 'Sidon' },
+            { value: 'Tyre', label: 'Tyre' },
+            { value: 'Baalbek', label: 'Baalbek' },
+            { value: 'Zahle', label: 'Zahle' },
+            { value: 'Nabatieh', label: 'Nabatieh' },
+            { value: 'Saida', label: 'Saida' },
+            { value: 'Jounieh', label: 'Jounieh' },
+            { value: 'Byblos', label: 'Byblos' },
+            { value: 'Akkar', label: 'Akkar' },
+        ],
+
+    };
+
+
+
     const { user } = useUserStore();
-    const [edit, setEdit] = useState(false);
+    // const [edit, setEdit] = useState(false);
     const [formData, setFormData] = useState({
         email: 'email@gmail.com',
         country: '',
@@ -13,15 +60,27 @@ const Shipping = () => {
         lastName: '',
         shippingAddress: '',
         phone: '',
+        paymentMethod: ''
     });
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
+
+    console.log(formData)
+    const handleChangeSelector = (selectedOption, field) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [field]: selectedOption.value,
+        }));
+    };
+
 
     return (
         <div className={style.shippingInfo}>
@@ -29,29 +88,29 @@ const Shipping = () => {
                 <label htmlFor='email' className={style.emailLabel}>
                     Contact
                 </label>
-                {edit ? (
-                    <input
-                        value={formData.email}
-                        id='email'
-                        name='email'
-                        type='email'
-                        className={style.emailField}
-                        onChange={handleChange}
-                        placeholder='Email'
-                    />
-                ) : (
-                    <input
+
+                <input
+                    value={formData.email}
+                    id='email'
+                    name='email'
+                    type='email'
+                    className={style.emailField}
+                    onChange={handleChange}
+                    placeholder='Email'
+                />
+
+                {/* <input
                         value={formData.email}
                         id='email'
                         name='email'
                         type='email'
                         className={style.emailField}
                         disabled
-                    />
-                )}
-                <button className={style.editButton} onClick={() => setEdit(!edit)}>
+                    /> */}
+
+                {/* <button className={style.editButton} onClick={() => setEdit(!edit)}>
                     Edit
-                </button>
+                </button> */}
             </section>
 
             <section>
@@ -59,53 +118,29 @@ const Shipping = () => {
                 <label htmlFor='country'>
 
                 </label>
-                <select
+
+                <Select
                     name='country'
                     id='country'
-                    onChange={handleChange}
-                    value={formData.country}
+                    options={countries}
+                    onChange={(selectedOption) => handleChangeSelector(selectedOption, 'country')}
+                    value={countries.find((option) => option.value === formData.country)}
                     className={style.selector}
-                >
-                    <option value='' disabled>
-                        Select Country
-                    </option>
-                    <option value='lebanon'>Lebanon</option>
-                    <option value='Qatar'>Qatar</option>
-                    <option value='Emirat'>Emirat</option>
-                    <option value='Egypt'>Egypt</option>
-                    <option value='Moroco'>Moroco</option>
-                    <option value='France'>France</option>
-                    <option value='Australia'>Australia</option>
-                </select>
+                    placeholder="Select Country"
+                    styles={customStyles}
+                />
 
                 {formData.country === 'lebanon' && (
-                    <div>
-                        <label htmlFor='city' >
-
-                        </label>
-                        <select
-                            name='city'
-                            id='city'
-                            onChange={handleChange}
-                            value={formData.city}
-                            className={style.selector}
-                        >
-                            <option value='' disabled>
-                                Select City
-                            </option>
-                            <option value='Beirut'>Beirut</option>
-                            <option value='Tripoli'>Tripoli</option>
-                            <option value='Sidon'>Sidon</option>
-                            <option value='Tyre'>Tyre</option>
-                            <option value='Baalbek'>Baalbek</option>
-                            <option value='Zahle'>Zahle</option>
-                            <option value='Nabatieh'>Nabatieh</option>
-                            <option value='Saida'>Saida</option>
-                            <option value='Jounieh'>Jounieh</option>
-                            <option value='Byblos'>Byblos</option>
-                            <option value='Akkar'>Akkar</option>
-                        </select>
-                    </div>
+                    <Select
+                        name='city'
+                        id='city'
+                        options={cities.lebanon}
+                        onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
+                        value={cities.lebanon.find((option) => option.value === formData.city)}
+                        className={style.selector}
+                        placeholder="Select City"
+                        styles={customStyles}
+                    />
                 )}
 
                 <section className={style.nameSection}>
@@ -156,13 +191,13 @@ const Shipping = () => {
                     placeholder='Phone number'
                 />
             </section>
-
+            <h3 className={style.paymentTitle}>Payment</h3>
             <section className={style.payment}>
-                <h3>Payment</h3>
+
                 <label>
                     <input
-                        value={formData.shippingAddress}
-                        name='shippingAddress'
+                        value='USD'
+                        name='paymentMethod'
                         type='radio'
                         className={style.paymentMethod}
                         onChange={handleChange}
@@ -172,8 +207,8 @@ const Shipping = () => {
 
                 <label>
                     <input
-                        value={formData.shippingAddress}
-                        name='shippingAddress'
+                        value='LBP'
+                        name='paymentMethod'
                         type='radio'
                         className={style.paymentMethod}
                         onChange={handleChange}
@@ -181,9 +216,9 @@ const Shipping = () => {
                     Cash On Delivery (LBP on daily rate)
                 </label>
             </section>
-            <nav>
+            <nav className={style.navSection}>
                 <Link path='/cart' className={style.navLink}>Back to cart</Link>
-            <button type='submit' className={style.completeOrder} onSubmit={()=>{}}> Complete Order</button></nav>
+                <button type='submit' className={style.completeOrder} onSubmit={() => { }}> Complete Order</button></nav>
         </div>
     );
 };
