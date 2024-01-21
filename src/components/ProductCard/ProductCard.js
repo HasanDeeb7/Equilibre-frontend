@@ -1,16 +1,16 @@
 import ProductStyle from "./ProductCard.module.css";
-import pic from "../../assets/WhatsApp_Image_2024-01-11_at_10.34.18_PM-removebg-preview.png";
+import { Link } from "react-router-dom";
 const hasOffer = true;
 const discountRate = 10;
-const ProductCard = ({ name, description, price }) => {
+const ProductCard = ({ id ,name, description, price,imgurl }) => {
   return (
     <>
       <div className={ProductStyle.cardContainer}>
         <div className={ProductStyle.discountRateContainer}>
           <p className={ProductStyle.discountRate}>{discountRate}% Off</p>
         </div>
-        <img className={ProductStyle.image} src={pic} alt="product pricture" />
-        <h2 className={ProductStyle.productName}>{name}</h2>
+        <Link to="/single"><img className={ProductStyle.image} src={imgurl} alt="product pricture" /></Link>
+        <Link to="/single" style={{textDecoration:"none"}}><h2 className={ProductStyle.productName}>{name}</h2></Link>
         <p className={ProductStyle.description}>
           {description?.substring(0, 76)}...
         </p>

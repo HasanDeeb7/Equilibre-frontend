@@ -14,11 +14,15 @@ function SingleProductOverview({ product }) {
   const [price, setPrice] = useState(product.sizes[0].price);
 
   function addToCart() {
+    console.log(options.quantity);
     const currentCart = JSON.parse(localStorage.getItem("Cart")) || [];
     currentCart.push({
       ...product,
       quantity: options.quantity,
       size: options.size,
+      price: price,
+      stock: stock,
+      quantityPrice: price * options.quantity,
     });
     localStorage.setItem("Cart", JSON.stringify(currentCart));
     toast.success("Item Added to Cart");
