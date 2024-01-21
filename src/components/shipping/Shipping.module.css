@@ -50,7 +50,9 @@
 .emailField:focus {
     outline: 1px dashed var(--primary-color);
 }
-
+.emailField:not(:focus) {
+color: black;
+}
 .selector {
     width: 90%;
     height: 50px;

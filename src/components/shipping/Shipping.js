@@ -12,12 +12,15 @@ const Shipping = () => {
             boxShadow: '0 !important',
             '&:hover': {
                 border: '0 !important'
-            }
+            },
+            fontSize:'14px'
         }),
         option: (defaultStyles, state) => ({
             ...defaultStyles,
             color: 'black',
             backgroundColor: state.isFocused ? '#B7CF33' : 'white',
+            fontSize:'14px'
+
         })
     };
 
@@ -73,7 +76,6 @@ const Shipping = () => {
         }));
     };
 
-    console.log(formData)
     const handleChangeSelector = (selectedOption, field) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -81,7 +83,20 @@ const Shipping = () => {
         }));
     };
 
-
+const handelSubmit=()=>{
+    console.log(formData)
+setFormData({
+    email:'',
+    country: '',
+    city: '',
+    firstName: '',
+    lastName: '',
+    shippingAddress: '',
+    phone: '',
+    paymentMethod: ''
+})
+console.log(formData)
+}
     return (
         <div className={style.shippingInfo}>
             <section className={style.contactInfo}>
@@ -97,6 +112,7 @@ const Shipping = () => {
                     className={style.emailField}
                     onChange={handleChange}
                     placeholder='Email'
+                    required
                 />
 
                 {/* <input
@@ -128,6 +144,7 @@ const Shipping = () => {
                     className={style.selector}
                     placeholder="Select Country"
                     styles={customStyles}
+                    required
                 />
 
                 {formData.country === 'lebanon' && (
@@ -140,6 +157,7 @@ const Shipping = () => {
                         className={style.selector}
                         placeholder="Select City"
                         styles={customStyles}
+                        required
                     />
                 )}
 
@@ -155,6 +173,7 @@ const Shipping = () => {
                             className={style.nameField}
                             onChange={handleChange}
                             placeholder='First Name'
+                            required
                         />
                     </label>
 
@@ -169,6 +188,7 @@ const Shipping = () => {
                             className={style.nameField}
                             onChange={handleChange}
                             placeholder='Last Name'
+                            required
                         />
                     </label>
                 </section>
@@ -179,7 +199,8 @@ const Shipping = () => {
                     type='text'
                     className={style.selector}
                     onChange={handleChange}
-                    placeholder='Address'
+                    placeholder='Address (e.g :Rue, Floor, Apartment) '
+                    required
                 />
 
                 <input
@@ -189,6 +210,7 @@ const Shipping = () => {
                     className={style.selector}
                     onChange={handleChange}
                     placeholder='Phone number'
+                    required
                 />
             </section>
             <h3 className={style.paymentTitle}>Payment</h3>
@@ -201,6 +223,7 @@ const Shipping = () => {
                         type='radio'
                         className={style.paymentMethod}
                         onChange={handleChange}
+                        required
                     />
                     Cash On Delivery (USD)
                 </label>
@@ -212,13 +235,14 @@ const Shipping = () => {
                         type='radio'
                         className={style.paymentMethod}
                         onChange={handleChange}
+                        required
                     />
                     Cash On Delivery (LBP on daily rate)
                 </label>
             </section>
             <nav className={style.navSection}>
                 <Link path='/cart' className={style.navLink}>Back to cart</Link>
-                <button type='submit' className={style.completeOrder} onSubmit={() => { }}> Complete Order</button></nav>
+                <button type='submit' className={style.completeOrder} onClick={handelSubmit}> Complete Order</button></nav>
         </div>
     );
 };
