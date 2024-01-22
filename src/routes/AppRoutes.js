@@ -9,13 +9,12 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Checkout from "../pages/Checkout/Checkout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
-import { useContext, useEffect } from "react";
 import { useUserStore } from "../Store";
 import NavBar from "../Layout/NavBar/NavBar";
 import ConsultingSection from "../components/ConsultingSection/ConsultingSection";
 import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
-
+import Sidebar from "../components/Sidebar/Sidebar";
 function AppRoutes() {
   const { user } = useUserStore();
 
@@ -37,15 +36,17 @@ function AppRoutes() {
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/about" element={<AboutUs />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
-        <Route path="/user-profile" element={<UserProfile />}></Route>
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute isAllowed={user}>
+        <Route path="/dashboard" element={<Sidebar />}>
+
+          <Route
+            path="/dashboard"
+            element={
+              // <ProtectedRoute isAllowed={user}>
               <Dashboard />
-            </ProtectedRoute>
-          }
-        ></Route>
+              // </ProtectedRoute>
+            }
+          ></Route>
+        </Route>
         <Route path="/*" element={<NotFound />}></Route>
 
       </Routes>

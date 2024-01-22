@@ -59,7 +59,7 @@ return (
             <li>Privacy Policies</li>
             <li>Terms & Conditions</li>
         </ul>
-        <div>
+        <div className={Styles.sentMessage}>
             <p className={Styles.contactUs}>Contact us : (+961) 70 820 265</p>
             <div className={Styles.message}>
                 <span className={Styles.messageUs}>Message us :</span>
