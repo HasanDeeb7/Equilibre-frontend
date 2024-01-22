@@ -3,7 +3,7 @@ import { useUserStore } from '../../Store.js';
 import style from './Shipping.module.css';
 import { Link } from 'react-router-dom'
 import Select from 'react-select';
-const Shipping = () => {
+const Shipping = ({ onFormDataChange }) => {
     const customStyles = {
         control: (defaultStyles, state) => ({
             ...defaultStyles,
@@ -13,13 +13,13 @@ const Shipping = () => {
             '&:hover': {
                 border: '0 !important'
             },
-            fontSize:'14px'
+            fontSize: '14px'
         }),
         option: (defaultStyles, state) => ({
             ...defaultStyles,
             color: 'black',
             backgroundColor: state.isFocused ? '#B7CF33' : 'white',
-            fontSize:'14px'
+            fontSize: '14px'
 
         })
     };
@@ -74,6 +74,7 @@ const Shipping = () => {
             ...prevData,
             [name]: value,
         }));
+
     };
 
     const handleChangeSelector = (selectedOption, field) => {
@@ -83,20 +84,21 @@ const Shipping = () => {
         }));
     };
 
-const handelSubmit=()=>{
-    console.log(formData)
-setFormData({
-    email:'',
-    country: '',
-    city: '',
-    firstName: '',
-    lastName: '',
-    shippingAddress: '',
-    phone: '',
-    paymentMethod: ''
-})
-console.log(formData)
-}
+    const handelSubmit = () => {
+        console.log(formData)
+        onFormDataChange(formData)
+        setFormData({
+            email: '',
+            country: '',
+            city: '',
+            firstName: '',
+            lastName: '',
+            shippingAddress: '',
+            phone: '',
+            paymentMethod: ''
+        })
+        console.log(formData)
+    }
     return (
         <div className={style.shippingInfo}>
             <section className={style.contactInfo}>

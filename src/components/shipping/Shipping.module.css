@@ -1,6 +1,6 @@
 .shippingInfo {
     margin: 50px 0 0 80px;
-    width: 500px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -50,9 +50,11 @@
 .emailField:focus {
     outline: 1px dashed var(--primary-color);
 }
+
 .emailField:not(:focus) {
-color: black;
+    color: black;
 }
+
 .selector {
     width: 90%;
     height: 50px;
@@ -70,7 +72,7 @@ color: black;
 }
 
 .nameField {
-    width: 70%;
+    width: 0%;
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -83,9 +85,11 @@ color: black;
     background-color: white;
     margin: 15px 0;
 }
-.nameField:focus{
-    color:black
+
+.nameField:focus {
+    color: black
 }
+
 .payment {
     width: 90%;
     padding: 20px;
@@ -110,11 +114,22 @@ color: black;
 .nameSection {
     width: 90%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
 }
-.nameSection label >input{
-    width:100%
+
+.nameSection label {
+    width: 50%;
+
+}
+
+.nameSection label:first-of-type {
+    margin-right: 10px;
+}
+
+
+.nameSection label>input {
+    width: 100%
 }
 
 
@@ -160,21 +175,26 @@ input[type='radio'] {
 @media only screen and (width<600px) {
     .shippingInfo {
         margin: 50px auto 0 auto;
-width:90%;
+        width: 90%;
 
     }
- 
-    .completeOrder{
-        width:100px;
-    padding: 10px;
+
+    .completeOrder {
+        width: 100px;
+        padding: 10px;
 
     }
 
 }
 
 @media only screen and (width<500px) {
-.nameSection{
-    display: flex;
-    flex-direction: column;
-}
+    .nameSection {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nameSection label {
+        width: 100%;
+
+    }
 }
