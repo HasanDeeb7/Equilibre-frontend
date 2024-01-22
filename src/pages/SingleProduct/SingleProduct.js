@@ -4,7 +4,7 @@ import axios from "axios";
 import RelatedProduct from "../../components/RelatedProduct/RelatedProduct";
 import style from "./SingleProduct.module.css";
 function SingleProduct() {
-  const id = "65a6588b7c044c97f2ea28f5";
+  const id = "65aafd46f1eb4906132c2837";
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   async function getOneProduct() {
