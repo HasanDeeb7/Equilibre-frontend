@@ -1,25 +1,31 @@
+
+.checkbox:checked {
+  border: none;
+  accent-color: rgb(79, 79, 79);
+  opacity: .8;
+  
+}
+.line{
+    border: #7f7c7c solid 0.5px;
+    width: 75%;
+    margin: auto;
+    margin-top: 25px;
+}
 .FilterSection {
   width: 20%;
-  height: fit-content;
-  background: red;
+  height: 100vh;
+  background: rgb(182, 182, 182);
   border-radius: 10px;
-  margin: 150px 0 0 30px;
-  padding-bottom: 25px  ;
+  padding-bottom: 25px;
 }
-.title > span {
+.titleCategory > span {
   color: #595959;
 }
-.title,
-.categories {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 25px ;
-    align-items: center;
 
-}
 .checkContent {
   display: flex;
-  align-items: center;justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 .checkbox {
   width: 30px;
@@ -27,14 +33,40 @@
   border: none;
   margin: 0 10px;
 }
-.checkbox:checked {
-  border: none;
-  color: red;
+
+
+.titleCategory {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 150px;
+  margin-top: auto;
+  padding-top: 100px;
 }
-.line{
-    border: #7f7c7c solid 0.5px;
-    width: 70%;
-    margin: auto;
-    margin-top: 25px;
-    
+.titleCategory > h1 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.categorie,.titlePrice {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 120px;
+  justify-content: space-around;
+}
+.category {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+.titlePrice{
+  gap: 130px;
+  padding-top: 25px;
+}
+.titlePrice > h1 {
+  font-size: 1.2rem;
+  font-weight: 400;
 }

@@ -15,12 +15,15 @@ function Login() {
   });
   const [loading, setLoading] = useState(false);
   async function handleLogin() {
+
+
     setLoading(true);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_ENDPOINT}user/login`,
-        { ...credentials, email: credentials.username }
+        { ...credentials, email: credentials.username } 
       );
+      console.log(response)
       if (response.status) {
         setUser(response.data);
         toast.success(`Welcome Back ${response.data.firstName}`);

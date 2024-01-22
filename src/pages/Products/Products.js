@@ -5,11 +5,9 @@ function Products() {
   return (
     <div>
       <p>Products</p>
-<section>
-<FilterSection/>
+        <FilterSection/>      
 
-</section>
-      </div>
+    </div>
   )
 }
 

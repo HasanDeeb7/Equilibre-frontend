@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useUserStore } from "./Store";
 import Footer from "./components/Footer/Footer";
+import Sidebar from "./components/Sidebar/Sidebar";
+import EditeUserProfile from "./components/UeserProfile/UserProfile";
 
 
 
@@ -31,8 +33,10 @@ function App() {
   }, []);
   return (
     <div className="App">
+      {/* <EditeUserProfile/> */}
       
         <AppRoutes />
+        {/* <Sidebar/> */}
         <Footer/>
     </div>
   );
