@@ -30,7 +30,10 @@ const Products = () => {
   return (
     <>
       <main className={style.mainContainer}>
-        <section className={style.categorySection}></section>
+
+        <FilterSection />
+
+
         <section className={style.cardsContainer}>
           <SearchBar />
           <div className={style.cardsWrapper}>
@@ -46,10 +49,6 @@ const Products = () => {
                 />
               ))}
           </div>
-        </section>
-        <section>
-          <FilterSection />
-
         </section>
       </main>
     </>
