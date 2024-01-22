@@ -4,6 +4,9 @@ import AppRoutes from "./routes/AppRoutes";
 import { useEffect } from "react";
 import axios from "axios";
 import { useUserStore } from "./Store";
+import Footer from "./components/Footer/Footer";
+import Sidebar from "./components/Sidebar/Sidebar";
+import EditeUserProfile from "./components/UeserProfile/UserProfile";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -28,7 +31,11 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <AppRoutes />
+      {/* <EditeUserProfile/> */}
+      
+        <AppRoutes />
+        {/* <Sidebar/> */}
+        <Footer/>
     </div>
   );
 }

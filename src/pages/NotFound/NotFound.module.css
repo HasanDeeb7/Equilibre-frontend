@@ -1,0 +1,26 @@
+.imageContainer {
+  max-width: 40%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.notFoundImage {
+  max-width: 100%;
+  height: auto;
+}
+.goHome {
+  background: #b7cf33;
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  transition: 0.5s ease-in-out;
+}
+.goHome:hover {
+  color: #b7cf33;
+  border: #b7cf33 1px solid;
+  background: white;
+  cursor: pointer;
+}
