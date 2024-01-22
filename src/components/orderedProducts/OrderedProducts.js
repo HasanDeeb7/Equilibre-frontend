@@ -5,9 +5,9 @@ const OrderedProducts = ({ formData }) => {
     const country = formData.country;
     const orderedProducts = JSON.parse(localStorage.getItem("Cart"))
     console.log(orderedProducts);
-    const totalQuantity = orderedProducts.reduce((accumulator, item) => {
-        return accumulator + item.quantityPrice;
-    }, 0);
+    const totalQuantity = (orderedProducts!==null) ? orderedProducts.reduce((accumulator, item) => {
+        return accumulator + item.quantityPrice
+    }, 0) : 0
 
     const checkDelivery = (totalPrice, country) => {
         if (totalPrice >= 50) return 0
@@ -19,7 +19,7 @@ const OrderedProducts = ({ formData }) => {
 
 
     return (
-        <div className={style.bill}>
+       (orderedProducts!==null)?<div className={style.bill}>
             <section className={style.products}>
 
                 {orderedProducts.map(elt => (
@@ -44,6 +44,7 @@ const OrderedProducts = ({ formData }) => {
             </section>
             <p className={style.total}>Total <span > $ {totalQuantity + checkDelivery(totalQuantity, country)}</span></p>
         </div>
+        :<div>Emtyyyyy cartttttttttt</div>
     )
 }
 

@@ -1,5 +1,5 @@
 .shippingInfo {
-    margin: 50px 0 0 80px;
+    margin: 50px auto;
     width: 600px;
     display: flex;
     flex-direction: column;

@@ -84,9 +84,15 @@ const Shipping = ({ onFormDataChange }) => {
         }));
     };
 
+    const createOrder=async()=>{
+        const newOrder=await axios.post(`${process.env.REACT_APP_ENDPOINT}/order/addNewOrder`)
+
+    }
+
     const handelSubmit = () => {
         console.log(formData)
         onFormDataChange(formData)
+        // createOrder(form)
         setFormData({
             email: '',
             country: '',
@@ -244,7 +250,7 @@ const Shipping = ({ onFormDataChange }) => {
             </section>
             <nav className={style.navSection}>
                 <Link path='/cart' className={style.navLink}>Back to cart</Link>
-                <button type='submit' className={style.completeOrder} onClick={handelSubmit}> Complete Order</button></nav>
+                <button className={style.completeOrder} onClick={handelSubmit}> Complete Order</button></nav>
         </div>
     );
 };
