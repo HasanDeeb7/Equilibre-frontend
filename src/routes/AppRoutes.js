@@ -15,14 +15,12 @@ import ConsultingSection from "../components/ConsultingSection/ConsultingSection
 import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import Sidebar from "../components/Sidebar/Sidebar";
-import { AnimatePresence } from "framer-motion";
 import EditeUserProfile from "../components/UeserProfile/UserProfile";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
   return (
     <div>
-      <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route element={<NavBar />}>
             <Route path="/" element={<ConsultingSection key="home" />}></Route>
@@ -55,7 +53,7 @@ function AppRoutes() {
           </Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
-      </AnimatePresence>
+      
     </div>
   );
 }

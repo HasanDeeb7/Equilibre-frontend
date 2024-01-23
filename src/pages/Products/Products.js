@@ -29,13 +29,7 @@ const Products = () => {
   }, []);
   return (
     <>
-      <motion.main
-        initial={{ x: -window.innerWidth }}
-        animate={{ x: 0 }}
-        exit={{ x: window.innerWidth }}
-        transition={{ duration: 0.2, ease: [0.22, 1, 0.35, 1] }}
-        className={style.mainContainer}
-      >
+      <main className={style.mainContainer}>
         <FilterSection />
 
         <section className={style.cardsContainer}>
@@ -54,7 +48,7 @@ const Products = () => {
               ))}
           </div>
         </section>
-      </motion.main>
+      </main>
     </>
   );
 };
