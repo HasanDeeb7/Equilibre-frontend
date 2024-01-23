@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { useUserStore } from '../../Store.js';
 import style from './Shipping.module.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select';
 import countryList from 'country-list'
-const Shipping = ({ onFormDataChange }) => {
+import { useUserStore } from '../../Store.js';
+
+const Shipping = ({ onFormDataChange}) => {
+// const [isLoading, setLoading]=useState(true)
+
     const { user } = useUserStore();
+    console.log(user)
 
-
-        ///need update
-        const totalQuantity = 30;
+    ///need update
+    const totalQuantity = 30;
     //get all product info from localStorage
     const orderedProducts = []
     JSON.parse(localStorage.getItem("Cart")).map(product => {
@@ -73,7 +76,7 @@ const Shipping = ({ onFormDataChange }) => {
     };
 
     const [formData, setFormData] = useState({
-        email: user.email || '',
+        email:user?.email || '',
         country: '',
         city: '',
         firstName: '',
@@ -134,7 +137,7 @@ const Shipping = ({ onFormDataChange }) => {
         console.log(formData)
     }
     return (
-        <div className={style.shippingInfo}>
+       <div className={style.shippingInfo}>
             <section className={style.contactInfo}>
                 <label htmlFor='email' className={style.emailLabel}>
                     Contact
@@ -150,19 +153,6 @@ const Shipping = ({ onFormDataChange }) => {
                     placeholder='Email'
                     required
                 />
-
-                {/* <input
-                        value={formData.email}
-                        id='email'
-                        name='email'
-                        type='email'
-                        className={style.emailField}
-                        disabled
-                    /> */}
-
-                {/* <button className={style.editButton} onClick={() => setEdit(!edit)}>
-                    Edit
-                </button> */}
             </section>
 
             <section>
