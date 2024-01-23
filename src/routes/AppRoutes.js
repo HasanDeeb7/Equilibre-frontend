@@ -16,7 +16,6 @@ import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import Sidebar from "../components/Sidebar/Sidebar";
 import ShippingPage from "../pages/shipping/ShippingPage";
-import ConsultingSection from '../components/ConsultingSection/ConsultingSection'
 function AppRoutes() {
   const { user } = useUserStore();
 

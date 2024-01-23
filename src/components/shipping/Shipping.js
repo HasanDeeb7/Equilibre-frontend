@@ -1,9 +1,29 @@
 import React, { useState } from 'react';
 import { useUserStore } from '../../Store.js';
 import style from './Shipping.module.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import axios from 'axios'
 import Select from 'react-select';
+import countryList from 'country-list'
 const Shipping = ({ onFormDataChange }) => {
+    const { user } = useUserStore();
+
+
+        ///need update
+        const totalQuantity = 30;
+    //get all product info from localStorage
+    const orderedProducts = []
+    JSON.parse(localStorage.getItem("Cart")).map(product => {
+        orderedProducts.push({
+            product: product._id,
+            quantity: product.quantity,
+            size: product.size
+        })
+
+    })
+    console.log(orderedProducts);
+
+
     const customStyles = {
         control: (defaultStyles, state) => ({
             ...defaultStyles,
@@ -24,15 +44,16 @@ const Shipping = ({ onFormDataChange }) => {
         })
     };
 
-    const countries = [
-        { value: 'lebanon', label: 'Lebanon' },
-        { value: 'Qatar', label: 'Qatar' },
-        { value: 'Emirat', label: 'Emirat' },
-        { value: 'Egypt', label: 'Egypt' },
-        { value: 'Moroco', label: 'Moroco' },
-        { value: 'France', label: 'France' },
-        { value: 'Australia', label: 'Australia' },
-    ];
+    //get countries from library
+    const countries = [];
+    const allCountries = countryList.getData()
+    allCountries.map((elt, i) => countries.push(
+        {
+            value: `${elt.name.toLowerCase()}`,
+            label: `${elt.name}`
+        }
+    ))
+    console.log(countries);
 
     const cities = {
         lebanon: [
@@ -51,12 +72,8 @@ const Shipping = ({ onFormDataChange }) => {
 
     };
 
-
-
-    const { user } = useUserStore();
-    // const [edit, setEdit] = useState(false);
     const [formData, setFormData] = useState({
-        email: 'email@gmail.com',
+        email: user.email || '',
         country: '',
         city: '',
         firstName: '',
@@ -84,15 +101,26 @@ const Shipping = ({ onFormDataChange }) => {
         }));
     };
 
-    const createOrder=async()=>{
-        const newOrder=await axios.post(`${process.env.REACT_APP_ENDPOINT}/order/addNewOrder`)
+    const createOrder = async (newOrder) => {
+        console.log(newOrder)
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}order/addNewOrder`, newOrder)
+            if (response) {
+                console.log(response.data)
+                return response
+            }
 
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handelSubmit = () => {
-        console.log(formData)
+
         onFormDataChange(formData)
-        // createOrder(form)
+        console.log(orderedProducts)
+        createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], })
         setFormData({
             email: '',
             country: '',
