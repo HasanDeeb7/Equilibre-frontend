@@ -56,6 +56,7 @@ function AppRoutes() {
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
       </AnimatePresence>
+
     </div>
   );
 }
