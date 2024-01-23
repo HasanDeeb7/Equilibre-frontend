@@ -123,17 +123,17 @@ const Shipping = ({ onFormDataChange}) => {
 
         onFormDataChange(formData)
         console.log(orderedProducts)
-        createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], })
-        setFormData({
-            email: '',
-            country: '',
-            city: '',
-            firstName: '',
-            lastName: '',
-            shippingAddress: '',
-            phone: '',
-            paymentMethod: ''
-        })
+        createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], userId:user._id})
+        // setFormData({
+        //     email: '',
+        //     country: '',
+        //     city: '',
+        //     firstName: '',
+        //     lastName: '',
+        //     shippingAddress: '',
+        //     phone: '',
+        //     paymentMethod: ''
+        // })
         console.log(formData)
     }
     return (
