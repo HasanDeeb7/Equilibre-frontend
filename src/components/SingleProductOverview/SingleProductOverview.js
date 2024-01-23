@@ -4,11 +4,12 @@ import image from "../../assets/Hero2Eq2.png";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 function SingleProductOverview({ product }) {
   const [options, setOptions] = useState({
     quantity: null,
-    size: null,
+    size: { id: null, capacity: null },
   });
   const [stock, setStock] = useState();
   const [price, setPrice] = useState(product.sizes[0].price);
@@ -24,7 +25,7 @@ function SingleProductOverview({ product }) {
     console.log(item);
     setOptions({
       ...options,
-      size: item.capacity,
+      size: { id: item._id, capacity: item.capacity },
     });
     setPrice(item.price);
     if (
@@ -33,19 +34,18 @@ function SingleProductOverview({ product }) {
           cartItem.size === item.capacity && cartItem.name === product.name
       )
     ) {
-      console.log("first");
       setInCart(true);
     } else {
       setInCart(false);
     }
-    console.log(options);
+    setOptions({ ...options, quantity: 1 });
   }
   function addToCart() {
     console.log(options.quantity);
     cartItems.push({
       ...product,
       quantity: options.quantity,
-      size: options.size,
+      size: options.size.id,
       price: price,
       stock: stock,
       quantityPrice: price * options.quantity,
@@ -53,15 +53,6 @@ function SingleProductOverview({ product }) {
     localStorage.setItem("Cart", JSON.stringify(cartItems));
     setInCart(true);
     toast.success("Item Added to Cart");
-  }
-  function removeFromCart() {
-    const newCart = cartItems.filter(
-      (item) => !(item.name === product.name && item.size === options.size)
-    );
-    setCartItems(newCart);
-    localStorage.setItem("Cart", JSON.stringify(newCart));
-    setInCart(false);
-    toast.success("Item removed form cart");
   }
 
   function handleIncrease() {
@@ -71,11 +62,20 @@ function SingleProductOverview({ product }) {
     setOptions({ ...options, quantity: options.quantity - 1 });
   }
   useEffect(() => {
-    setOptions({ quantity: 1, size: product.sizes[0]?.capacity });
+    setOptions({
+      quantity: 1,
+      size: { id: product.sizes[0]?._id, capacity: product.sizes[0]?.capacity },
+    });
     setStock(product.sizes[0]?.stock);
   }, []);
   return (
-    <section className={style.overviewContainer}>
+    <section
+      // initial={{ translateX: 1800, opacity: 1 }}
+      // animate={{ translateX: 0, opacity: 1 }}
+      // exit={{ translateX: -1800, opacity: 0 }}
+      // transition={{ delay: 0.5 }}
+      className={style.overviewContainer}
+    >
       <figure className={style.imageContainer}>
         <img src={image} alt={product.name} className={style.image} />
       </figure>
@@ -146,9 +146,8 @@ function SingleProductOverview({ product }) {
             <MdOutlineShoppingCart className={style.cartIcon} /> Add to cart
           </button>
         ) : (
-          <button className={`${style.addToCartBtn} ${style.removeFromCart}`} onClick={removeFromCart}>
-            <MdOutlineShoppingCart className={style.cartIcon} /> Remove from
-            cart
+          <button className={style.addToCartBtn} onClick={addToCart}>
+            <MdOutlineShoppingCart className={style.cartIcon} /> Add One more
           </button>
         )}
       </section>

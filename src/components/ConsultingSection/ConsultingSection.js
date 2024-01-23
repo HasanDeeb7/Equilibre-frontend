@@ -1,10 +1,17 @@
 import style from "./ConsultingSection.module.css";
 import { Link } from "react-router-dom";
 import image from "../../assets/consulting.svg";
+import { motion } from "framer-motion";
 const ConsultingSection = () => {
   return (
     <>
-      <section className={style.consultingSection}>
+      <motion.section
+        initial={{ x: window.innerWidth }}
+        animate={{ x: 0 }}
+        exit={{ x: window.innerWidth }}
+        transition={{ duration: 0.2, ease: [0.22, 1, 0.35, 1] }}
+        className={style.consultingSection}
+      >
         <div className={style.textContainer}>
           <ul>
             <li>Discussing and analyzing current eating habits of clients.</li>
@@ -26,7 +33,7 @@ const ConsultingSection = () => {
           </Link>
         </div>
         <img className={style.img} alt="consulting" src={image}></img>
-      </section>
+      </motion.section>
     </>
   );
 };
