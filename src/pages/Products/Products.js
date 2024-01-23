@@ -3,8 +3,8 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import FilterSection from '../../components/filterSection/filterSection'
-
+import FilterSection from "../../components/filterSection/filterSection";
+import { motion } from "framer-motion";
 const Products = () => {
   const [Products, setProducts] = useState();
   const [loading, setLoading] = useState(false);
@@ -29,10 +29,14 @@ const Products = () => {
   }, []);
   return (
     <>
-      <main className={style.mainContainer}>
-
+      <motion.main
+        initial={{ x: -window.innerWidth }}
+        animate={{ x: 0 }}
+        exit={{ x: window.innerWidth }}
+        transition={{ duration: 0.2, ease: [0.22, 1, 0.35, 1] }}
+        className={style.mainContainer}
+      >
         <FilterSection />
-
 
         <section className={style.cardsContainer}>
           <SearchBar />
@@ -50,7 +54,7 @@ const Products = () => {
               ))}
           </div>
         </section>
-      </main>
+      </motion.main>
     </>
   );
 };
