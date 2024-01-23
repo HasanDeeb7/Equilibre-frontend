@@ -15,13 +15,14 @@ import ConsultingSection from "../components/ConsultingSection/ConsultingSection
 import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import Sidebar from "../components/Sidebar/Sidebar";
+import EditeUserProfile from "../components/UeserProfile/UserProfile";
 function AppRoutes() {
   const { user } = useUserStore();
 
   return (
     <div>
       <Routes>
-        <Route  element={<NavBar />}>
+        <Route element={<NavBar />}>
           <Route path="/" element={<ConsultingSection />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/consultation" element={<Products />}></Route>
@@ -30,6 +31,7 @@ function AppRoutes() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/edituserprofile" element={<EditeUserProfile />}></Route>
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>

@@ -1,16 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useUserStore } from "./Store";
-import Footer from "./components/Footer/Footer";
-import Sidebar from "./components/Sidebar/Sidebar";
-import EditeUserProfile from "./components/UeserProfile/UserProfile";
 
 function App() {
   axios.defaults.withCredentials = true;
   const { user, setUser, removeUser } = useUserStore();
+  const [loading, setLoading] = useState(true)
   async function getUser() {
     try {
       if (!user) {
@@ -20,6 +17,7 @@ function App() {
         if (response) {
           console.log(response.data);
           setUser(response.data);
+          setLoading(false)
         }
       }
     } catch (error) {
@@ -30,12 +28,9 @@ function App() {
     getUser();
   }, []);
   return (
+        !loading &&
     <div className="App">
-      {/* <EditeUserProfile/> */}
-      
         <AppRoutes />
-        {/* <Sidebar/> */}
-        <Footer/>
     </div>
   );
 }
