@@ -15,6 +15,8 @@ import ConsultingSection from "../components/ConsultingSection/ConsultingSection
 import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import Sidebar from "../components/Sidebar/Sidebar";
+import { AnimatePresence } from "framer-motion";
+import EditeUserProfile from "../components/UeserProfile/UserProfile";
 import ShippingPage from "../pages/shipping/ShippingPage";
 function AppRoutes() {
   const { user } = useUserStore();
