@@ -3,14 +3,37 @@ import CartItem from "../../components/CartItem/CartItem";
 import style from "./Cart.module.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function Cart() {
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("Cart")) || null
   );
+  const [globalOffer, setGlobalOffer] = useState();
+  const [loading, setLoading] = useState(true);
+  async function getGlobalOffer() {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_ENDPOINT}globalOffer/`
+      );
+      if (response) {
+        setGlobalOffer(response.data);
+        console.log(response.data);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
   const [subtotal, setSubtotal] = useState(0);
   const navigate = useNavigate();
   function checkOut() {
-    localStorage.setItem("totalPrice", JSON.stringify(subtotal));
+    localStorage.setItem(
+      "totalPrice",
+      JSON.stringify(
+        globalOffer ? (subtotal * (100 - globalOffer[0].rate)) / 100 : subtotal
+      )
+    );
     navigate("/shipping");
   }
   function clearCart() {
@@ -19,12 +42,13 @@ function Cart() {
     toast.success("Cart Cleared");
   }
   useEffect(() => {
+    getGlobalOffer();
     const totalQuantity = cartItems.reduce((accumulator, item) => {
       return accumulator + item.quantityPrice;
     }, 0);
     setSubtotal(totalQuantity);
   }, []);
-  return !cartItems ? (
+  return !loading && !cartItems ? (
     <section>Cart is empty</section>
   ) : (
     <section className={style.cartPageContainer}>
@@ -41,6 +65,7 @@ function Cart() {
               image={item.image}
               name={item.name}
               price={item.price}
+              capacity={item.capacity}
               initialQuantity={item.quantity}
               initialStock={item.stock}
               setSubtotal={setSubtotal}
@@ -57,9 +82,20 @@ function Cart() {
           <section className={style.summaryWrapper}>
             <section className={style.subtotal}>
               <p>Subtotal</p>
-              <span>${subtotal}</span>
+              <span>
+                {!globalOffer ? (
+                  <span>${subtotal}</span>
+                ) : (
+                  <span className={style.discountIndicator}>
+                    <span className={style.strokedTotal}>${subtotal}</span>
+                    <span>
+                      ${(subtotal * (100 - globalOffer[0].rate)) / 100}
+                    </span>
+                  </span>
+                )}
+              </span>
             </section>
-            <span className={style.shippingNoe}>
+            <span className={style.shippingNote}>
               Tax and shipping cost will be calculated later
             </span>
           </section>

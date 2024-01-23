@@ -9,6 +9,7 @@ function CartItem({
   initialStock,
   setSubtotal,
   subtotal,
+  capacity,
 }) {
   const [quantity, setQuantity] = useState(initialQuantity);
   const [stock, setStock] = useState(initialStock);
@@ -27,7 +28,9 @@ function CartItem({
         <figure>
           <img className={style.cartItemImage} src={image} alt={name} />
         </figure>
-        <p className={style.itemName}>{name}</p>
+        <p className={style.itemName}>
+          {name} {capacity}g
+        </p>
       </section>
       <p className={style.price}>${price}</p>
       <section className={style.quantity}>
@@ -51,7 +54,7 @@ function CartItem({
           </div>
         </section>
         <span className={style.stockIndicator}>
-          {quantity >= stock && "Out of stock!"}
+          {quantity >= stock && "Max Limit Reached!"}
         </span>
       </section>
 

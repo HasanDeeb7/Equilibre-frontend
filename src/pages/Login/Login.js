@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import style from "./Login.module.css";
 import Input from "../../components/Input/Input";
 import axios from "axios";
@@ -15,15 +15,13 @@ function Login() {
   });
   const [loading, setLoading] = useState(false);
   async function handleLogin() {
-
-
     setLoading(true);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_ENDPOINT}user/login`,
-        { ...credentials, email: credentials.username } 
+        { ...credentials, email: credentials.username }
       );
-      console.log(response)
+      console.log(response);
       if (response.status) {
         setUser(response.data);
         toast.success(`Welcome Back ${response.data.firstName}`);
@@ -60,9 +58,14 @@ function Login() {
             type="password"
             required
           />
-          <button className={style.loginButton} onClick={handleLogin}>
-            Login
-          </button>
+          <section className={style.btnsWrapper}>
+            <button className={style.loginButton} onClick={handleLogin}>
+              Login
+            </button>
+            <button className={style.homepageBtn} onClick={handleLogin}>
+              Homepage
+            </button>
+          </section>
           <span>
             You don't have an account?{" "}
             <NavLink className={style.navLink} to="/signup">
