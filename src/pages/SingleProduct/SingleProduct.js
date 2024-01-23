@@ -3,7 +3,6 @@ import SingleProductOverview from "../../components/SingleProductOverview/Single
 import axios from "axios";
 import RelatedProduct from "../../components/RelatedProduct/RelatedProduct";
 import style from "./SingleProduct.module.css";
-import { motion } from "framer-motion";
 function SingleProduct() {
   const id = "65aafd46f1eb4906132c2837";
   const [product, setProduct] = useState();
@@ -28,15 +27,10 @@ function SingleProduct() {
   }, []);
   return (
     !loading && (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className={style.singleProductContainer}
-      >
+      <div className={style.singleProductContainer}>
         <SingleProductOverview product={product} />
         <RelatedProduct product={product} />
-      </motion.div>
+      </div>
     )
   );
 }
