@@ -113,7 +113,7 @@ function FirstSignup({ newUser, setNewUser, setCurrentStep }) {
         required
       />
       <button className={style.confirmButton} onClick={handleSubmit}>
-        Confirm
+        Continue
       </button>
       <span>
         Already have an account?{" "}

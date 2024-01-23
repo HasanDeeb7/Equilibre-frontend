@@ -4,7 +4,6 @@ import image from "../../assets/Hero2Eq2.png";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import { toast } from "react-toastify";
-import { motion } from "framer-motion";
 
 function SingleProductOverview({ product }) {
   const [options, setOptions] = useState({
@@ -13,9 +12,11 @@ function SingleProductOverview({ product }) {
   });
   const [stock, setStock] = useState();
   const [price, setPrice] = useState(product.sizes[0].price);
+  const [offer, setOffer] = useState(product.offerId.discountRate);
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("Cart")) || []
   );
+  const [selectedSize, setSelectedSize] = useState(options.size.quantity);
   const [inCart, setInCart] = useState(
     cartItems.some(
       (item) => item.name === product.name && item.size === product.capacity
@@ -24,31 +25,38 @@ function SingleProductOverview({ product }) {
   function handleChangeSize(item) {
     console.log(item);
     setOptions({
-      ...options,
+      quantity: 1,
       size: { id: item._id, capacity: item.capacity },
     });
     setPrice(item.price);
-    if (
-      cartItems.some(
-        (cartItem) =>
-          cartItem.size === item.capacity && cartItem.name === product.name
-      )
-    ) {
-      setInCart(true);
-    } else {
-      setInCart(false);
-    }
-    setOptions({ ...options, quantity: 1 });
+    setSelectedSize(item.capacity);
   }
+  function sortSizes() {
+     
+    return product.sizes.sort((a, b) => a.capacity - b.capacity);
+  }
+
   function addToCart() {
-    console.log(options.quantity);
+    const newPrice = offer ? price * (1 - offer / 100) : price;
+    console.log(options.size);
+    console.log(cartItems);
+    const index = cartItems.findIndex(
+      (item) => item.name === product.name && options.size.id === item.size
+    );
+    if (index !== -1) {
+      cartItems[index].quantity += options.quantity;
+      localStorage.setItem("Cart", JSON.stringify(cartItems));
+      toast.success("Cart updated");
+      return;
+    }
     cartItems.push({
       ...product,
       quantity: options.quantity,
       size: options.size.id,
-      price: price,
+      price: newPrice,
       stock: stock,
-      quantityPrice: price * options.quantity,
+      quantityPrice: newPrice * options.quantity,
+      capacity: options.size.capacity,
     });
     localStorage.setItem("Cart", JSON.stringify(cartItems));
     setInCart(true);
@@ -69,19 +77,22 @@ function SingleProductOverview({ product }) {
     setStock(product.sizes[0]?.stock);
   }, []);
   return (
-    <section
-      // initial={{ translateX: 1800, opacity: 1 }}
-      // animate={{ translateX: 0, opacity: 1 }}
-      // exit={{ translateX: -1800, opacity: 0 }}
-      // transition={{ delay: 0.5 }}
-      className={style.overviewContainer}
-    >
+    <section className={style.overviewContainer}>
       <figure className={style.imageContainer}>
         <img src={image} alt={product.name} className={style.image} />
       </figure>
       <section className={style.productOverview}>
         <h1 className={style.productName}>{product.name}</h1>
-        <p className={style.productPrice}>${price}</p>
+        <p className={style.productPrice}>
+          {offer ? (
+            <span className={style.offer}>
+              <span className={style.strokedPrice}>${price}</span>
+              <span>${price * (1 - offer / 100)}</span>
+            </span>
+          ) : (
+            { price }
+          )}
+        </p>
         <section className={style.availability}>
           <span>Availability: </span>
 
@@ -92,7 +103,7 @@ function SingleProductOverview({ product }) {
               In Stock
             </p>
           ) : (
-            <p className={style.outOfStock}>Out Of Stock</p>
+            <p className={style.outOfStock}>Limit reached!</p>
           )}
         </section>
         <section className={style.description}>
@@ -104,14 +115,18 @@ function SingleProductOverview({ product }) {
         <section className={style.sizeContainer}>
           <span>Size: </span>
           <section className={style.sizeWrapper}>
-            {product.sizes.map((item, index) => {
+            {sortSizes().map((item, index) => {
               return (
-                <>
-                  <div key={index} onClick={() => handleChangeSize(item)}>
-                    {item.capacity}
-                    {item.unit}
-                  </div>
-                </>
+                <section
+                  className={`${style.size} ${
+                    selectedSize === item.capacity && style.activeSize
+                  }`}
+                  key={index}
+                  onClick={() => handleChangeSize(item)}
+                >
+                  {item.capacity}
+                  {item.unit}
+                </section>
               );
             })}
           </section>
