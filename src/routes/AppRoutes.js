@@ -16,6 +16,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { AnimatePresence } from "framer-motion";
+import EditeUserProfile from "../components/UeserProfile/UserProfile";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -55,6 +56,37 @@ function AppRoutes() {
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
       </AnimatePresence>
+      <Routes>
+        <Route element={<NavBar />}>
+          <Route path="/" element={<ConsultingSection />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route path="/consultation" element={<Products />}></Route>
+          <Route path="/profile" element={<Products />}></Route>
+          <Route path="/single" element={<SingleProduct />}></Route>
+          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/about" element={<AboutUs />}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/edituserprofile" element={<EditeUserProfile />}></Route>
+        </Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/about" element={<AboutUs />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/dashboard" element={<Sidebar />}>
+
+          <Route
+            path="/dashboard"
+            element={
+              // <ProtectedRoute isAllowed={user}>
+              <Dashboard />
+              // </ProtectedRoute>
+            }
+          ></Route>
+        </Route>
+        <Route path="/*" element={<NotFound />}></Route>
+
+      </Routes>
     </div>
   );
 }
