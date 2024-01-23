@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Products from "../pages/Products/Products";
 import SingleProduct from "../pages/SingleProduct/SingleProduct";
@@ -18,7 +18,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import ShippingPage from "../pages/shipping/ShippingPage";
 function AppRoutes() {
   const { user } = useUserStore();
-
+  const location = useLocation();
   return (
     <div>
       <Routes>

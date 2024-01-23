@@ -1,8 +1,8 @@
 .consultingSection {
-  display: flex;
-  height: 500px;
-  width: 90%;
-  margin: 2% auto;
+    display: flex;
+    height: 500px;
+    width: 90%;
+    margin: 2% auto;
 }
 .textContainer {
   width:35%;

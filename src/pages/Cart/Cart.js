@@ -9,7 +9,10 @@ function Cart() {
   );
   const [subtotal, setSubtotal] = useState(0);
   const navigate = useNavigate();
-
+  function checkOut() {
+    localStorage.setItem("totalPrice", JSON.stringify(subtotal));
+    navigate("/shipping");
+  }
   function clearCart() {
     setCartItems(null);
     localStorage.removeItem("Cart");
@@ -61,7 +64,9 @@ function Cart() {
             </span>
           </section>
           <section className={style.buttonsContainer}>
-            <button className={style.primaryBtn}>Check out</button>
+            <button className={style.primaryBtn} onClick={checkOut}>
+              Check out
+            </button>
             <button
               className={style.primaryBtn}
               onClick={() => navigate("/products")}
