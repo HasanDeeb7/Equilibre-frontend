@@ -23,6 +23,7 @@ function AppRoutes() {
   const location = useLocation();
   return (
     <div>
+      <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route element={<NavBar />}>
             <Route path="/" element={<ConsultingSection key="home" />}></Route>

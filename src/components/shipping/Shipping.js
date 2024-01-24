@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Shipping.module.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
@@ -6,9 +6,7 @@ import Select from 'react-select';
 import countryList from 'country-list'
 import { useUserStore } from '../../Store.js';
 
-const Shipping = ({ onFormDataChange}) => {
-// const [isLoading, setLoading]=useState(true)
-
+const Shipping = ({ onFormDataChange }) => {
     const { user } = useUserStore();
     console.log(user)
 
@@ -76,7 +74,7 @@ const Shipping = ({ onFormDataChange}) => {
     };
 
     const [formData, setFormData] = useState({
-        email:user?.email || '',
+        email: user?.email || '',
         country: '',
         city: '',
         firstName: '',
@@ -88,6 +86,7 @@ const Shipping = ({ onFormDataChange}) => {
 
 
     const handleChange = (e) => {
+        e.preventDefault();
         const { name, value } = e.target;
 
         setFormData((prevData) => ({
@@ -119,156 +118,161 @@ const Shipping = ({ onFormDataChange}) => {
         }
     }
 
-    const handelSubmit = () => {
+useEffect(()=>{
+    onFormDataChange(formData)
 
-        onFormDataChange(formData)
-        console.log(orderedProducts)
-        createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], userId:user._id})
-        // setFormData({
-        //     email: '',
-        //     country: '',
-        //     city: '',
-        //     firstName: '',
-        //     lastName: '',
-        //     shippingAddress: '',
-        //     phone: '',
-        //     paymentMethod: ''
-        // })
-        console.log(formData)
+},[formData])
+
+    const handelSubmit = () => {
+        if (window.confirm('Are u sure u want to place this order')) {
+            console.log(orderedProducts)
+            createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], userId: user._id, orderDate: new Date() })
+            // setFormData({
+            //     email: '',
+            //     country: '',
+            //     city: '',
+            //     firstName: '',
+            //     lastName: '',
+            //     shippingAddress: '',
+            //     phone: '',
+            //     paymentMethod: ''
+            // })
+            console.log(formData)
+        }
     }
     return (
-       <div className={style.shippingInfo}>
-            <section className={style.contactInfo}>
-                <label htmlFor='email' className={style.emailLabel}>
-                    Contact
-                </label>
+        <div className={style.shippingInfo}>
+                <section className={style.contactInfo}>
+                    <label htmlFor='email' className={style.emailLabel}>
+                        Contact
+                    </label>
 
-                <input
-                    value={formData.email}
-                    id='email'
-                    name='email'
-                    type='email'
-                    className={style.emailField}
-                    onChange={handleChange}
-                    placeholder='Email'
-                    required
-                />
-            </section>
+                    <input
+                        value={formData.email}
+                        id='email'
+                        name='email'
+                        type='email'
+                        className={style.emailField}
+                        onChange={handleChange}
+                        placeholder='Email'
+                        required
+                    />
+                </section>
 
-            <section>
-                <h3>Delivery</h3>
-                <label htmlFor='country'>
+                <section>
+                    <h3>Delivery</h3>
+                    <label htmlFor='country'>
 
-                </label>
+                    </label>
 
-                <Select
-                    name='country'
-                    id='country'
-                    options={countries}
-                    onChange={(selectedOption) => handleChangeSelector(selectedOption, 'country')}
-                    value={countries.find((option) => option.value === formData.country)}
-                    className={style.selector}
-                    placeholder="Select Country"
-                    styles={customStyles}
-                    required
-                />
-
-                {formData.country === 'lebanon' && (
                     <Select
-                        name='city'
-                        id='city'
-                        options={cities.lebanon}
-                        onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
-                        value={cities.lebanon.find((option) => option.value === formData.city)}
+                        name='country'
+                        id='country'
+                        options={countries}
+                        onChange={(selectedOption) => handleChangeSelector(selectedOption, 'country')}
+                        value={countries.find((option) => option.value === formData.country)}
                         className={style.selector}
-                        placeholder="Select City"
+                        placeholder="Select Country"
                         styles={customStyles}
                         required
                     />
-                )}
 
-                <section className={style.nameSection}>
-
-                    <label htmlFor='firstName'>
-
-
-                        <input
-                            value={formData.firstName}
-                            name='firstName'
-                            type='text'
-                            className={style.nameField}
-                            onChange={handleChange}
-                            placeholder='First Name'
+                    {formData.country === 'lebanon' && (
+                        <Select
+                            name='city'
+                            id='city'
+                            options={cities.lebanon}
+                            onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
+                            value={cities.lebanon.find((option) => option.value === formData.city)}
+                            className={style.selector}
+                            placeholder="Select City"
+                            styles={customStyles}
                             required
                         />
+                    )}
+
+                    <section className={style.nameSection}>
+
+                        <label htmlFor='firstName'>
+
+
+                            <input
+                                value={formData.firstName}
+                                name='firstName'
+                                type='text'
+                                className={style.nameField}
+                                onChange={handleChange}
+                                placeholder='First Name'
+                                required
+                            />
+                        </label>
+
+
+                        <label htmlFor='lastName'>
+
+
+                            <input
+                                value={formData.lastName}
+                                name='lastName'
+                                type='text'
+                                className={style.nameField}
+                                onChange={handleChange}
+                                placeholder='Last Name'
+                                required
+                            />
+                        </label>
+                    </section>
+
+                    <input
+                        value={formData.shippingAddress}
+                        name='shippingAddress'
+                        type='text'
+                        className={style.selector}
+                        onChange={handleChange}
+                        placeholder='Address (e.g :Rue, Floor, Apartment) '
+                        required
+                    />
+
+                    <input
+                        value={formData.phone}
+                        name='phone'
+                        type='text'
+                        className={style.selector}
+                        onChange={handleChange}
+                        placeholder='Phone number'
+                        required
+                    />
+                </section>
+                <h3 className={style.paymentTitle}>Payment</h3>
+                <section className={style.payment}>
+
+                    <label>
+                        <input
+                            value='USD'
+                            name='paymentMethod'
+                            type='radio'
+                            className={style.paymentMethod}
+                            onChange={handleChange}
+                            required
+                        />
+                        Cash On Delivery (USD)
                     </label>
 
-
-                    <label htmlFor='lastName'>
-
-
+                    <label>
                         <input
-                            value={formData.lastName}
-                            name='lastName'
-                            type='text'
-                            className={style.nameField}
+                            value='LBP'
+                            name='paymentMethod'
+                            type='radio'
+                            className={style.paymentMethod}
                             onChange={handleChange}
-                            placeholder='Last Name'
                             required
                         />
+                        Cash On Delivery (LBP on daily rate)
                     </label>
                 </section>
-
-                <input
-                    value={formData.shippingAddress}
-                    name='shippingAddress'
-                    type='text'
-                    className={style.selector}
-                    onChange={handleChange}
-                    placeholder='Address (e.g :Rue, Floor, Apartment) '
-                    required
-                />
-
-                <input
-                    value={formData.phone}
-                    name='phone'
-                    type='text'
-                    className={style.selector}
-                    onChange={handleChange}
-                    placeholder='Phone number'
-                    required
-                />
-            </section>
-            <h3 className={style.paymentTitle}>Payment</h3>
-            <section className={style.payment}>
-
-                <label>
-                    <input
-                        value='USD'
-                        name='paymentMethod'
-                        type='radio'
-                        className={style.paymentMethod}
-                        onChange={handleChange}
-                        required
-                    />
-                    Cash On Delivery (USD)
-                </label>
-
-                <label>
-                    <input
-                        value='LBP'
-                        name='paymentMethod'
-                        type='radio'
-                        className={style.paymentMethod}
-                        onChange={handleChange}
-                        required
-                    />
-                    Cash On Delivery (LBP on daily rate)
-                </label>
-            </section>
-            <nav className={style.navSection}>
-                <Link path='/cart' className={style.navLink}>Back to cart</Link>
-                <button className={style.completeOrder} onClick={handelSubmit}> Complete Order</button></nav>
+                <nav className={style.navSection}>
+                    <Link to='/cart' className={style.navLink}>Back to cart</Link>
+                    <button type='button' className={style.completeOrder} onClick={handelSubmit} > Complete Order</button></nav>
         </div>
     );
 };
