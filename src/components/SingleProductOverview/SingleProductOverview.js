@@ -126,7 +126,7 @@ function SingleProductOverview({ product }) {
         </section>
         <section className={style.quantityWrapper}>
           <span>Quantity:</span>{" "}
-          <Select length={81} value={options} setValue={setOptions} />
+          <Select length={stock} value={options} setValue={setOptions} />
         </section>
 
         {!inCart ? (
