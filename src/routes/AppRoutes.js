@@ -19,6 +19,7 @@ import { AnimatePresence } from "framer-motion";
 import ShippingPage from '../pages/shipping/ShippingPage'
 import EditeUserProfile from "../components/UeserProfile/UserProfile";
 import WithFooter from "../Layout/withFooter/WithFooter";
+import WithoutFooter from "../Layout/WithoutFooter/WithoutFooter";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -33,13 +34,15 @@ function AppRoutes() {
               path="/consultation"
               element={<Products key="products" />}
             ></Route>
-            {/* <Route path="/profile" element={<Products />}></Route> */}
             <Route path="/single" element={<SingleProduct />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/about" element={<AboutUs />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
-            <Route path="/shipping" element={<ShippingPage/>}></Route>
+            <Route path="/shipping" element={<ShippingPage />}></Route>
 
+          </Route>
+          <Route element={<WithoutFooter />} >
+            <Route path="/profile" element={<EditeUserProfile />}></Route>
           </Route>
 
           <Route path="/login" element={<Login />}></Route>
