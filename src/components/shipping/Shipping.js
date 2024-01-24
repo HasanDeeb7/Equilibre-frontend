@@ -15,7 +15,7 @@ const Shipping = ({ onFormDataChange }) => {
     console.log(user)
 
     ///need update
-    const totalQuantity = 80;
+    const totalQuantity = localStorage.getItem('totalPrice');
     //get all product info from localStorage
     const orderedProducts = []
     JSON.parse(localStorage.getItem("Cart")).map(product => {

@@ -30,9 +30,11 @@ const OrderedProducts = ({ formData }) => {
     const country = formData.country;
     const orderedProducts = JSON.parse(localStorage.getItem("Cart")) || []
     console.log(orderedProducts);
-    const totalQuantity = orderedProducts.reduce((accumulator, item) => {
-        return accumulator + item.quantityPrice
-    }, 0)
+    // const totalQuantity = orderedProducts.reduce((accumulator, item) => {
+    //     return accumulator + item.quantityPrice
+    // }, 0)
+    const totalQuantity = JSON.parse(localStorage.getItem('totalPrice'));
+
 
     const checkDelivery = (totalPrice, country) => {
         if (totalPrice >= deliveryDetails.FreeDeliveryAmount) return 0
