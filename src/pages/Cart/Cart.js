@@ -38,16 +38,18 @@ function Cart() {
   }
   function clearCart() {
     setCartItems(null);
-    localStorage.removeItem("Cart");
+    localStorage.removeItem("Cart", "");
     toast.success("Cart Cleared");
   }
   useEffect(() => {
     getGlobalOffer();
-    const totalQuantity = cartItems.reduce((accumulator, item) => {
-      return accumulator + item.quantityPrice;
-    }, 0);
-    setSubtotal(totalQuantity);
-  }, []);
+    if (cartItems) {
+      const totalQuantity = cartItems.reduce((accumulator, item) => {
+        return accumulator + item.quantityPrice;
+      }, 0);
+      setSubtotal(totalQuantity);
+    }
+  }, [cartItems]);
   return !loading && !cartItems ? (
     <section>Cart is empty</section>
   ) : (
@@ -59,20 +61,24 @@ function Cart() {
           <p>Quantity</p>
           <p>Total</p>
         </section>
-        <section className={style.items}>
-          {cartItems.map((item) => (
-            <CartItem
-              image={item.image}
-              name={item.name}
-              price={item.price}
-              capacity={item.capacity}
-              initialQuantity={item.quantity}
-              initialStock={item.stock}
-              setSubtotal={setSubtotal}
-              subtotal={subtotal}
-            />
-          ))}
-        </section>
+        {cartItems ? (
+          <section className={style.items}>
+            {cartItems.map((item) => (
+              <CartItem
+                image={item.image}
+                name={item.name}
+                price={item.price}
+                capacity={item.capacity}
+                initialQuantity={item.quantity}
+                initialStock={item.stock}
+                setSubtotal={setSubtotal}
+                subtotal={subtotal}
+              />
+            ))}
+          </section>
+        ) : (
+          "No items in your cart"
+        )}
       </section>
       <section className={style.actionsContainer}>
         <button onClick={clearCart} className={style.secondaryBtn}>
