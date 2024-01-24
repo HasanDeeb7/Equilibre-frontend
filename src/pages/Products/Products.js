@@ -44,6 +44,7 @@ const Products = () => {
                   description={product.description}
                   price={product.soldQuantityCounter}
                   imgurl={product.image}
+                  slug={product.slug}
                 />
               ))}
           </div>
