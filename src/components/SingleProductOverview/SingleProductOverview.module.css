@@ -4,7 +4,6 @@
   justify-content: space-between;
   gap: 100px;
 }
-
 .image {
   width: 100%;
   min-width: 350px;
@@ -60,12 +59,19 @@
   gap: 20px;
   margin: 0 20px;
 }
-.sizeWrapper > div {
-  background-color: #eee;
-  border: 1px solid black;
+.size {
+  background-color: #fcfcfc;
+  border: 1px solid rgba(0, 0, 0, 0.192);
   padding: 5px 20px;
   user-select: none;
   cursor: pointer;
+  border-radius: 5px;
+}
+.activeSize {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: white;
+  transition: all 0.3s ease;
 }
 .quantity {
   display: flex;
@@ -73,12 +79,14 @@
   gap: 10px;
 }
 .quantityControl {
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.192);
   gap: 15px;
   padding: 5px 0;
   background-color: #eee;
+  user-select: none;
 }
 .decrease,
 .increase {
@@ -117,13 +125,21 @@
   border-color: var(--primary-color);
   background-color: transparent;
 }
-.removeFromCart{
+.removeFromCart {
   background-color: var(--secondary-color);
 }
 .cartIcon {
   margin-right: 5px;
 }
 .stockIndicator {
+  color: red;
+}
+.offer{
+  display: flex;
+  gap: 15px;
+}
+.strokedPrice{
+  text-decoration: line-through;
   color: red;
 }
 @media (max-width: 1160px) {

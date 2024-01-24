@@ -1,20 +1,26 @@
 import { Box, Divider, MenuItem, MenuList, Popover, Typography } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import { useUserStore } from "../../Store.js";
-
+import axios from 'axios'
+import {toast} from 'react-toastify'
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, open } = props;
   const {user,removeUser} = useUserStore(); 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  async function logout(){
     try {
-      removeUser(); 
-      navigate("/");
+      const response = await axios.get(`${process.env.REACT_APP_ENDPOINT}user/logout`)
+      if(response){
+        toast.success(response.data.message)
+        removeUser(); 
+        navigate("/");
+      }
     } catch (error) {
-      console.log("Error from handle logout", error);
+      console.log(error)
     }
-  };
+  }
+ 
 
   return (
     <Popover
@@ -76,7 +82,7 @@ export const AccountPopover = (props) => {
               color: "red",
             }}
             type="submit"
-            onClick={handleLogout}
+            onClick={logout}
           >
             Sign out
           </MenuItem>

@@ -80,7 +80,7 @@ function SecondSignup({ newUser, setNewUser, setCurrentStep }) {
       <button className={style.signUpButton} onClick={handleSignUp}>
         Create Account
       </button>
-      <button className={style.signUpButton} onClick={() => setCurrentStep(1)}>
+      <button className={style.backBtn} onClick={() => setCurrentStep(1)}>
         Go Back
       </button>
     </motion.section>

@@ -6,12 +6,7 @@ const discountRate = 10;
 const ProductCard = ({ id, name, description, price, imgurl }) => {
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className={ProductStyle.cardContainer}
-      >
+      <div className={ProductStyle.cardContainer}>
         <div className={ProductStyle.discountRateContainer}>
           <p className={ProductStyle.discountRate}>{discountRate}% Off</p>
         </div>
@@ -42,7 +37,7 @@ const ProductCard = ({ id, name, description, price, imgurl }) => {
           </div>
           <button className={ProductStyle.addToCartBtn}>+</button>
         </div>
-      </motion.div>
+      </div>
     </>
   );
 };

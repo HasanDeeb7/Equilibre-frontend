@@ -49,7 +49,7 @@
   display: flex;
   justify-content: space-between;
 }
-.shippingNoe {
+.shippingNote {
   color: #838383;
 }
 .buttonsContainer {
@@ -85,6 +85,14 @@
 .primaryBtn:hover {
   background-color: transparent;
   color: var(--primary-color);
+}
+.discountIndicator{
+  display: flex;
+  gap: 15px;
+}
+.strokedTotal{
+  color: red;
+  text-decoration: line-through;
 }
 
 @media screen and (max-width: 800px) {

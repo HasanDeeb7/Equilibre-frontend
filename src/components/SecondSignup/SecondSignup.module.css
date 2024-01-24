@@ -28,5 +28,21 @@
 }
 .signUpButton:hover {
   background-color: transparent;
-  color: var(--primary-color);
+  color: var(--primary-color);  
+}
+.backBtn {
+  padding: 8px 30px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.backBtn:hover {
+  background-color: transparent;
+  color: var(--secondary-color);
+}
+.genderWrapper > label, .genderWrapper > input{
+  cursor: pointer;
 }
