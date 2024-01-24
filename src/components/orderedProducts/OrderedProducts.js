@@ -1,30 +1,30 @@
 import style from './OrderedProducts.module.css'
-import React, { useEffect ,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 const OrderedProducts = ({ formData }) => {
-const [deliveryDetails,setDeliveryDetails]=useState({})
-const [isLoading,setIsLoading]=useState(true)
+    const [deliveryDetails, setDeliveryDetails] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         //function to get delivery Details 
-    const getDetails = async () => {
+        const getDetails = async () => {
 
-        try {
-            const deliveryDetails = await axios.get(`${process.env.REACT_APP_ENDPOINT}deliveryDetails`)
-            if (deliveryDetails) {
-                console.log(deliveryDetails.data)
-            setDeliveryDetails(deliveryDetails.data[0])
+            try {
+                const deliveryDetails = await axios.get(`${process.env.REACT_APP_ENDPOINT}deliveryDetails`)
+                if (deliveryDetails) {
+                    console.log(deliveryDetails.data)
+                    setDeliveryDetails(deliveryDetails.data[0])
+                }
+
+
+            } catch (error) {
+                console.log(error)
+                toast.error('Error getting delivery Details')
             }
-
-
-        } catch (error) {
-            console.log(error)
-            toast.error('Error getting delivery Details')
         }
-    }
         getDetails()
-    },[])
+    }, [])
 
 
     const country = formData.country;
