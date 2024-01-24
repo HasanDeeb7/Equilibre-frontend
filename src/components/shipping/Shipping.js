@@ -15,7 +15,7 @@ const Shipping = ({ onFormDataChange }) => {
     console.log(user)
 
     ///need update
-    const totalQuantity = 30;
+    const totalQuantity = 80;
     //get all product info from localStorage
     const orderedProducts = []
     JSON.parse(localStorage.getItem("Cart")).map(product => {
@@ -117,12 +117,14 @@ const Shipping = ({ onFormDataChange }) => {
             const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}order/addNewOrder`, newOrder)
             if (response) {
                 console.log(response.data)
+                toast.success('Order send successfully')
                 return response
             }
 
 
         } catch (error) {
             console.log(error)
+            toast.error('Failed placing this order')
         }
     }
 

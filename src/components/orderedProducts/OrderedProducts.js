@@ -1,7 +1,32 @@
 import style from './OrderedProducts.module.css'
-import React from 'react'
-
+import React, { useEffect ,useState } from 'react'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 const OrderedProducts = ({ formData }) => {
+const [deliveryDetails,setDeliveryDetails]=useState({})
+const [isLoading,setIsLoading]=useState(true)
+
+    useEffect(()=>{
+        //function to get delivery Details 
+    const getDetails = async () => {
+
+        try {
+            const deliveryDetails = await axios.get(`${process.env.REACT_APP_ENDPOINT}deliveryDetails`)
+            if (deliveryDetails) {
+                console.log(deliveryDetails.data)
+            setDeliveryDetails(deliveryDetails.data[0])
+            }
+
+
+        } catch (error) {
+            console.log(error)
+            toast.error('Error getting delivery Details')
+        }
+    }
+        getDetails()
+    },[])
+
+
     const country = formData.country;
     const orderedProducts = JSON.parse(localStorage.getItem("Cart")) || []
     console.log(orderedProducts);
@@ -10,16 +35,16 @@ const OrderedProducts = ({ formData }) => {
     }, 0)
 
     const checkDelivery = (totalPrice, country) => {
-        if (totalPrice >= 50) return 0
-        else if (country === 'lebanon') return 3
+        if (totalPrice >= deliveryDetails.FreeDeliveryAmount) return 0
+        else if (country === 'lebanon') return deliveryDetails.inLebanonDeliveryFee
         else return null
     }
 
-    
+
     return (
-        (orderedProducts.length >0) ? 
-        (<div className={style.bill}>
-            <section className={style.products}>
+        (orderedProducts.length > 0 && deliveryDetails) ?
+            (<div className={style.bill}>
+                <section className={style.products}>
                     {orderedProducts.map((elt, i) => {
                         const selectedSize = elt.sizes.find(size => size._id === elt.size);
 
@@ -40,22 +65,22 @@ const OrderedProducts = ({ formData }) => {
                         );
                     })}
                 </section>
-            <section className={style.subTotal}>
-                <p className={style.price}>
-                    subTotal: <span>${totalQuantity}</span>
-                </p>
-                <p className={style.price}>
-                    Shipping Fee: {
-                        checkDelivery(totalQuantity, country) === 0
-                            ? <span>Free Delivery</span>
-                            : checkDelivery(totalQuantity, country) !== null
-                                ? <span>$ {checkDelivery(totalQuantity, country)}</span>
-                                : <span>To be determined for {formData.country}</span>
-                    }
-                </p>
-            </section>
-            <p className={style.total}>Total  Total <span > $ {totalQuantity + (checkDelivery(totalQuantity, country) !== null ? checkDelivery(totalQuantity, country) : 0)}</span></p>
-        </div>)
+                <section className={style.subTotal}>
+                    <p className={style.price}>
+                        subTotal: <span>${totalQuantity}</span>
+                    </p>
+                    <p className={style.price}>
+                        Shipping Fee: {
+                            checkDelivery(totalQuantity, country) === 0
+                                ? <span>Free Delivery</span>
+                                : checkDelivery(totalQuantity, country) !== null
+                                    ? <span>$ {checkDelivery(totalQuantity, country)}</span>
+                                    : <span>To be determined for {formData.country}</span>
+                        }
+                    </p>
+                </section>
+                <p className={style.total}>Total  Total <span > $ {totalQuantity + (checkDelivery(totalQuantity, country) !== null ? checkDelivery(totalQuantity, country) : 0)}</span></p>
+            </div>)
             : <div>Emtyyyyy cartttttttttt</div>
     )
 }
