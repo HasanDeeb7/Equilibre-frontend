@@ -5,7 +5,7 @@ import axios from 'axios'
 import Select from 'react-select';
 import countryList from 'country-list'
 import { useUserStore } from '../../Store.js';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const Shipping = ({ onFormDataChange }) => {
     const navigate = useNavigate();
@@ -135,22 +135,24 @@ const Shipping = ({ onFormDataChange }) => {
 
     //handle submit info to create order
     const handelSubmit = () => {
-     if(user){   if (window.confirm('Are you sure you want to proceed with this order?')) {
-            console.log(orderedProducts)
-            createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], userId: user._id, orderDate: new Date() })
-            // setFormData({
-            //     email: '',
-            //     country: '',
-            //     city: '',
-            //     firstName: '',
-            //     lastName: '',
-            //     shippingAddress: '',
-            //     phone: '',
-            //     paymentMethod: ''
-            // })
-            console.log(formData)
-        }}
-        else{
+        if (user) {
+            if (window.confirm('Are you sure you want to proceed with this order?')) {
+                console.log(orderedProducts)
+                createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], userId: user._id, orderDate: new Date() })
+                // setFormData({
+                //     email: '',
+                //     country: '',
+                //     city: '',
+                //     firstName: '',
+                //     lastName: '',
+                //     shippingAddress: '',
+                //     phone: '',
+                //     paymentMethod: ''
+                // })
+                console.log(formData)
+            }
+        }
+        else {
             toast.error('Please log in before proceeding to checkout');
             navigate('/login')
         }
