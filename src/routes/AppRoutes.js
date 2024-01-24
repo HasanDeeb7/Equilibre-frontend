@@ -15,12 +15,15 @@ import ConsultingSection from "../components/ConsultingSection/ConsultingSection
 import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import Sidebar from "../components/Sidebar/Sidebar";
+import { AnimatePresence } from "framer-motion";
+import ShippingPage from '../pages/shipping/ShippingPage'
 import EditeUserProfile from "../components/UeserProfile/UserProfile";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
   return (
     <div>
+      <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route element={<NavBar />}>
             <Route path="/" element={<ConsultingSection key="home" />}></Route>
@@ -34,6 +37,8 @@ function AppRoutes() {
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/about" element={<AboutUs />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
+            <Route path="/shipping" element={<ShippingPage/>}></Route>
+
           </Route>
 
           <Route path="/login" element={<Login />}></Route>
@@ -53,7 +58,8 @@ function AppRoutes() {
           </Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
-      
+      </AnimatePresence>
+
     </div>
   );
 }
