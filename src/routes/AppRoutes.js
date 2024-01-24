@@ -18,6 +18,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import { AnimatePresence } from "framer-motion";
 import ShippingPage from '../pages/shipping/ShippingPage'
 import EditeUserProfile from "../components/UeserProfile/UserProfile";
+import WithFooter from "../Layout/withFooter/WithFooter";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -25,7 +26,7 @@ function AppRoutes() {
     <div>
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
-          <Route element={<NavBar />}>
+          <Route element={<WithFooter />}>
             <Route path="/" element={<ConsultingSection key="home" />}></Route>
             <Route path="/products" element={<Products />}></Route>
             <Route

@@ -253,7 +253,6 @@ const NavBar = () => {
           />
         )}
       </nav>
-      <Outlet />
     </>
   );
 };
