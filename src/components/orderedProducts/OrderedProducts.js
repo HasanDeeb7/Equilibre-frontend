@@ -57,7 +57,7 @@ const OrderedProducts = ({ formData }) => {
                                     {selectedSize && (
                                         <div>
                                             <p className={style.productName}>{elt.name}<span className={style.size}>({selectedSize.capacity}{selectedSize.unit})</span></p>
-                                            <p className={style.productPrice}>${selectedSize.price} <span className={style.quantity}>(x{elt.quantity})</span></p>
+                                            <p className={style.productPrice}>${elt.price} <span className={style.quantity}>(x{elt.quantity})</span></p>
                                         </div>
                                     )}
                                 </section>
