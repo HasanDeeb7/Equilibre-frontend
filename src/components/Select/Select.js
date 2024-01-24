@@ -3,7 +3,6 @@ import style from "./Select.module.css";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 function Select({ length, value, setValue }) {
-  const [list, setList] = useState([]);
   const dropDownRef = useRef()
   const [isOpen, setIsOpen] = useState(false);
   function getItems() {

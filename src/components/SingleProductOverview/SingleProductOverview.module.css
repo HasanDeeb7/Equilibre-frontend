@@ -1,6 +1,8 @@
 .quantityWrapper{
   display: flex;
   gap: 10px;
+  align-items: center;
+  gap: 20px;
 }
 .overviewContainer {
   display: flex;
