@@ -20,6 +20,7 @@ import ShippingPage from '../pages/shipping/ShippingPage'
 import EditeUserProfile from "../components/UeserProfile/UserProfile";
 import WithFooter from "../Layout/withFooter/WithFooter";
 import WithoutFooter from "../Layout/WithoutFooter/WithoutFooter";
+import ConfirmedPage from "../pages/confirmedPage/ConfirmedPage";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -43,6 +44,8 @@ function AppRoutes() {
           </Route>
           <Route element={<WithoutFooter />} >
             <Route path="/profile" element={<EditeUserProfile />}></Route>
+            <Route path="/confirmed" element={<ConfirmedPage />}></Route>
+
           </Route>
 
           <Route path="/login" element={<Login />}></Route>
