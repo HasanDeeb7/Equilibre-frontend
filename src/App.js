@@ -28,6 +28,7 @@ function App() {
   useEffect(() => {
     getUser();
   }, []);
+  console.clear()
   return (
     !loading && (
       <div className="App">

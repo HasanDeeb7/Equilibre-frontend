@@ -1,0 +1,41 @@
+
+.selectContainer {
+  width: 100px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid lightblue;
+  position: relative;
+  padding: 0 10px;
+  border-radius: 5px;
+  user-select: none;
+  cursor: pointer;
+}
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  overflow-y: scroll;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  z-index: 2;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  cursor: pointer;
+  width: 100px;
+  transition: all 0.2s ease;
+}
+.option:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
