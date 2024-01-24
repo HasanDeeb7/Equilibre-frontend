@@ -37,6 +37,7 @@ function AppRoutes() {
             <Route path="/about" element={<AboutUs />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
           </Route>
+          <Route path="/edituserprofile" element={<EditeUserProfile />}></Route>
 
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
