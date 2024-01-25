@@ -173,10 +173,16 @@ const NavBar = () => {
                         display: "flex",
                         justifyContent: "center",
                         alignContent: "center",
+                        padding:0,
+                        margin:0
                       }}
                     >
                       Products
-                      <div>
+                      <div style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignContent: "center",
+                      }}>   
                         <KeyboardArrowDown />
                       </div>
                     </p>
