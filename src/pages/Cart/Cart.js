@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function Cart() {
   const [cartItems, setCartItems] = useState(
-    JSON.parse(localStorage.getItem("Cart")) || null
+    JSON.parse(localStorage.getItem("Cart")) || []
   );
   const [globalOffer, setGlobalOffer] = useState();
   const [loading, setLoading] = useState(true);
@@ -41,6 +41,15 @@ function Cart() {
     localStorage.removeItem("Cart", "");
     toast.success("Cart Cleared");
   }
+  function handleDelete(id) {
+    const currentItems = JSON.parse(localStorage.getItem("Cart")) || [];
+    const index = currentItems.findIndex((item) => item._id === id);
+    if (index !== -1) {
+      currentItems.splice(index, 1);
+      localStorage.setItem("Cart", JSON.stringify(currentItems));
+      setCartItems(currentItems);
+    }
+  }
   useEffect(() => {
     getGlobalOffer();
     if (cartItems) {
@@ -50,8 +59,8 @@ function Cart() {
       setSubtotal(totalQuantity);
     }
   }, [cartItems]);
-  return !loading && !cartItems ? (
-    <section>Cart is empty</section>
+  return loading ? (
+    <section>Loading...</section>
   ) : (
     <section className={style.cartPageContainer}>
       <section className={style.cartItemsContainer}>
@@ -61,18 +70,22 @@ function Cart() {
           <p>Quantity</p>
           <p>Total</p>
         </section>
-        {cartItems ? (
+        {cartItems && cartItems.length > 0 ? (
           <section className={style.items}>
             {cartItems.map((item) => (
               <CartItem
+                key={item._id}
                 image={item.image}
                 name={item.name}
                 price={item.price}
                 capacity={item.capacity}
+                capacityId={item.size}
                 initialQuantity={item.quantity}
                 initialStock={item.stock}
                 setSubtotal={setSubtotal}
                 subtotal={subtotal}
+                id={item._id}
+                handleDelete={handleDelete}
               />
             ))}
           </section>

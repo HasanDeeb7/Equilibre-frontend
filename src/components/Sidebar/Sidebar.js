@@ -77,6 +77,16 @@ const Sidebar = () => {
               <MailSvg /> <span>Users</span>
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="products"
+              className={({ isActive }) =>
+                isActive ? Style.active : Style.noActive
+              }
+            >
+              <MailSvg /> <span>Dashboard</span>
+            </NavLink>
+          </li>
         </ul>
       </sidenav>
       <Outlet />
