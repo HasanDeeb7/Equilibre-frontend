@@ -12,6 +12,14 @@
   flex-basis: 55%;
   min-width: 231px;
 }
+.itemName,
+.total,
+.price {
+  font-size: 24px;
+}
+.quantity{
+  font-size: 16px;
+}
 .itemName {
   font-size: 24px;
   font-weight: 400;
@@ -29,8 +37,20 @@
   min-width: 142px;
 }
 .total {
-  flex-basis: 15%;
+  flex-basis: 8%;
   min-width: 82px;
+}
+.delete {
+  flex-basis: 7%;
+}
+.delete > svg {
+  font-size: 24px;
+  color: red;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.delete > svg:hover {
+  color: rgb(173, 6, 6);
 }
 .quantity {
   display: flex;
