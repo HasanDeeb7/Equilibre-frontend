@@ -10,16 +10,20 @@ import logo from "../../assets/logo.jpeg";
 import { useUserStore } from "../../Store.js";
 import style from "./NavBar.module.css";
 import styled from "@emotion/styled";
-
+import axios from 'axios'
 const NavBar = () => {
   const accountPopover = usePopover();
   const { user, removeUser } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  let categories = ["Category 1", "Category 2", "Category 3"];
+  const [categories, setCategories] = useState([])
+  const [isLoading, setLoading] = useState(true)
+
+  // let categories = ["Category 1", "Category 2", "Category 3"];
 
   useEffect(() => {
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
       setIsOpen(false);
@@ -30,7 +34,23 @@ const NavBar = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+
   }, []);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_ENDPOINT}category`)
+        console.log(response.data)
+        setCategories(response.data)
+        setLoading(false)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
+    fetchCategory()
+  }, [])
 
   return (
     <>
@@ -64,15 +84,15 @@ const NavBar = () => {
                   <KeyboardArrowDown />
                 </p>
                 <ul className={style.dropdownMenu}>
-                  <div className={style.categories}>
+                  {(isLoading) ? <div>...</div> : (<div className={style.categories}>
                     {categories.map((category) => (
-                      <li key={category}>
-                        <NavLink to={`/products/${category}`}>
-                          {category}
+                      <li key={category.name}>
+                        <NavLink to={`/products/${category.name}`}>
+                          {category.name}
                         </NavLink>
                       </li>
                     ))}
-                  </div>
+                  </div>)}
                 </ul>
               </li>
 
@@ -162,15 +182,15 @@ const NavBar = () => {
                     </p>
                     {/* Dropdown Menu for Desktop */}
                     <ul className={style.dropdownMenuDesktop}>
-                      <div className={style.categories}>
+                      {(isLoading) ? <div>...</div> : (<div className={style.categories}>
                         {categories.map((category) => (
-                          <li key={category} className={style.categories}>
-                            <NavLink to={`/products/${category}`}>
-                              {category}
+                          <li key={category.name} className={style.categories}>
+                            <NavLink to={`/products/${category.name}`}>
+                              {category.name}
                             </NavLink>
                           </li>
                         ))}
-                      </div>
+                      </div>)}
                     </ul>
                   </li>
                 </NavLink>
