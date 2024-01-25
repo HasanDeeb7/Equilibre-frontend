@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
+import { NavLink } from "react-router-dom";
 import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
 import PersonOutline from "@mui/icons-material/PersonOutline";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
@@ -9,18 +8,14 @@ import { usePopover } from "./usePopover.js";
 import logo from "../../assets/logo.jpeg";
 import { useUserStore } from "../../Store.js";
 import style from "./NavBar.module.css";
-import styled from "@emotion/styled";
 import axios from 'axios'
 const NavBar = () => {
   const accountPopover = usePopover();
-  const { user, removeUser } = useUserStore();
+  const { user } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [categories, setCategories] = useState([])
   const [isLoading, setLoading] = useState(true)
-
-  // let categories = ["Category 1", "Category 2", "Category 3"];
 
   useEffect(() => {
 
@@ -37,6 +32,8 @@ const NavBar = () => {
 
   }, []);
 
+
+  //get dynamic data for categories
   useEffect(() => {
     const fetchCategory = async () => {
       try {
@@ -173,8 +170,8 @@ const NavBar = () => {
                         display: "flex",
                         justifyContent: "center",
                         alignContent: "center",
-                        padding:0,
-                        margin:0
+                        padding: 0,
+                        margin: 0
                       }}
                     >
                       Products
@@ -182,7 +179,8 @@ const NavBar = () => {
                         display: "flex",
                         justifyContent: "center",
                         alignContent: "center",
-                      }}>   
+
+                      }}>
                         <KeyboardArrowDown />
                       </div>
                     </p>
@@ -258,16 +256,34 @@ const NavBar = () => {
                         height: 30,
                         width: 35,
                         marginLeft: 1.5,
+                        marginRight: 1.5,
                         color: "black",
                       }}
                     />
                   </NavLink>
-                </>
-              ) : (
-                <NavLink to="/login">
-                  <button className={style.loginButton}>Login</button>
-                </NavLink>
-              )}
+                </>) : (
+                <>
+                  <NavLink
+                    to="/cart"
+                    className={({ isActive }) =>
+                      isActive ? style.activeLinks : style.navLinks
+                    }
+                  >
+                    <ShoppingCartOutlined
+                      sx={{
+                        cursor: "pointer",
+                        height: 30,
+                        width: 35,
+                        marginLeft: 1.5,
+                        marginRight: 1.5,
+                        color: "black",
+                      }}
+                    />
+                  </NavLink>
+                  <NavLink to="/login">
+                    <button className={style.loginButton}>Login</button>
+                  </NavLink>
+                </>)}
             </div>
           </>
         )}
