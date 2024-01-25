@@ -53,15 +53,15 @@ function AppRoutes() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
-          <Route path="/dashboard" element={<Sidebar />}>
-            <Route
+          <Route path="/dashboard" element={<Dashboard />}>
+            {/* <Route
               path="/dashboard"
               element={
                 // <ProtectedRoute isAllowed={user}>
                 <Dashboard />
                 // </ProtectedRoute>
               }
-            ></Route>
+            ></Route> */}
           </Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
