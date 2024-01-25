@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 const hasOffer = true;
 const discountRate = 10;
-const ProductCard = ({ id, name, description, price, imgurl }) => {
+const ProductCard = ({ id, name, description, price, imgurl, slug }) => {
   return (
     <>
       <div className={ProductStyle.cardContainer}>
         <div className={ProductStyle.discountRateContainer}>
           <p className={ProductStyle.discountRate}>{discountRate}% Off</p>
         </div>
-        <Link to="/single">
+        <Link to={`/single/${slug}`}>
           <img
             className={ProductStyle.image}
             src={imgurl}
             alt="product pricture"
           />
         </Link>
-        <Link to="/single" style={{ textDecoration: "none" }}>
+        <Link to="/single/:slug" style={{ textDecoration: "none" }}>
           <h2 className={ProductStyle.productName}>{name}</h2>
         </Link>
         <p className={ProductStyle.description}>

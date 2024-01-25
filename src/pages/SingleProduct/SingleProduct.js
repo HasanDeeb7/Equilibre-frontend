@@ -3,15 +3,16 @@ import SingleProductOverview from "../../components/SingleProductOverview/Single
 import axios from "axios";
 import RelatedProduct from "../../components/RelatedProduct/RelatedProduct";
 import style from "./SingleProduct.module.css";
+import { useParams } from "react-router-dom";
 function SingleProduct() {
-  const id = "65aafd46f1eb4906132c2837";
+  const slug = useParams();
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   async function getOneProduct() {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_ENDPOINT}product/byId`,
-        { params: { productId: id } }
+        `${process.env.REACT_APP_ENDPOINT}product/byId/${slug.slug}`,
+        
       );
       if (response) {
         console.log(response.data.data);

@@ -4,6 +4,7 @@ import image from "../../assets/Hero2Eq2.png";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import Select from "../Select/Select";
 
 function SingleProductOverview({ product }) {
   const [options, setOptions] = useState({
@@ -12,7 +13,7 @@ function SingleProductOverview({ product }) {
   });
   const [stock, setStock] = useState();
   const [price, setPrice] = useState(product.sizes[0].price);
-  const [offer, setOffer] = useState(product.offerId.discountRate);
+  const [offer, setOffer] = useState(product.offerId?.discountRate);
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("Cart")) || []
   );
@@ -30,9 +31,9 @@ function SingleProductOverview({ product }) {
     });
     setPrice(item.price);
     setSelectedSize(item.capacity);
+    setStock(item.stock);
   }
   function sortSizes() {
-     
     return product.sizes.sort((a, b) => a.capacity - b.capacity);
   }
 
@@ -45,6 +46,7 @@ function SingleProductOverview({ product }) {
     );
     if (index !== -1) {
       cartItems[index].quantity += options.quantity;
+      cartItems[index].quantityPrice += newPrice * options.quantity;
       localStorage.setItem("Cart", JSON.stringify(cartItems));
       toast.success("Cart updated");
       return;
@@ -61,13 +63,6 @@ function SingleProductOverview({ product }) {
     localStorage.setItem("Cart", JSON.stringify(cartItems));
     setInCart(true);
     toast.success("Item Added to Cart");
-  }
-
-  function handleIncrease() {
-    setOptions({ ...options, quantity: options.quantity + 1 });
-  }
-  function handleDecrease() {
-    setOptions({ ...options, quantity: options.quantity - 1 });
   }
   useEffect(() => {
     setOptions({
@@ -90,7 +85,7 @@ function SingleProductOverview({ product }) {
               <span>${price * (1 - offer / 100)}</span>
             </span>
           ) : (
-            { price }
+            <span>${price}</span>
           )}
         </p>
         <section className={style.availability}>
@@ -131,31 +126,11 @@ function SingleProductOverview({ product }) {
             })}
           </section>
         </section>
-        <section className={style.quantity}>
-          <span>Quantity: </span>
-          <section className={style.quantityControl}>
-            <div
-              className={`${style.decrease} ${
-                options.quantity <= 1 && style.disabledControl
-              }`}
-              onClick={handleDecrease}
-            >
-              -
-            </div>
-            <div className={style.currentQuantity}>{options.quantity}</div>
-            <div
-              className={`${style.increase} ${
-                options.quantity >= stock && style.disabledControl
-              }`}
-              onClick={handleIncrease}
-            >
-              +
-            </div>
-          </section>
-          <span className={style.stockIndicator}>
-            {options.quantity >= stock && "Out of stock!"}
-          </span>
+        <section className={style.quantityWrapper}>
+          <span>Quantity:</span>{" "}
+          <Select length={stock} value={options} setValue={setOptions} />
         </section>
+
         {!inCart ? (
           <button className={style.addToCartBtn} onClick={addToCart}>
             <MdOutlineShoppingCart className={style.cartIcon} /> Add to cart
