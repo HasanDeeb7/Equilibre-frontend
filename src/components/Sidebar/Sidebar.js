@@ -59,12 +59,12 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
-              to="/signup"
+              to="orders"
               className={({ isActive }) =>
                 isActive ? Style.active : Style.noActive
               }
             >
-              <MailSvg /> <span>Mails</span>
+              <MailSvg /> <span>Orders</span>
             </NavLink>
           </li>
           <li>

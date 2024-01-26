@@ -24,6 +24,8 @@ import ConfirmedPage from "../pages/confirmedPage/ConfirmedPage";
 import Overview from "../DashboardPages/Overview/Overview";
 import Users from "../DashboardPages/Users/Users";
 import ProductsDashboard from "../DashboardPages/ProductsDashboard/ProductsDashboard";
+import Orders from "../DashboardPages/Orders/Orders";
+import SingleOrder from "../DashboardPages/SingleOrder/SingleOrder";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -71,6 +73,8 @@ function AppRoutes() {
           />
           <Route path="users" element={<Users />}></Route>
           <Route path="products" element={<ProductsDashboard />}></Route>
+          <Route path="orders" element={<Orders />}></Route>
+          <Route path="orders/singleOrder" element={<SingleOrder />}></Route>
           {/* <Route path="" element={<Overview />}></Route> */}
         </Route>
         <Route path="/*" element={<NotFound />}></Route>
