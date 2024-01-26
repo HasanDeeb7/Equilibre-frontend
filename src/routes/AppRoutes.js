@@ -7,7 +7,6 @@ import Signup from "../pages/Signup/Signup";
 import Cart from "../pages/Cart/Cart";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import Checkout from "../pages/Checkout/Checkout";
-import Dashboard from "../pages/Dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import { useUserStore } from "../Store";
 import NavBar from "../Layout/NavBar/NavBar";
@@ -21,6 +20,7 @@ import EditeUserProfile from "../components/UeserProfile/UserProfile";
 import WithFooter from "../Layout/withFooter/WithFooter";
 import WithoutFooter from "../Layout/WithoutFooter/WithoutFooter";
 import ConfirmedPage from "../pages/confirmedPage/ConfirmedPage";
+import OverView from "../pages/OverViewDash/OverView";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -53,7 +53,7 @@ function AppRoutes() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="/dashboard" element={<OverView />}>
             {/* <Route
               path="/dashboard"
               element={
