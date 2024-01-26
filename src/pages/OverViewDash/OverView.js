@@ -8,9 +8,9 @@ import income from '../../assets/income.png'
 import DonutChart from '../../components/DonutChart/DonutChart'
 
 import axios from 'axios'
-import style from './Dashboard.module.css'
+import style from './OverView.module.css'
 import SalesOverview from '../../components/SalesOverview/SalesOverview'
-function Dashboard() {
+function OverView() {
   const [isLoading, setLoading] = useState(true);
   const [dataCards, setDataCards] = useState({
     totalProductsSold: null,
@@ -70,4 +70,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default OverView

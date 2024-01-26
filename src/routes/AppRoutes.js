@@ -7,7 +7,6 @@ import Signup from "../pages/Signup/Signup";
 import Cart from "../pages/Cart/Cart";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import Checkout from "../pages/Checkout/Checkout";
-import Dashboard from "../pages/Dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import { useUserStore } from "../Store";
 import NavBar from "../Layout/NavBar/NavBar";
