@@ -6,7 +6,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import FilterSection from "../../components/filterSection/filterSection";
 import { motion } from "framer-motion";
 const Products = () => {
-  const [Products, setProducts] = useState();
+  const [Products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,6 @@ const Products = () => {
           `${process.env.REACT_APP_ENDPOINT}product/AllProducts`
         );
         if (response) {
-          console.log(response.data.data);
           setProducts(response.data.data);
           setLoading(false);
         }
@@ -29,25 +28,35 @@ const Products = () => {
   }, []);
   return (
     <>
+      <h1 className={style.pageTitle}>All Products</h1>
       <main className={style.mainContainer}>
-        <FilterSection />
-
+        <FilterSection
+          setProductLoading={setLoading}
+          setProducts={setProducts}
+        />
         <section className={style.cardsContainer}>
-          <SearchBar />
-          <div className={style.cardsWrapper}>
-            {Products &&
-              Products.map((product, index) => (
-                <ProductCard
-                  id={product._id}
-                  key={index}
-                  name={product.name}
-                  description={product.description}
-                  price={product.soldQuantityCounter}
-                  imgurl={product.image}
-                  slug={product.slug}
-                />
-              ))}
-          </div>
+          <SearchBar setProductLoading = {setLoading} setProducts={setProducts} />
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <div className={style.cardsWrapper}>
+              {Products.length === 0 ? (
+                <p>No products available for this filter.</p>
+              ) : (
+               Products && Products.map((product, index) => (
+                  <ProductCard
+                    id={product._id}
+                    key={index}
+                    name={product.name}
+                    description={product.description}
+                    size={product.sizes}
+                    imgurl={product.image}
+                    offerId={product.offerId}
+                  />
+                ))
+              )}
+            </div>
+          )}
         </section>
       </main>
     </>
