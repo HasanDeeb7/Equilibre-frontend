@@ -154,7 +154,12 @@ export default function SideBar() {
                             >
                                 <Dashboard sx={{ color: 'gray' }} />
                             </IconButton >
-                            <img alt='Equilibre' src={logo} width={80} lazy />
+                            <Avatar alt='Equilibre' src={logo} width={80}  sx={{
+                                ...(open && { display: 'none' }),
+                                '@media(width<500px)': {
+                                    display: 'none',
+                                }
+                            }} />
                         </Box>
                         <Box component='nav' sx={{ display: 'flex' }}>
                             <Avatar
@@ -193,10 +198,10 @@ export default function SideBar() {
                         {sidebarItems.map((text, index) => (
                             <ListItem key={text[0]} disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton
-                                      className={{
+                                    className={{
                                         [style.active]: location.pathname === `/${text[0]}`,
                                         [style.notActive]: location.pathname !== `/${text[0]}`,
-                                      }}
+                                    }}
 
                                     component={NavLink}
                                     to={`/${text[0]}`}
