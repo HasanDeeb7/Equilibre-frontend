@@ -8,7 +8,6 @@
     padding-top: 2%;
 }
 .categorySection{
-    background-color: yellow;
     flex-basis: 20%;
 }
 .cardsContainer{
@@ -19,4 +18,22 @@
     margin-top: 2%;
     gap: 2%;
     flex-wrap: wrap;
+}
+.pageTitle{
+    width: 100%;
+    background-color: rgba(183, 207, 51, 0.10);
+    padding-top: 1%;
+    padding-left: 2%;
+    font-size: 2rem;
+}
+@media only screen and (max-width: 950px){
+    .cardsContainer{
+        margin: 1% auto;
+    }
+    .pageTitle{
+        font-size: 1.5rem;
+        padding-left: 10%;
+        padding-top: 3%;
+        padding-bottom: 1%;
+    }
 }

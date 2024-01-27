@@ -4,14 +4,15 @@
   background-color: white;
   display: flex;
   align-items: center;
-  height: 40px;
-  width: 250px;
+  height: 45px;
+  width: 30%
 }
 .inputSearch {
   height: 100%;
   width: 100%;
   border: none;
   border-radius: 5px;
+  padding: 10px;
 }
 .inputSearch:focus {
   outline: none;
@@ -26,4 +27,9 @@
 }
 .searchIcon {
   height: 30px;
+}
+@media only screen and (max-width: 950px){
+  .inputContainer{
+    width: 80%;
+  } 
 }
