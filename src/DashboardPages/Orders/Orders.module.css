@@ -51,17 +51,21 @@
   align-items: center;
   justify-content: center;
 }
-.processing {
+.onWay {
   background-color: #deedff;
   color: #58a5ff;
 }
-.completed {
+.delivered {
   color: #b7cf33;
   background-color: #f1f5d6;
 }
-.canceled {
+.cancelled {
   background-color: #fcd7d4;
   color: #ef3826;
+}
+.pending {
+  background-color: #ffeddd;
+  color: #ffa756;
 }
 .viewMoreBtn {
   padding: 10px 30px;

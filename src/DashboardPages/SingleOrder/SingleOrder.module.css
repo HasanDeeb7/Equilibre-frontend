@@ -46,10 +46,6 @@
   font-weight: 700;
   margin-top: 20px;
 }
-.btnsContainer {
-  display: flex;
-  gap: 15px;
-}
 
 .status {
   padding: 8px;
@@ -64,9 +60,6 @@
 }
 .openChangerBtn {
   padding: 10px 30px;
-  border: 1px solid var(--primary-color);
-  background: var(--primary-color);
-  color: white;
   border-radius: 3px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -102,7 +95,7 @@
 }
 .arrowLeft {
   margin-right: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   position: absolute;
   left: 18px;
   top: 12px;
@@ -133,4 +126,47 @@
 }
 .optionsOpen {
   transform: translateX(-100px);
+}
+.btnsContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.updateBtn {
+  padding: 10px 30px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 194px;
+  position: relative;
+  height: 40px;
+  border: 1px solid var(--primary-color);
+  color: white;
+  background-color: var(--primary-color);
+}
+.updateBtn:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+}
+.cancelledBtn {
+  background-color: red;
+  color: white;
+  cursor: default;
+}
+.cancelledBtn:hover {
+  background-color: red;
+  color: white;
+}
+.deliveredBtn {
+  background-color: green;
+  cursor: default;
+  color: white;
+}
+.deliveredBtn:hover {
+  background-color: green;
+  color: white;
 }
