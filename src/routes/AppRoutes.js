@@ -26,6 +26,7 @@ import ProductsDashboard from "../DashboardPages/ProductsDashboard/ProductsDashb
 import Orders from "../DashboardPages/Orders/Orders";
 import SingleOrder from "../DashboardPages/SingleOrder/SingleOrder";
 import HeroSection from '../components/HeroSection/HeroSection'
+import TopSellerHome from "../components/TopSellerHome/TopSellerHome";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -33,7 +34,7 @@ function AppRoutes() {
     <div>
       <Routes location={location} key={location.pathname}>
         <Route element={<WithFooter />}>
-          <Route path="/" element={<HeroSection key="home" />}></Route>
+          <Route path="/" element={<TopSellerHome key="home" />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route
             path="/consultation"
