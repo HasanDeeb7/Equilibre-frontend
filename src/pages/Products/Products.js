@@ -35,7 +35,7 @@ const Products = () => {
           setProducts={setProducts}
         />
         <section className={style.cardsContainer}>
-          <SearchBar setProductLoading = {setLoading} setProducts={setProducts} />
+          <SearchBar setProductLoading={setLoading} setProducts={setProducts} />
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -43,7 +43,8 @@ const Products = () => {
               {Products.length === 0 ? (
                 <p>No products available for this filter.</p>
               ) : (
-               Products && Products.map((product, index) => (
+                Products &&
+                Products.map((product, index) => (
                   <ProductCard
                     id={product._id}
                     key={index}
@@ -52,6 +53,7 @@ const Products = () => {
                     size={product.sizes}
                     imgurl={product.image}
                     offerId={product.offerId}
+                    slug={product.slug}
                   />
                 ))
               )}

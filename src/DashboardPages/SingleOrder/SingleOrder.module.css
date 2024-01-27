@@ -50,34 +50,7 @@
   display: flex;
   gap: 15px;
 }
-.editBtn {
-  padding: 10px 30px;
-  width: 100px;
-  border: 1px solid var(--primary-color);
-  background: var(--primary-color);
-  color: white;
-  border-radius: 3px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-.editBtn:hover {
-  background-color: transparent;
-  color: var(--primary-color);
-}
-.deleteBtn {
-  padding: 10px 30px;
-  width: 100px;
-  border: 1px solid var(--secondary-color);
-  background: var(--secondary-color);
-  color: white;
-  border-radius: 3px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-.deleteBtn:hover {
-  background-color: transparent;
-  color: var(--secondary-color);
-}
+
 .status {
   padding: 8px;
   border-radius: 5px;
@@ -89,18 +62,6 @@
   justify-content: center;
   cursor: pointer;
 }
-.processing {
-  background-color: #deedff;
-  color: #58a5ff;
-}
-.completed {
-  color: #b7cf33;
-  background-color: #f1f5d6;
-}
-.canceled {
-  background-color: #fcd7d4;
-  color: #ef3826;
-}
 .openChangerBtn {
   padding: 10px 30px;
   border: 1px solid var(--primary-color);
@@ -111,17 +72,40 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   z-index: 2;
   width: 194px;
+  position: relative;
 }
 .openChangerBtn:hover {
-  border-color: var(--primary-color);
   background: white;
-  color: var(--primary-color);
+}
+.onWay {
+  background-color: #deedff;
+  color: #58a5ff;
+  border: 1px solid #58a5ff;
+}
+.delivered {
+  color: #b7cf33;
+  background-color: #f1f5d6;
+  border: 1px solid #b7cf33;
+}
+.cancelled {
+  background-color: #fcd7d4;
+  color: #ef3826;
+  border: 1px solid #ef3826;
+}
+.pending {
+  background-color: #ffeddd;
+  color: #ffa756;
+  border: 1px solid #ffa756;
 }
 .arrowLeft {
   margin-right: 10px;
   transition: all 0.3s ease;
+  position: absolute;
+  left: 18px;
+  top: 12px;
 }
 .arrowRight {
   transform: rotate(180deg);
@@ -131,21 +115,21 @@
   flex-direction: row-reverse;
   position: relative;
   overflow: hidden;
-  width: 560px;
+  width: 612px;
   padding: 10px 0;
 }
 .optionsContainer {
+  gap: 14px;
   border-radius: 5px;
   display: flex;
   position: absolute;
   top: 11px;
   left: 119px;
-  width: 350px;
+  width: 400px;
   overflow: hidden;
   transform: translateX(350px);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid lightgray;
-
 }
 .optionsOpen {
   transform: translateX(-100px);
