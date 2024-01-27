@@ -1,6 +1,6 @@
 .heroContainer {
   height: calc(100vh - 7rem);
-  width: 90%;
+  width: 89%;
   display: flex;
   margin: 0 auto;
 }
@@ -9,14 +9,15 @@
   height: auto; 
 }
 .exploreBtn {
-  padding: 10px 20px;
-  width: 100px;
-  border: 1px solid var(--primary-color);
-  background: var(--primary-color);
+  border: none;
+  background-color: #b7cf33;
+  font-size: 1.2rem;
   color: white;
-  border-radius: 3px;
-  transition: all 0.3s ease;
+  padding: 15px 20px;
+  border-radius: 5px;
   cursor: pointer;
+  border: 1px solid var(--primary-color);
+  transition: background-color 0.1s ease;
 }
 .exploreBtn:hover {
   background-color: transparent;
@@ -70,6 +71,9 @@
       }
 }
 @media only screen and (max-width: 600px){
+  .exploreBtn {
+    padding: 10px 15px;
+  }
     .heroContainer {
         margin: 5% auto;
     }
@@ -80,5 +84,6 @@
       .heroSubTitle {
         font-size: 16px;
         width: 100%;
+        line-height: 45px;
       }
 }
