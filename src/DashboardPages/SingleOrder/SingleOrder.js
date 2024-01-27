@@ -11,7 +11,11 @@ function SingleOrder() {
   const [loading, setLoading] = useState(true);
   const id = useLocation().state;
   const [isOpen, setIsOpen] = useState(true);
-  const [currentStatus, setCurrentStatus] = useState();
+  const [currentStatus, setCurrentStatus] = useState("delivered");
+  function changeStatus(newStatus) {
+    setCurrentStatus(newStatus);
+    setIsOpen(false);
+  }
   async function getOrder() {
     try {
       const response = await axios.get(
@@ -21,6 +25,7 @@ function SingleOrder() {
         setOrder(response.data.data);
         setProducts(response.data.data.products);
         setLoading(false);
+        setCurrentStatus(response.data.data.status);
         console.log(response.data.data.products);
         console.log(response.data.data);
       }
@@ -121,24 +126,44 @@ function SingleOrder() {
         </div>
         <div className={style.changeStatusContainer}>
           <div
-            className={style.openChangerBtn}
+            className={`${style.openChangerBtn} ${style[currentStatus]}`}
             onClick={() => setIsOpen(!isOpen)}
           >
             {" "}
             <IoIosArrowBack
               className={`${style.arrowLeft} ${isOpen && style.arrowRight}`}
             />
-            {order.status}
+            {currentStatus}
           </div>
           <div
             className={`${style.optionsContainer} ${
               isOpen && style.optionsOpen
             }`}
           >
-            <span className={style.status}>On Way</span>
-            <span className={style.status}>Deliverd</span>
-            <span className={style.status}>Cancelled</span>
-            <span className={style.status}>Pending</span>
+            <span
+              onClick={() => changeStatus("onWay")}
+              className={`${style.status} ${style.onWay}`}
+            >
+              On Way
+            </span>
+            <span
+              onClick={() => changeStatus("delivered")}
+              className={`${style.status} ${style.delivered}`}
+            >
+              Delivered
+            </span>
+            <span
+              onClick={() => changeStatus("cancelled")}
+              className={`${style.status} ${style.cancelled}`}
+            >
+              Cancelled
+            </span>
+            <span
+              onClick={() => changeStatus("pending")}
+              className={`${style.status} ${style.pending}`}
+            >
+              Pending
+            </span>
           </div>
         </div>
       </div>

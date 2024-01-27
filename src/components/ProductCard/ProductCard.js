@@ -1,10 +1,10 @@
 import ProductStyle from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-const ProductCard = ({ offerId, name, description, size, imgurl }) => {
+const ProductCard = ({ offerId, name, description, size, imgurl, slug }) => {
   return (
     <>
-      <Link to="/single" style={{ textDecoration: "none" }}>
+      <Link to={`/single/${slug}`} style={{ textDecoration: "none" }}>
         <article className={ProductStyle.cardContainer}>
           {offerId && (
             <div className={ProductStyle.discountRateContainer}>
