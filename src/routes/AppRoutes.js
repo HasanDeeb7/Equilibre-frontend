@@ -26,14 +26,15 @@ import Users from "../DashboardPages/Users/Users";
 import ProductsDashboard from "../DashboardPages/ProductsDashboard/ProductsDashboard";
 import Orders from "../DashboardPages/Orders/Orders";
 import SingleOrder from "../DashboardPages/SingleOrder/SingleOrder";
+import HeroSection from '../components/HeroSection/HeroSection'
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
   return (
     <div>
       <Routes location={location} key={location.pathname}>
-        <Route element={<WithFooter />}>
-          <Route path="/" element={<ConsultingSection key="home" />}></Route>
+        {/* <Route element={<WithFooter />}> */}
+          <Route path="/" element={<HeroSection key="home" />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route
             path="/consultation"
@@ -44,7 +45,7 @@ function AppRoutes() {
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
           <Route path="/shipping" element={<ShippingPage />}></Route>
-        </Route>
+        {/* </Route> */}
         <Route element={<WithoutFooter />}>
           <Route path="/profile" element={<EditeUserProfile />}></Route>
           <Route path="/confirmed" element={<ConfirmedPage />}></Route>
