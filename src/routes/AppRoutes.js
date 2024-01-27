@@ -13,7 +13,6 @@ import NavBar from "../Layout/NavBar/NavBar";
 import ConsultingSection from "../components/ConsultingSection/ConsultingSection";
 import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
-import Sidebar from "../components/Sidebar/Sidebar";
 import { AnimatePresence } from "framer-motion";
 import ShippingPage from "../pages/shipping/ShippingPage";
 import EditeUserProfile from "../components/UeserProfile/UserProfile";
@@ -26,6 +25,7 @@ import ProductsDashboard from "../DashboardPages/ProductsDashboard/ProductsDashb
 import Orders from "../DashboardPages/Orders/Orders";
 import SingleOrder from "../DashboardPages/SingleOrder/SingleOrder";
 import HeroSection from '../components/HeroSection/HeroSection'
+import SideBar from "../Layout/SideBar/SideBar";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -56,7 +56,7 @@ function AppRoutes() {
         <Route path="/about" element={<AboutUs />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
-        <Route path="/dashboard/">
+        <Route path="/dashboard/" element={<SideBar/>}>
           <Route
             path="overview"
             element={

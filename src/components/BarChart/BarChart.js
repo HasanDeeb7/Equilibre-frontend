@@ -30,7 +30,7 @@ const BarChart = () => {
                 },
             },
             title: {
-                text: "Sales in Lebanon",
+                text: "Orders in Lebanon",
                 align: "left",
             },
             colors: [
