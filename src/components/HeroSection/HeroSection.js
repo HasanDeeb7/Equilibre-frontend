@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <>
-    <NavBar/>
+    {/* <NavBar/> */}
       <header className={style.heroContainer}>
         <section className={style.textHeroWrap}>
           <h1 className={style.heroTile}>Eat better, Feel good 🌱</h1>

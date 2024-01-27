@@ -20,7 +20,7 @@ import EditeUserProfile from "../components/UeserProfile/UserProfile";
 import WithFooter from "../Layout/withFooter/WithFooter";
 import WithoutFooter from "../Layout/WithoutFooter/WithoutFooter";
 import ConfirmedPage from "../pages/confirmedPage/ConfirmedPage";
-import Overview from "../DashboardPages/Overview/Overview";
+import OverView from "../DashboardPages/OverViewDash/OverView";
 import Users from "../DashboardPages/Users/Users";
 import ProductsDashboard from "../DashboardPages/ProductsDashboard/ProductsDashboard";
 import Orders from "../DashboardPages/Orders/Orders";
@@ -32,7 +32,7 @@ function AppRoutes() {
   return (
     <div>
       <Routes location={location} key={location.pathname}>
-        {/* <Route element={<WithFooter />}> */}
+        <Route element={<WithFooter />}>
           <Route path="/" element={<HeroSection key="home" />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route
@@ -44,7 +44,7 @@ function AppRoutes() {
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
           <Route path="/shipping" element={<ShippingPage />}></Route>
-        {/* </Route> */}
+        </Route>
         <Route element={<WithoutFooter />}>
           <Route path="/profile" element={<EditeUserProfile />}></Route>
           <Route path="/confirmed" element={<ConfirmedPage />}></Route>
@@ -62,12 +62,12 @@ function AppRoutes() {
         <Route path="/about" element={<AboutUs />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
-        <Route path="/dashboard/" element={<Dashboard />}>
+        <Route path="/dashboard/">
           <Route
             path="overview"
             element={
               // <ProtectedRoute isAllowed={user}>
-              <Overview />
+              <OverView />
               // </ProtectedRoute>
             }
           />
