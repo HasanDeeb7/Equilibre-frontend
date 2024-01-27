@@ -23,7 +23,7 @@ import ProductsDashboard from "../DashboardPages/ProductsDashboard/ProductsDashb
 import Orders from "../DashboardPages/Orders/Orders";
 import SingleOrder from "../DashboardPages/SingleOrder/SingleOrder";
 import ContactUsPage from '../pages/ContactUsPage/ContactUsPage'
-import Sidebar from "../components/Sidebar/Sidebar";
+import SideBar from "../Layout/SideBar/SideBar";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -55,7 +55,7 @@ function AppRoutes() {
         <Route path="/about" element={<AboutUs />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
-        <Route path="/dashboard/" element={<Sidebar/>}>
+        <Route path="/dashboard/" element={<SideBar/>}>
           <Route
             path="overview"
             element={

@@ -154,7 +154,7 @@ export default function SideBar() {
                             >
                                 <Dashboard sx={{ color: 'gray' }} />
                             </IconButton >
-                            <Avatar alt='Equilibre' src={logo} width={80}  sx={{
+                            <img alt='Equilibre' src={logo} width={80}  style={{
                                 ...(open && { display: 'none' }),
                                 '@media(width<500px)': {
                                     display: 'none',
