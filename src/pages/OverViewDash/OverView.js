@@ -6,10 +6,11 @@ import order from '../../assets/order.png'
 import product from '../../assets/confirmed.png'
 import income from '../../assets/income.png'
 import DonutChart from '../../components/DonutChart/DonutChart'
-
+import BarChart from '../../components/BarChart/BarChart'
 import axios from 'axios'
 import style from './OverView.module.css'
 import SalesOverview from '../../components/SalesOverview/SalesOverview'
+import TopSellerDash from '../../components/TopSellerDashboard/TopSellerDash'
 function OverView() {
   const [isLoading, setLoading] = useState(true);
   const [dataCards, setDataCards] = useState({
@@ -51,7 +52,7 @@ function OverView() {
 
 
   return (
-    <>
+    <div className={style.container}>
       {/* <Sidebar /> */}
       {isLoading ? (
         <div>loading....</div>
@@ -64,9 +65,15 @@ function OverView() {
 
         </section>
       )}
+      <div className={style.section2}>
       <SalesOverview/>
+      <TopSellerDash/>
+      </div>
+      <div className={style.section3}>
       <DonutChart/>
-    </>
+      <BarChart/>
+      </div>
+    </div>
   );
 }
 

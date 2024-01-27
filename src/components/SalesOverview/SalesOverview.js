@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Chart from "react-apexcharts";
 import axios from 'axios'
-
+import style from './SalesOverview.module.css'
 
 
 
@@ -16,7 +16,6 @@ const SalesOverview = () => {
             try {
                 const data = await axios.get(`${process.env.REACT_APP_ENDPOINT}statistics/sales-overview`)
                 setSales(data.data.overviewSales.sort((a, b) => a.month - b.month))
-                console.log(sales)
                 setLoading(false)
             } catch (error) {
                 console.log(error)
@@ -26,12 +25,14 @@ const SalesOverview = () => {
 
         fetching();
     }, [])
+    console.log(sales)
 
     const data = {
         series: [
             {
                 name: 'Total Quantity',
-                data: sales.map(item => item.totalQuantity),
+                // data:sales.map(item=>item.totalQuantity)
+                data: [34,344,343,55,54,32],
             },
         ],
         options: {
@@ -50,7 +51,7 @@ const SalesOverview = () => {
                     show: true,
                 },
             },
-            colors: ["var(--primary-color"],
+            colors:[ '#4CAF50'],
             dataLabels: {
                 enabled: true,
             },
@@ -64,7 +65,7 @@ const SalesOverview = () => {
             grid: {
                 borderColor: "#e7e7e7",
                 row: {
-                    colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+                    colors: ["#f3f3f3", "transparent"],
                     opacity: 0.5,
                 },
             },
@@ -73,16 +74,11 @@ const SalesOverview = () => {
             },
             xaxis: {
                 categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "sep", "Oct", "Nov", "Dec"],
-                title: {
-                    text: "Month",
-                },
             },
             yaxis: {
                 title: {
                     text: "Sales",
-                },
-                min: 5,
-                max: 40,
+                }
             },
             legend: {
                 position: "top",
@@ -94,14 +90,14 @@ const SalesOverview = () => {
         },
     };
     return (
-        <div>
+        <div className={style.lineChartContainer} >
             {(isloading) ? <div>Loading....</div> : (
                 <Chart
                     options={data.options}
                     series={data.series}
                     type="line"
-                    height={350}
-                    width={1000}
+                    height={400}
+               className={style.Chart}
                 />)}
         </div>
     );
