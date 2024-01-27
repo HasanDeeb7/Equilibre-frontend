@@ -5,11 +5,10 @@
   justify-content: space-between;
 }
 .title {
-  color: #000;
-  font-size: 45px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 170%; 
+  color: #1d252c;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 .subTitle {
   color: #777;

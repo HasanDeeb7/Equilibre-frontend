@@ -4,6 +4,13 @@
     width: 90%;
     margin: 2% auto;
 }
+.sectionConsultationTitle{
+  color: black;
+font-size: 40px;
+font-weight: 500;
+line-height: 57.6px; /* 144% */
+letter-spacing: -0.9px;
+}
 .textContainer {
   width:35%;
   align-self: center;
@@ -68,11 +75,16 @@ line-height: 57.6px; /* 360% */
   line-height: 28.8px;
   width: 90%;
 }
+@media screen and (max-width: 1600px){
+  .consultingSection {
+    height: 600px;
+}
+}
 
 @media screen and (max-width: 1300px) {
   .consultingSection {
     flex-direction: column;
-    height: 800px;
+    height: 1400px;
   }
   .img {
     width: 90%;
@@ -90,10 +102,13 @@ line-height: 57.6px; /* 360% */
 @media screen and (max-width: 600px) {
     .textContainer {
         margin: 5% 0;
-        font-size: 14px;
-        line-height: 2;
+        font-size: 16px;
+        line-height: 40px;
       }
       .consultingSection {
-        height: 600px;
+        height: 850px;
+      }
+      .sectionConsultationTitle{
+        font-size: 25px;
       }
   }

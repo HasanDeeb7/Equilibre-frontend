@@ -6,7 +6,7 @@
 }
 .sectionTitle {
   text-align: center;
-  color: #0b254b;
+  color: black;
   font-size: 40px;
   font-weight: 500;
   line-height: 57.6px; /* 144% */
@@ -14,7 +14,7 @@
 }
 .sectionSubTitle {
   text-align: center;
-  color: #5e6e89;
+  color: #5E6E89;
   text-align: center;
   font-size: 18px;
   font-weight: 500;
@@ -24,7 +24,8 @@
   margin-top: 1%;
 }
 .sectionTopProducts {
-  margin: 3% 0;
+  margin-top: 0;
+  margin-bottom: 3%;
 }
 @media only screen and (max-width: 750px){
     .sectionSubTitle {

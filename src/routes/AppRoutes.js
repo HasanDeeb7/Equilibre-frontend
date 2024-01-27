@@ -9,11 +9,8 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Checkout from "../pages/Checkout/Checkout";
 import ProtectedRoute from "./ProtectedRoute";
 import { useUserStore } from "../Store";
-import NavBar from "../Layout/NavBar/NavBar";
-import ConsultingSection from "../components/ConsultingSection/ConsultingSection";
 import NotFound from "../pages/NotFound/NotFound";
 import UserProfile from "../pages/UserProfile/UserProfile";
-import Sidebar from "../components/Sidebar/Sidebar";
 import { AnimatePresence } from "framer-motion";
 import ShippingPage from "../pages/shipping/ShippingPage";
 import EditeUserProfile from "../components/UeserProfile/UserProfile";
@@ -25,8 +22,7 @@ import Users from "../DashboardPages/Users/Users";
 import ProductsDashboard from "../DashboardPages/ProductsDashboard/ProductsDashboard";
 import Orders from "../DashboardPages/Orders/Orders";
 import SingleOrder from "../DashboardPages/SingleOrder/SingleOrder";
-import HeroSection from '../components/HeroSection/HeroSection'
-import TopSellerHome from "../components/TopSellerHome/TopSellerHome";
+import ContactUsPage from '../pages/ContactUsPage/ContactUsPage'
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -34,7 +30,7 @@ function AppRoutes() {
     <div>
       <Routes location={location} key={location.pathname}>
         <Route element={<WithFooter />}>
-          <Route path="/" element={<TopSellerHome key="home" />}></Route>
+          <Route path="/" element={<Home key="home" />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route
             path="/consultation"
@@ -45,6 +41,7 @@ function AppRoutes() {
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
           <Route path="/shipping" element={<ShippingPage />}></Route>
+          <Route path="/contact" element={<ContactUsPage />}></Route>
         </Route>
         <Route element={<WithoutFooter />}>
           <Route path="/profile" element={<EditeUserProfile />}></Route>
