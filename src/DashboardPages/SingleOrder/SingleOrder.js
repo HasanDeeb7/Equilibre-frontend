@@ -4,17 +4,42 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
+import { RxCross2 } from "react-icons/rx";
+import { RxCheck } from "react-icons/rx";
 
 function SingleOrder() {
   const [order, setOrder] = useState();
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
   const id = useLocation().state;
-  const [isOpen, setIsOpen] = useState(true);
-  const [currentStatus, setCurrentStatus] = useState("delivered");
+  const [isOpen, setIsOpen] = useState(false);
+  const [disabled, setDisabled] = useState();
+  const [currentStatus, setCurrentStatus] = useState();
   function changeStatus(newStatus) {
     setCurrentStatus(newStatus);
     setIsOpen(false);
+  }
+  async function updateOrder() {
+    console.log("first");
+    try {
+      const response = await axios.patch(
+        `${process.env.REACT_APP_ENDPOINT}order/update`,
+        { id: id, products: products, status: currentStatus }
+      );
+      if (response) {
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  function isDisabled() {
+    console.log(order);
+    if (order.status !== "cancelled" || order.status !== "delivered") {
+      return false;
+    } else {
+      return true;
+    }
   }
   async function getOrder() {
     try {
@@ -38,29 +63,11 @@ function SingleOrder() {
     getOrder();
   }, []);
   const columns = [
-    // {
-    //   field: "name",
-    //   headerName: "Name",
-    //   width: 250,
-    //   valueGetter: (params) =>
-    //     `${params.row.userId[0].firstName} ${params.row.userId[0].lastName}`,
-    // },
-    // { field: "shippingAddress", headerName: "Address", width: 250 },
     {
       field: "name",
       headerName: "Product Name",
       width: 250,
-      renderCell: (params) =>
-        // <div className={`${style[params.row.status]} ${style.status}`}>
-        //   {params.row.status}
-        // </div>
-        params.row.product.name,
-    },
-    {
-      field: "quantity",
-      headerName: "Quantity",
-      width: 250,
-      valueGetter: (params) => params.row.quantity,
+      renderCell: (params) => params.row.product.name,
     },
     {
       field: "size",
@@ -68,6 +75,12 @@ function SingleOrder() {
       width: 250,
       valueGetter: (params) =>
         `${params.row.size.capacity}${params.row.size.unit}`,
+    },
+    {
+      field: "quantity",
+      headerName: "Quantity",
+      width: 250,
+      valueGetter: (params) => params.row.quantity,
     },
     {
       field: "price",
@@ -78,7 +91,7 @@ function SingleOrder() {
     {
       field: "totalPrice",
       headerName: "Total Price",
-      width: 250,
+      width: 150,
       valueGetter: (params) => params.row.quantity * params.row.size.price,
     },
   ];
@@ -124,47 +137,65 @@ function SingleOrder() {
           />
           <span className={style.totalPrice}>Total: {getTotal()}</span>
         </div>
-        <div className={style.changeStatusContainer}>
-          <div
-            className={`${style.openChangerBtn} ${style[currentStatus]}`}
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {" "}
-            <IoIosArrowBack
-              className={`${style.arrowLeft} ${isOpen && style.arrowRight}`}
-            />
-            {currentStatus}
+        <div className={style.btnsContainer}>
+          <div className={style.changeStatusContainer}>
+            <div
+              className={`${style.openChangerBtn} ${style[currentStatus]} ${
+                isDisabled && order.status === "cancelled"
+                  ? style.cancelledBtn
+                  : isDisabled && order.status === "delivered"
+                  ? style.deliveredBtn
+                  : ""
+              }`}
+              onClick={() => !isDisabled && setIsOpen(!isOpen)}
+            >
+              {!isDisabled ? (
+                <IoIosArrowBack
+                  className={`${style.arrowLeft} ${isOpen && style.arrowRight}`}
+                />
+              ) : isDisabled && order.status === "cancelled" ? (
+                <RxCross2 className={style.arrowLeft} />
+              ) : (
+                <RxCheck className={style.arrowLeft} />
+              )}
+              {currentStatus}
+            </div>
+            <div
+              className={`${style.optionsContainer} ${
+                isOpen && style.optionsOpen
+              }`}
+            >
+              <span
+                onClick={() => changeStatus("onWay")}
+                className={`${style.status} ${style.onWay}`}
+              >
+                On Way
+              </span>
+              <span
+                onClick={() => changeStatus("delivered")}
+                className={`${style.status} ${style.delivered}`}
+              >
+                Delivered
+              </span>
+              <span
+                onClick={() => changeStatus("cancelled")}
+                className={`${style.status} ${style.cancelled}`}
+              >
+                Cancelled
+              </span>
+              <span
+                onClick={() => changeStatus("pending")}
+                className={`${style.status} ${style.pending}`}
+              >
+                Pending
+              </span>
+            </div>
           </div>
-          <div
-            className={`${style.optionsContainer} ${
-              isOpen && style.optionsOpen
-            }`}
-          >
-            <span
-              onClick={() => changeStatus("onWay")}
-              className={`${style.status} ${style.onWay}`}
-            >
-              On Way
-            </span>
-            <span
-              onClick={() => changeStatus("delivered")}
-              className={`${style.status} ${style.delivered}`}
-            >
-              Delivered
-            </span>
-            <span
-              onClick={() => changeStatus("cancelled")}
-              className={`${style.status} ${style.cancelled}`}
-            >
-              Cancelled
-            </span>
-            <span
-              onClick={() => changeStatus("pending")}
-              className={`${style.status} ${style.pending}`}
-            >
-              Pending
-            </span>
-          </div>
+          {!isDisabled && (
+            <button onClick={updateOrder} className={style.updateBtn}>
+              Update
+            </button>
+          )}
         </div>
       </div>
     )
