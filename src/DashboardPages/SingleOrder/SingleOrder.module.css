@@ -1,0 +1,172 @@
+.ordersContainer {
+  padding-left: 350px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+}
+.orderDetailsContainer {
+  display: flex;
+  width: 70%;
+  align-items: center;
+  justify-content: space-between;
+}
+.orderDate {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.orderDate > span:nth-child(1) {
+  margin-bottom: 10px;
+}
+.clientOrder {
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+  gap: 10px;
+}
+
+.clientOrder > span:nth-child(1) {
+  margin-bottom: 10px;
+}
+.clientOrder > span:nth-child(2) {
+  font-weight: 700;
+}
+.ordersTable {
+  width: 70%;
+}
+.totalPrice {
+  text-align: right;
+  display: block;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.status {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  width: 91px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.openChangerBtn {
+  padding: 10px 30px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 194px;
+  position: relative;
+}
+.openChangerBtn:hover {
+  background: white;
+}
+.onWay {
+  background-color: #deedff;
+  color: #58a5ff;
+  border: 1px solid #58a5ff;
+}
+.delivered {
+  color: #b7cf33;
+  background-color: #f1f5d6;
+  border: 1px solid #b7cf33;
+}
+.cancelled {
+  background-color: #fcd7d4;
+  color: #ef3826;
+  border: 1px solid #ef3826;
+}
+.pending {
+  background-color: #ffeddd;
+  color: #ffa756;
+  border: 1px solid #ffa756;
+}
+.arrowLeft {
+  margin-right: 10px;
+  transition: all 0.2s ease;
+  position: absolute;
+  left: 18px;
+  top: 12px;
+}
+.arrowRight {
+  transform: rotate(180deg);
+}
+.changeStatusContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+  overflow: hidden;
+  width: 612px;
+  padding: 10px 0;
+}
+.optionsContainer {
+  gap: 14px;
+  border-radius: 5px;
+  display: flex;
+  position: absolute;
+  top: 11px;
+  left: 119px;
+  width: 400px;
+  overflow: hidden;
+  transform: translateX(350px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid lightgray;
+}
+.optionsOpen {
+  transform: translateX(-100px);
+}
+.btnsContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.updateBtn {
+  padding: 10px 30px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 194px;
+  position: relative;
+  height: 40px;
+  border: 1px solid var(--primary-color);
+  color: white;
+  background-color: var(--primary-color);
+}
+.updateBtn:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+}
+.cancelledBtn {
+  background-color: red;
+  color: white;
+  cursor: default;
+}
+.cancelledBtn:hover {
+  background-color: red;
+  color: white;
+}
+.deliveredBtn {
+  background-color: green;
+  cursor: default;
+  color: white;
+}
+.deliveredBtn:hover {
+  background-color: green;
+  color: white;
+}

@@ -1,26 +1,60 @@
+.titleCategory,.titlePrice {
+  font-size: 1.3rem; 
+  margin-bottom: 10px;
+  line-height: 3em;
+}
 
 .checkbox:checked {
   border: none;
-  accent-color: rgb(79, 79, 79);
+  accent-color: var(--primary-color);
   opacity: .8;
+}
+.filterBtn,.resetBtn {
+  padding: 5px 20px;
+  width:100%;
+  
+
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+margin-top: 5%;
+font-size: 1rem
+}
+.filterBtn{
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.filterBtn:hover {
+  background-color: transparent;
+  color: var(--primary-color);
   
 }
-.line{
-    border: #7f7c7c solid 0.3px;
-    width: 75%;
-    margin: auto;
-    margin-top: 25px;
+.resetBtn{
+  background: #ee544a;
+  border: 1px solid #ee544a;
 }
+.resetBtn:hover{
+  color: #ee544a;
+  background-color: transparent;
+}
+
+fieldset {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding-bottom: 5%;
+}
+
 .FilterSection {
-  width: 20%;
+  width: 18%;
   height: 100vh;
   background-color: rgba(183, 207, 51,0);
   border-radius: 10px;
-  padding-bottom: 25px;
+  margin-left: 2%;
 }
-.titleCategory > span {
-  color: #595959;
-}
+
 
 .checkContent {
   display: flex;
@@ -31,41 +65,32 @@
   width: 30px;
   height: 30px;
   border: none;
-  margin: 0 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
-
-.titleCategory {
+.categorie{
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  align-content: center;
-  justify-content: center;
-  gap: 150px;
-  margin-top: auto;
-}
-.titleCategory > h1 {
-  font-size: 1.2rem;
-  font-weight: 400;
-}
-.categorie,.titlePrice {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  gap: 120px;
-  justify-content: space-around;
 }
 .category {
   display: flex;
   align-content: center;
   align-items: center;
   gap: 5px;
-  margin-top: 10px;
 }
-.titlePrice{
-  gap: 130px;
-  padding-top: 25px;
+.prices{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-.titlePrice > h1 {
-  font-size: 1.2rem;
-  font-weight: 400;
+.innerprice{
+  display: flex;
+  align-items: center;
+}
+@media only screen and (max-width: 950px){
+  .FilterSection {
+    display: none;
+  }
 }

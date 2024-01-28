@@ -1,0 +1,19 @@
+.barChartContainer {
+    background-color: white;
+    width: 68%;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.BarChart {
+    width: 100%
+}
+
+@media only screen and (max-width:800px) {
+    .barChartContainer{
+        width: 100%;
+    margin: 30px auto;
+    }
+    }
+    

@@ -2,25 +2,25 @@ import { Box, Divider, MenuItem, MenuList, Popover, Typography } from '@mui/mate
 import { Link, useNavigate } from "react-router-dom";
 import { useUserStore } from "../../Store.js";
 import axios from 'axios'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, open } = props;
-  const {user,removeUser} = useUserStore(); 
+  const { user, removeUser } = useUserStore();
   const navigate = useNavigate();
 
-  async function logout(){
+  async function logout() {
     try {
       const response = await axios.get(`${process.env.REACT_APP_ENDPOINT}user/logout`)
-      if(response){
+      if (response) {
         toast.success(response.data.message)
-        removeUser(); 
+        removeUser();
         navigate("/");
       }
     } catch (error) {
       console.log(error)
     }
   }
- 
+
 
   return (
     <Popover
@@ -39,7 +39,7 @@ export const AccountPopover = (props) => {
           px: 2,
         }}
       >
-        <Typography variant="overline">{(user)? `${user.firstName} ${user.lastName}`: 'Name'}</Typography>
+        <Typography variant="overline">{(user) ? `${user.firstName} ${user.lastName}` : 'Name'}</Typography>
       </Box>
       <Divider />
       <MenuList
@@ -52,29 +52,34 @@ export const AccountPopover = (props) => {
           },
         }}
       >
-        <MenuItem>
+
+        <Link
+          style={{
+            textDecoration: "none",
+            color: "black",
+          }}
+          to="/profile"
+        >
+          <MenuItem>
+            Profile
+          </MenuItem>
+        </Link>
+
+        {!user && (
+
           <Link
             style={{
               textDecoration: "none",
-              color: "black",
+              color: "#119c59",
             }}
-            to="profile"
+            to="/login"
           >
-            Profile
-          </Link>
-        </MenuItem>
-        {!user && (
-          <MenuItem>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "#119c59",
-              }}
-              to="login"
-            >
+            <MenuItem>
+
               Log in
-            </Link>
-          </MenuItem>
+            </MenuItem>
+          </Link>
+
         )}
         {user && (
           <MenuItem

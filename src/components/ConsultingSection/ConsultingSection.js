@@ -9,6 +9,7 @@ const ConsultingSection = () => {
         className={style.consultingSection}
       >
         <div className={style.textContainer}>
+          <h2 className={style.sectionConsultationTitle}>Consultation</h2>
           <ul>
             <li>Discussing and analyzing current eating habits of clients.</li>
             <li>

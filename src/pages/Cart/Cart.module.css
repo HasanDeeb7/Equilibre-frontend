@@ -7,8 +7,9 @@
 .cartItemsContainer {
   display: flex;
   flex-direction: column;
-  height: 700px;
+  height: auto;
   overflow-y: scroll;
+  max-height: 700px;
 }
 .cartItemsHeader {
   display: flex;
@@ -18,18 +19,22 @@
 .cartItemsHeader > p:nth-child(1) {
   flex-basis: 55%;
   min-width: 231px;
+  font-size: 24px;
 }
 .cartItemsHeader > p:nth-child(2) {
   flex-basis: 15%;
   min-width: 82px;
+  font-size: 24px;
 }
 .cartItemsHeader > p:nth-child(3) {
   min-width: 142px;
   flex-basis: 15%;
+  font-size: 24px;
 }
 .cartItemsHeader > p:nth-child(4) {
   flex-basis: 15%;
   min-width: 82px;
+  font-size: 24px;
 }
 .actionsContainer {
   display: flex;
@@ -86,11 +91,11 @@
   background-color: transparent;
   color: var(--primary-color);
 }
-.discountIndicator{
+.discountIndicator {
   display: flex;
   gap: 15px;
 }
-.strokedTotal{
+.strokedTotal {
   color: red;
   text-decoration: line-through;
 }

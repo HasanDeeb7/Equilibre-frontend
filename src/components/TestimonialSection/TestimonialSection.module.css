@@ -1,11 +1,11 @@
 .testimonialSection {
-  height: 650px;
+  height: 680px;
   width: 100%;
   background: rgba(183, 207, 51, 0.1);
   padding: 5%;
 }
 .title {
-  color: #0b254b;
+  color: black;
   text-align: center;
   font-size: 40px;
   font-weight: 500;
@@ -20,7 +20,7 @@
   font-weight: 500;
   line-height: 27.6px;
   letter-spacing: 0.1px;
-  padding-bottom: 30px;
+  margin-bottom: 3%;
 }
 .slick-prev:before,
 .slick-next:before {

@@ -89,9 +89,18 @@
   line-height: 189.5%; /* 24.635px */
   margin-bottom: 4%;
 }
-/* .nameInput:focus {
-  border: 2px solid #777;
-} */
+.contactTitle {
+  color: #1d252c;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 46.6px;
+  letter-spacing: -0.9px;
+  margin-bottom: 2%;
+}
+.contactSubTitle {
+  font-size: 16px;
+  font-weight: 500;
+}
 
 @media screen and (max-width: 800px) {
   .FormSection {

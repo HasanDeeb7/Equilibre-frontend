@@ -1,0 +1,47 @@
+.productsContainer {
+    padding-left: 350px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .productsTable {
+    width: 60%;
+  }
+  .btnsContainer {
+    display: flex;
+    gap: 15px;
+  }
+  .editBtn {
+    padding: 10px 30px;
+    width: 100px;
+    border: 1px solid var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .editBtn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+  }
+  .deleteBtn {
+    padding: 10px 30px;
+    width: 100px;
+    border: 1px solid var(--secondary-color);
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .deleteBtn:hover {
+    background-color: transparent;
+    color: var(--secondary-color);
+  }
+  .image{
+    object-fit: contain;
+  }

@@ -1,0 +1,85 @@
+.ordersContainer {
+  padding-left: 350px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.ordersTable {
+  width: 70%;
+}
+.btnsContainer {
+  display: flex;
+  gap: 15px;
+}
+.editBtn {
+  padding: 10px 30px;
+  width: 100px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.editBtn:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+}
+.deleteBtn {
+  padding: 10px 30px;
+  width: 100px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.deleteBtn:hover {
+  background-color: transparent;
+  color: var(--secondary-color);
+}
+.status {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  width: 91px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.onWay {
+  background-color: #deedff;
+  color: #58a5ff;
+}
+.delivered {
+  color: #b7cf33;
+  background-color: #f1f5d6;
+}
+.cancelled {
+  background-color: #fcd7d4;
+  color: #ef3826;
+}
+.pending {
+  background-color: #ffeddd;
+  color: #ffa756;
+}
+.viewMoreBtn {
+  padding: 10px 30px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.viewMoreBtn:hover {
+  border-color: var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+}

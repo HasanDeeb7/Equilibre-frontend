@@ -1,16 +1,32 @@
 import SearchIcon from "../../assets/search.svg";
 import SearchStyle from "./SearchBard.module.css";
 import { useState } from "react";
-const SearchBar = () => {
-  const [product, setProduct] = useState([""]);
+import axios from "axios";
+const SearchBar = ({setProducts,setProductLoading}) => {
+  const [search, setSearch] = useState([""]);
 
   const handleInputChange = (e) => {
-    setProduct(e.target.value);
+    setSearch(e.target.value);
   };
 
-  const handleSearch = () => {
-    console.log("Searching for:", product);
-  };
+  const handleSearch = async () => {
+    try {
+      setProductLoading(true);
+      setSearch("")
+      const response = await axios.post(
+        `${process.env.REACT_APP_ENDPOINT}product/search`,
+        {name:search}
+      );
+      if (response) {
+        setProducts(response.data);
+        setProductLoading(false);
+      }
+    } catch (error) {
+      setProductLoading(false)
+      console.log(error);
+    }
+  }
+  
 
   return (
     <>
@@ -22,7 +38,7 @@ const SearchBar = () => {
           placeholder="Search..."
           className={SearchStyle.inputSearch}
           onChange={handleInputChange}
-          value={product}
+          value={search}
         ></input>
         <button
         onClick={handleSearch}

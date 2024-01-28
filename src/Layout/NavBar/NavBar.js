@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
+import { NavLink } from "react-router-dom";
 import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
 import PersonOutline from "@mui/icons-material/PersonOutline";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
@@ -9,17 +8,17 @@ import { usePopover } from "./usePopover.js";
 import logo from "../../assets/logo.jpeg";
 import { useUserStore } from "../../Store.js";
 import style from "./NavBar.module.css";
-import styled from "@emotion/styled";
-
+import axios from 'axios'
 const NavBar = () => {
   const accountPopover = usePopover();
-  const { user, removeUser } = useUserStore();
+  const { user } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  let categories = ["Category 1", "Category 2", "Category 3"];
+  const [categories, setCategories] = useState([])
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
       setIsOpen(false);
@@ -30,7 +29,25 @@ const NavBar = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+
   }, []);
+
+
+  //get dynamic data for categories
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_ENDPOINT}category`)
+        console.log(response.data)
+        setCategories(response.data)
+        setLoading(false)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
+    fetchCategory()
+  }, [])
 
   return (
     <>
@@ -64,15 +81,15 @@ const NavBar = () => {
                   <KeyboardArrowDown />
                 </p>
                 <ul className={style.dropdownMenu}>
-                  <div className={style.categories}>
+                  {(isLoading) ? <div>...</div> : (<div className={style.categories}>
                     {categories.map((category) => (
-                      <li key={category}>
-                        <NavLink to={`/products/${category}`}>
-                          {category}
+                      <li key={category.name}>
+                        <NavLink to={`/products/${category.name}`}>
+                          {category.name}
                         </NavLink>
                       </li>
                     ))}
-                  </div>
+                  </div>)}
                 </ul>
               </li>
 
@@ -153,24 +170,31 @@ const NavBar = () => {
                         display: "flex",
                         justifyContent: "center",
                         alignContent: "center",
+                        padding: 0,
+                        margin: 0
                       }}
                     >
                       Products
-                      <div>
+                      <div style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignContent: "center",
+
+                      }}>
                         <KeyboardArrowDown />
                       </div>
                     </p>
                     {/* Dropdown Menu for Desktop */}
                     <ul className={style.dropdownMenuDesktop}>
-                      <div className={style.categories}>
+                      {(isLoading) ? <div>...</div> : (<div className={style.categories}>
                         {categories.map((category) => (
-                          <li key={category} className={style.categories}>
-                            <NavLink to={`/products/${category}`}>
-                              {category}
+                          <li key={category.name} className={style.categories}>
+                            <NavLink to={`/products/${category.name}`}>
+                              {category.name}
                             </NavLink>
                           </li>
                         ))}
-                      </div>
+                      </div>)}
                     </ul>
                   </li>
                 </NavLink>
@@ -232,16 +256,34 @@ const NavBar = () => {
                         height: 30,
                         width: 35,
                         marginLeft: 1.5,
+                        marginRight: 1.5,
                         color: "black",
                       }}
                     />
                   </NavLink>
-                </>
-              ) : (
-                <NavLink to="/login">
-                  <button className={style.loginButton}>Login</button>
-                </NavLink>
-              )}
+                </>) : (
+                <>
+                  <NavLink
+                    to="/cart"
+                    className={({ isActive }) =>
+                      isActive ? style.activeLinks : style.navLinks
+                    }
+                  >
+                    <ShoppingCartOutlined
+                      sx={{
+                        cursor: "pointer",
+                        height: 30,
+                        width: 35,
+                        marginLeft: 1.5,
+                        marginRight: 1.5,
+                        color: "black",
+                      }}
+                    />
+                  </NavLink>
+                  <NavLink to="/login">
+                    <button className={style.loginButton}>Login</button>
+                  </NavLink>
+                </>)}
             </div>
           </>
         )}
@@ -253,7 +295,6 @@ const NavBar = () => {
           />
         )}
       </nav>
-      <Outlet />
     </>
   );
 };

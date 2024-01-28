@@ -1,0 +1,20 @@
+.cardContainer {
+  width: 255px;
+  height: 235px;
+  box-shadow: 0px 4px 24px 0px rgba(123, 123, 123, 0.15);
+  margin-bottom: 35px;
+}
+.productImage {
+  width: 255px;
+  height: 178px;
+  object-fit: cover;
+}
+.name {
+  padding-top: 10px;
+  padding-left: 10px;
+  color: #1d293f;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 27.6px; /* 172.5% */
+  letter-spacing: -0.9px;
+}

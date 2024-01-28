@@ -6,7 +6,7 @@
 }
 .overviewContainer {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 100px;
 }
@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: start;
+  align-items: flex-start;
   height: 100%;
   width: 100%;
   gap: 30px;
@@ -153,6 +153,17 @@
     gap: 30px;
   }
 }
+@media (max-width: 970px) {
+  .image{
+    min-width: 255px;
+  }
+  .productOverview{
+    width: 80%;
+  }
+  .sizeWrapper{
+    flex-wrap: wrap;
+  }
+}
 @media screen and (max-width: 768px) {
   .overviewContainer {
     gap: 30px;
@@ -169,11 +180,27 @@
     padding: 10px 0;
   }
 }
+@media screen and (max-width: 600px) {
+  
+  .imageContainer{
+    width: 80%;
+    align-self: center;
+  }
+ .overviewContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+  .productOverview{
+    align-self: flex-start;
+  }
+}
 @media screen and (max-width: 425px) {
   .overviewContainer {
     flex-direction: column;
   }
-
+.imageContainer{
+  width: 100%;
+}
   .addToCartBtn {
     align-self: center;
   }
