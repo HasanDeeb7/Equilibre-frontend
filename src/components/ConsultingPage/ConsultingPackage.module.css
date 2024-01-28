@@ -1,0 +1,51 @@
+.imgBackgroud {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.header {
+  position: relative;
+  padding-left: 80px;
+  padding-top: 100px;
+  height: 100vh;
+}
+.sideBackground {
+  width: 400px;
+  height: 900px;
+  background: var(--primary-color);
+}
+.img {
+  position: absolute;
+  right: 190px;
+  top: 100px;
+  width: "400px";
+  height: "600px";
+}
+.titleParagraph {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 40%;
+}
+.titleParagraph > h1 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+.titleParagraph > article {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.titleParagraph > article > h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+.list {
+  line-height: 2rem;
+  letter-spacing: 3px;
+  font-weight: 400;
+  margin-left: 20px;
+  font-size: 1.3rem;
+  width: 100%;
+}
+

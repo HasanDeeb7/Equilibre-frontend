@@ -20,6 +20,7 @@ import ShippingPage from '../pages/shipping/ShippingPage'
 import EditeUserProfile from "../components/UeserProfile/UserProfile";
 import Overview from "../DashboardPages/Overview/Overview";
 import Users from "../DashboardPages/Users/Users";
+import ConsultingPage from "../pages/ConsultingPage/ConsultingPage";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -29,6 +30,7 @@ function AppRoutes() {
         <Route element={<NavBar />}>
           <Route path="/" element={<ConsultingSection key="home" />}></Route>
           <Route path="/products" element={<Products />}></Route>
+          <Route path="/consultingpage" element={<ConsultingPage />}></Route>
           <Route
             path="/consultation"
             element={<Products key="products" />}

@@ -1,0 +1,60 @@
+.section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  background: rgb(210, 210, 210);
+  margin-bottom: 80px;
+  padding-block: 50px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.inputs {
+  gap: 30px;
+  display: flex;
+}
+.labelInput > input {
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  padding: 10px;
+}
+.labelInput > textarea {
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  padding: 10px;
+}
+
+.labelInput > label {
+  font-size: 0.9rem;
+  color: rgb(67, 67, 67);
+}
+.form > button {
+  width: 40%;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background: #b7cf33;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: .5s;
+}
+.form > button:hover {
+  background: white;
+  color: #b7cf33;
+  border: 1px solid #b7cf33;
+}

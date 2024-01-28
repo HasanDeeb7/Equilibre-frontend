@@ -16,7 +16,6 @@ function AboutUs() {
       inspiration for your wellness journey.
       Thank you for choosing Equilibre. Let's embark on this journey together!"
         image={logo}
-        style=""
 
       />
       <AboutUsParag
