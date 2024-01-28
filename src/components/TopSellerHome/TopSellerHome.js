@@ -23,7 +23,7 @@ const TopSellerHome =()=> {
         }
         getProducts(product);
       }, []);
-      console.log(product)
+
   return (
     <>
     <section className={style.sectionTopProducts}>

@@ -1,0 +1,11 @@
+.offerContainer{
+   width: 100%;
+   height: 60px;
+   background-color: var(--secondary-color); 
+   color: white;
+   font-weight: bold;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}

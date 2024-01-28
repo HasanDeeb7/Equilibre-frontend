@@ -1,6 +1,5 @@
 import style from "./TestimonialCard.module.css";
 const TestimonialCard = ({content,image,author}) => {
-  console.log(content,image,author)
   return (
     <>
       <div className={style.CardContainer}>

@@ -13,5 +13,14 @@ export const useProductStore = create(
     setProducts: (data) => set(() => ({ products: data })),
   }))
 );
+
+export const useGlobalOfferStore = create(
+  zukeeper((set) => ({
+    offer: null,
+    setOffer: (data) => set(() => ({ offer: data })),
+  }))
+);
+
 window.store = useUserStore;
 window.store = useProductStore;
+window.store = useGlobalOfferStore
