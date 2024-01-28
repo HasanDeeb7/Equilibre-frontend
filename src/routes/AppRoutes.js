@@ -23,7 +23,9 @@ import ProductsDashboard from "../DashboardPages/ProductsDashboard/ProductsDashb
 import Orders from "../DashboardPages/Orders/Orders";
 import SingleOrder from "../DashboardPages/SingleOrder/SingleOrder";
 import ContactUsPage from '../pages/ContactUsPage/ContactUsPage'
-import Sidebar from "../components/Sidebar/Sidebar";
+import SideBar from "../Layout/SideBar/SideBar";
+import TestimonialsDashboard from "../DashboardPages/Testimonials/TestimonialsDashboard";
+import Offers from "../DashboardPages/Offers/Offers";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -55,7 +57,7 @@ function AppRoutes() {
         <Route path="/about" element={<AboutUs />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
-        <Route path="/dashboard/" element={<Sidebar/>}>
+        <Route path="/dashboard/" element={<SideBar />}>
           <Route
             path="overview"
             element={
@@ -67,6 +69,11 @@ function AppRoutes() {
           <Route path="users" element={<Users />}></Route>
           <Route path="products" element={<ProductsDashboard />}></Route>
           <Route path="orders" element={<Orders />}></Route>
+          <Route path="offers" element={<Offers />}></Route>
+          <Route
+            path="testimonials"
+            element={<TestimonialsDashboard />}
+          ></Route>
           <Route path="orders/singleOrder" element={<SingleOrder />}></Route>
           {/* <Route path="" element={<Overview />}></Route> */}
         </Route>
