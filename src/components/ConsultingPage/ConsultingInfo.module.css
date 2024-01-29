@@ -3,7 +3,7 @@
   align-items: center;
   flex-direction: column;
   gap: 50px;
-  background: rgb(210, 210, 210);
+  background: rgba(183, 207, 51, 0.1);
   margin-bottom: 80px;
   padding-block: 50px;
 }

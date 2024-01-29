@@ -162,7 +162,19 @@ const NavBar = () => {
                 className={`${style.navbarLinks} ${isOpen ? style.open : ""}`}
               >
                 <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? style.activeLinks : style.navLinks
+                  }
+                >
+                  <li>
+                    <p>Home</p>
+                  </li>
+                </NavLink>
+
+                <NavLink
                   className={`${style.navLinks} ${style.dropDownContainer}`}
+                  to='/products'
                 >
                   <li>
                     <p
@@ -179,7 +191,7 @@ const NavBar = () => {
                         display: "flex",
                         justifyContent: "center",
                         alignContent: "center",
-
+                        height: '20px'
                       }}>
                         <KeyboardArrowDown />
                       </div>
@@ -189,7 +201,7 @@ const NavBar = () => {
                       {(isLoading) ? <div>...</div> : (<div className={style.categories}>
                         {categories.map((category) => (
                           <li key={category.name} className={style.categories}>
-                            <NavLink to={`/products/${category.name}`}>
+                            <NavLink to={`/products/${category._id}`}>
                               {category.name}
                             </NavLink>
                           </li>
