@@ -7,7 +7,7 @@ function SuccessModal({ message, closeHandler }) {
   useEffect(() => {
     setTimeout(() => {
       closeHandler();
-    }, 2000);
+    }, 1500);
   }, []);
   return (
     <motion.div
