@@ -4,6 +4,7 @@ import axios from "axios";
 import RelatedProduct from "../../components/RelatedProduct/RelatedProduct";
 import style from "./SingleProduct.module.css";
 import { useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 function SingleProduct() {
   const slug = useParams();
   const [product, setProduct] = useState();
@@ -12,7 +13,7 @@ function SingleProduct() {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_ENDPOINT}product/byId/${slug.slug}`,
-        
+
       );
       if (response) {
         console.log(response.data.data);
@@ -27,12 +28,18 @@ function SingleProduct() {
     getOneProduct();
   }, []);
   return (
-    !loading && (
+    <>
+      <Helmet>
+        <title>Equilibre - single product</title>
+        <meta name="decription" content="" />
+      </Helmet>
+      !loading && (
       <div className={style.singleProductContainer}>
         <SingleProductOverview product={product} />
         <RelatedProduct product={product} />
       </div>
-    )
+      )
+    </>
   );
 }
 

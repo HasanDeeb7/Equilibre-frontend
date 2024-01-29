@@ -7,6 +7,7 @@ import GlobalOffer from "../../components/GlobalOffer/GlobalOffer";
 import { useGlobalOfferStore } from "../../Store";
 import axios from "axios";
 import { useEffect } from "react";
+import { Helmet } from 'react-helmet-async';
 function Home() {
   const { offer, setOffer } = useGlobalOfferStore();
   useEffect(() => {
@@ -26,12 +27,19 @@ function Home() {
     }, []);
   return (
     <>
+<<<<<<< HEAD
     {offer && <GlobalOffer offer={offer}/>}
+=======
+      <Helmet>
+        <title>Equilibre - home</title>
+        <meta name="decription" content="" />
+      </Helmet>
+>>>>>>> anwar_searchbar
       <HeroSection />
       <TopSellerHome />
-      <AboutUsSection/>
-      <ConsultingSection/>
-      <TestimonialSection/>
+      <AboutUsSection />
+      <ConsultingSection />
+      <TestimonialSection />
     </>
   );
 }

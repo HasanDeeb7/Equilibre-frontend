@@ -3,6 +3,7 @@ import Style from './UserProfile.module.css'
 import UserImage from '../../assets/userImage.png'
 import axios from 'axios'
 import { useUserStore } from '../../Store'
+import { toast } from "react-toastify";
 const EditeUserProfile = () => {
     const { user, setUser } = useUserStore();
     const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const EditeUserProfile = () => {
         address: user.location,
         phoneNumber: user.phone,
         gender: user.gender,
-        id:user._id
+        id: user._id
     });
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -20,15 +21,19 @@ const EditeUserProfile = () => {
             [name]: value,
         }));
     };
-    console.log("sad", user)
 
 
-    const handleSaveChanges =async () => {
+    const handleSaveChanges = async () => {
         try {
-            await axios.put(`${process.env.REACT_APP_ENDPOINT}user/update`,  formData )
+            const response = await axios.put(`${process.env.REACT_APP_ENDPOINT}user/update   `, formData)
+            if (response.status) {
+                toast.success("your profile is updated")
+            }
         }
         catch (error) {
             console.log("the user is not updated", error)
+            toast.error("your profile is not updated");
+
         }
     };
 
@@ -94,7 +99,7 @@ const EditeUserProfile = () => {
                         <option value="Female">Female</option>
                     </select>
 
-                    <button type='submit' onClick={handleSaveChanges} > Save Changes</button>
+                    <button type='submit' className={Style.submit} onClick={handleSaveChanges} > Save Changes</button>
 
                 </section>
             </article>

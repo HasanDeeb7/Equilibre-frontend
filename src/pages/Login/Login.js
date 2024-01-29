@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useUserStore } from "../../Store";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 function Login() {
   const { user, setUser } = useUserStore();
@@ -39,6 +40,10 @@ function Login() {
   }
   return (
     <section className={style.loginPageContainer}>
+      <Helmet>
+        <title>Equilibre - login</title>
+        <meta name="decription" content="" />
+      </Helmet>
       <section className={style.loginFormContainer}>
         <h1 className={style.header}>Sign In</h1>
         <section className={style.inputsContainer}>

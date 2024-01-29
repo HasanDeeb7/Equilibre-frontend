@@ -1,0 +1,52 @@
+.section {
+  display: flex;
+  gap: 300px;
+  /* margin-top: 50px; */
+}
+.reverse{
+  display: flex;
+  gap: 300px;
+  flex-direction: row-reverse;
+  padding-left: 80px;
+}
+.h1 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+.list {
+  line-height: 2.8rem;
+  letter-spacing: 3px;
+  font-weight: 400;
+  margin-left: 20px;
+  font-size: 1.3rem;
+}
+ .span {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.article_b > div {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.article_b {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 50px;
+  width: 50%;
+}
+.article_bb{
+    display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 50%;
+
+}
+.article_bb > div {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+

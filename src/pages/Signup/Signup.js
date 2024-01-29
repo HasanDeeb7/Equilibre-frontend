@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import FirstSignup from "../../components/FirstSignup/FirstSignup";
 import SecondSignup from "../../components/SecondSignup/SecondSignup";
 import { AnimatePresence } from "framer-motion";
-
+import { Helmet } from 'react-helmet-async';
 function Signup() {
   const { user, setUser } = useUserStore();
   const [newUser, setNewUser] = useState({
@@ -23,6 +23,10 @@ function Signup() {
 
   return (
     <section className={style.loginPageContainer}>
+      <Helmet>
+        <title>Equilibre - singup</title>
+        <meta name="decription" content="" />
+      </Helmet>
       <section className={style.loginFormContainer}>
         <h1 className={style.header}>Create Account </h1>
         <AnimatePresence mode="wait">
