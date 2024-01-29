@@ -2,7 +2,7 @@ import React from "react";
 import style from "./ActionModal.module.css";
 import { motion } from "framer-motion";
 
-function ActionModal({ closeHandler, id, handleDelete }) {
+function ActionModal({ closeHandler, id, handleDelete, action }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -19,8 +19,12 @@ function ActionModal({ closeHandler, id, handleDelete }) {
           </button>
           <button
             onClick={() => {
-              handleDelete(id);
-              closeHandler();
+              if (id) {
+                handleDelete(id);
+                closeHandler();
+              } else {
+                action();
+              }
             }}
             className={style.confirmBtn}
           >
