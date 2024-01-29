@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import style from "./ProductsDashboard.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
+import DashboardModal from "../../components/dashboardModal/DashboardModal";
 
 function ProductsDashboard() {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [modal, setModal] = useState(true);
   async function getProducts() {
     try {
       const response = await axios.get(
@@ -32,7 +33,13 @@ function ProductsDashboard() {
       width: 150,
       renderCell: (params) => (
         <figure>
-          <img src={params.row.image} alt="" width={100} height={100} className={style.image} />
+          <img
+            src={params.row.image}
+            alt=""
+            width={100}
+            height={100}
+            className={style.image}
+          />
         </figure>
       ),
     },
@@ -85,17 +92,24 @@ function ProductsDashboard() {
 
   return (
     !loading && (
-      <div className={style.productsContainer}>
-        <div className={style.productsTable}>
-          <DataGrid
-            rows={products}
-            columns={columns}
-            getRowId={(row) => row._id}
-            getRowHeight={()=> 120}
-            autoHeight
-          />
+      <>
+        {modal && (
+          <DashboardModal closeHandler={() => setModal(false)}>
+            {" "}
+          </DashboardModal>
+        )}
+        <div className={style.productsContainer}>
+          <div className={style.productsTable}>
+            <DataGrid
+              rows={products}
+              columns={columns}
+              getRowId={(row) => row._id}
+              getRowHeight={() => 120}
+              autoHeight
+            />
+          </div>
         </div>
-      </div>
+      </>
     )
   );
 }

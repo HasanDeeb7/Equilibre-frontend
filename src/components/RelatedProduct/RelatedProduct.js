@@ -40,6 +40,9 @@ function RelatedProduct({ product }) {
               price={item.sizes[0]?.price}
               name={item.name}
               description={item.description}
+              size={product.sizes}
+              imgurl={product.image}
+              slug={product.slug}
             />
           )) || <p>No Related Products</p>}
         </section>

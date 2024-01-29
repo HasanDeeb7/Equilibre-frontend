@@ -35,9 +35,11 @@ function SingleOrder() {
   }
   function isDisabled() {
     console.log(order);
-    if (order.status !== "cancelled" || order.status !== "delivered") {
+    if (order.status !== "cancelled" && order.status !== "delivered") {
+      console.log("first");
       return false;
     } else {
+      console.log("second");
       return true;
     }
   }
@@ -141,19 +143,19 @@ function SingleOrder() {
           <div className={style.changeStatusContainer}>
             <div
               className={`${style.openChangerBtn} ${style[currentStatus]} ${
-                isDisabled && order.status === "cancelled"
+                isDisabled() && order.status === "cancelled"
                   ? style.cancelledBtn
-                  : isDisabled && order.status === "delivered"
+                  : isDisabled() && order.status === "delivered"
                   ? style.deliveredBtn
                   : ""
               }`}
-              onClick={() => !isDisabled && setIsOpen(!isOpen)}
+              onClick={() => !isDisabled() && setIsOpen(!isOpen)}
             >
-              {!isDisabled ? (
+              {!isDisabled() ? (
                 <IoIosArrowBack
                   className={`${style.arrowLeft} ${isOpen && style.arrowRight}`}
                 />
-              ) : isDisabled && order.status === "cancelled" ? (
+              ) : isDisabled() && order.status === "cancelled" ? (
                 <RxCross2 className={style.arrowLeft} />
               ) : (
                 <RxCheck className={style.arrowLeft} />
@@ -191,7 +193,7 @@ function SingleOrder() {
               </span>
             </div>
           </div>
-          {!isDisabled && (
+          {!isDisabled() && (
             <button onClick={updateOrder} className={style.updateBtn}>
               Update
             </button>
