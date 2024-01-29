@@ -82,6 +82,7 @@ function AppRoutes() {
             ></Route>
           <Route path="orders/singleOrder" element={<SingleOrder />}></Route>
           {/* <Route path="" element={<Overview />}></Route> */}
+          <Route path="categories" element={<Categories />}></Route>
         </Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>

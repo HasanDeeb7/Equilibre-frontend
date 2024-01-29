@@ -1,3 +1,4 @@
     .active {
         border-left: 4px solid var(--primary-color) !important;
+        background-color: rgb(246, 243, 243) !important;
     }
