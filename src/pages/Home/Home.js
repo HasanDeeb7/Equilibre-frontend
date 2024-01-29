@@ -27,14 +27,11 @@ function Home() {
     }, []);
   return (
     <>
-<<<<<<< HEAD
     {offer && <GlobalOffer offer={offer}/>}
-=======
       <Helmet>
         <title>Equilibre - home</title>
         <meta name="decription" content="" />
       </Helmet>
->>>>>>> anwar_searchbar
       <HeroSection />
       <TopSellerHome />
       <AboutUsSection />
