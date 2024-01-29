@@ -24,6 +24,7 @@ import Orders from "../DashboardPages/Orders/Orders";
 import SingleOrder from "../DashboardPages/SingleOrder/SingleOrder";
 import ContactUsPage from '../pages/ContactUsPage/ContactUsPage'
 import SideBar from "../Layout/SideBar/SideBar";
+import Categories from "../DashboardPages/Categories/Categories";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -69,6 +70,7 @@ function AppRoutes() {
           <Route path="orders" element={<Orders />}></Route>
           <Route path="orders/singleOrder" element={<SingleOrder />}></Route>
           {/* <Route path="" element={<Overview />}></Route> */}
+          <Route path="categories" element={<Categories />}></Route>
         </Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
