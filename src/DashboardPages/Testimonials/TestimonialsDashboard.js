@@ -4,24 +4,79 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import DashboardModal from "../../components/dashboardModal/DashboardModal";
 import TestimonialForm from "../../components/TestimonialForm/TestimonialForm";
+import SuccessModal from "../../components/SuccessModal/SuccessModal";
+import ActionModal from "../../components/ActionModal/ActionModal";
+import { toast } from "react-toastify";
 function TestimonialsDashboard() {
   const [testimonials, setTestimonials] = useState();
   const [loading, setLoading] = useState(true);
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(null);
+  const [message, setMessage] = useState();
   const [target, setTarget] = useState(null);
+  const [pagination, setPagination] = useState({ pageSize: 20, page: 0 });
+  const [newTestimonial, setNewTestimonial] = useState({
+    author: "",
+    content: "",
+    image: null,
+  });
   async function update() {
     try {
+      setLoading(true);
       const response = await axios.patch(
         `${process.env.REACT_APP_ENDPOINT}testimonial/update`,
         { ...target, id: target._id }
       );
       if (response) {
         console.log(response);
+        setMessage("Testimonial Updated");
+        setModal("success");
+        getTestimonials();
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      toast.error("Error updating data");
+    }
+  }
+  async function deleteTestimonial() {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_ENDPOINT}testimonial/delete/`,
+        { params: { id: target._id } }
+      );
+      if (response) {
+        console.log(response.data);
+        setMessage("Testimonial deleted ");
+        setModal("success");
+        getTestimonials();
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
     }
   }
+  async function addTestimonial() {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_ENDPOINT}testimonial/create/`,
+        { ...newTestimonial },
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      if (response) {
+        console.log(response.data);
+        setMessage("Added Testimonial");
+        setModal("success");
+        getTestimonials();
+        setNewTestimonial({ author: "", content: "", image: null });
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      console.log(newTestimonial);
+    }
+  }
+
   async function getTestimonials() {
     try {
       const response = await axios.get(
@@ -68,7 +123,7 @@ function TestimonialsDashboard() {
           <button
             className={style.editBtn}
             onClick={() => {
-              setModal(true);
+              setModal("form");
               setTarget(params.row);
             }}
           >
@@ -76,7 +131,10 @@ function TestimonialsDashboard() {
           </button>
           <button
             className={style.deleteBtn}
-            // onClick={() => handleButtonClick(params.row)}
+            onClick={() => {
+              setModal("action");
+              setTarget(params.row);
+            }}
           >
             Delete
           </button>
@@ -88,21 +146,54 @@ function TestimonialsDashboard() {
   return (
     !loading && (
       <>
-        {modal && (
+        {modal === "form" ? (
           <DashboardModal
+            title="Testimonials"
             closeHandler={() => setModal({ state: false })}
-            onConfirm={update}
+            onConfirm={() => {
+              if (target) {
+                update();
+              } else {
+                addTestimonial();
+              }
+            }}
           >
-            <TestimonialForm testimonial={target} setTestimonial={setTarget} />
+            <TestimonialForm
+              testimonial={target ? target : newTestimonial}
+              setTestimonial={target ? setTarget : setNewTestimonial}
+            />
           </DashboardModal>
+        ) : modal === "success" ? (
+          <SuccessModal closeHandler={() => setModal(null)} message={message} />
+        ) : modal === "action" ? (
+          <ActionModal
+            closeHandler={() => setModal(null)}
+            action={() => deleteTestimonial()}
+          />
+        ) : (
+          ""
         )}
         <div className={style.testimonialsContainer}>
           <div className={style.testimonialsTable}>
+            <button
+              className={style.addBtn}
+              onClick={() => {
+                setTarget(null);
+                setModal("form");
+              }}
+            >
+              Add Testimonial
+            </button>
             <DataGrid
               rows={testimonials}
               columns={columns}
+              rowCount={testimonials.length}
+              pagination
+              paginationModel={pagination}
               getRowId={(row) => row._id}
+              onPaginationModelChange={setPagination}
               autoHeight
+              pageSizeOptions={[5, 20, 50, 100]}
             />
           </div>
         </div>
