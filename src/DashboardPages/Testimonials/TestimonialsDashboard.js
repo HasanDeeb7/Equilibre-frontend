@@ -148,8 +148,8 @@ function TestimonialsDashboard() {
       <>
         {modal === "form" ? (
           <DashboardModal
-            title="Testimonials"
-            closeHandler={() => setModal({ state: false })}
+            title="Testimonial"
+            closeHandler={() => setModal(null)}
             onConfirm={() => {
               if (target) {
                 update();
@@ -167,6 +167,7 @@ function TestimonialsDashboard() {
           <SuccessModal closeHandler={() => setModal(null)} message={message} />
         ) : modal === "action" ? (
           <ActionModal
+            message="Are you sure you want to delete this testimonial"
             closeHandler={() => setModal(null)}
             action={() => deleteTestimonial()}
           />
@@ -188,12 +189,12 @@ function TestimonialsDashboard() {
               rows={testimonials}
               columns={columns}
               rowCount={testimonials.length}
-              pagination
-              paginationModel={pagination}
               getRowId={(row) => row._id}
-              onPaginationModelChange={setPagination}
               autoHeight
+              paginationModel={pagination}
+              pagination
               pageSizeOptions={[5, 20, 50, 100]}
+              onPaginationModelChange={setPagination}
             />
           </div>
         </div>
