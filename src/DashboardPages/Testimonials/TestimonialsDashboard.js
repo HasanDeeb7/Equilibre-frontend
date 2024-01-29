@@ -2,11 +2,26 @@ import { useEffect, useState } from "react";
 import style from "./TestimonialsDashboard.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
-
+import DashboardModal from "../../components/dashboardModal/DashboardModal";
+import TestimonialForm from "../../components/TestimonialForm/TestimonialForm";
 function TestimonialsDashboard() {
   const [testimonials, setTestimonials] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [modal, setModal] = useState(false);
+  const [target, setTarget] = useState(null);
+  async function update() {
+    try {
+      const response = await axios.patch(
+        `${process.env.REACT_APP_ENDPOINT}testimonial/update`,
+        { ...target, id: target._id }
+      );
+      if (response) {
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async function getTestimonials() {
     try {
       const response = await axios.get(
@@ -52,7 +67,10 @@ function TestimonialsDashboard() {
         <div className={style.btnsContainer}>
           <button
             className={style.editBtn}
-            // onClick={() => handleButtonClick(params.row)}
+            onClick={() => {
+              setModal(true);
+              setTarget(params.row);
+            }}
           >
             Edit
           </button>
@@ -69,16 +87,26 @@ function TestimonialsDashboard() {
 
   return (
     !loading && (
-      <div className={style.testimonialsContainer}>
-        <div className={style.testimonialsTable}>
-          <DataGrid
-            rows={testimonials}
-            columns={columns}
-            getRowId={(row) => row._id}
-            autoHeight
-          />
+      <>
+        {modal && (
+          <DashboardModal
+            closeHandler={() => setModal({ state: false })}
+            onConfirm={update}
+          >
+            <TestimonialForm testimonial={target} setTestimonial={setTarget} />
+          </DashboardModal>
+        )}
+        <div className={style.testimonialsContainer}>
+          <div className={style.testimonialsTable}>
+            <DataGrid
+              rows={testimonials}
+              columns={columns}
+              getRowId={(row) => row._id}
+              autoHeight
+            />
+          </div>
         </div>
-      </div>
+      </>
     )
   );
 }
