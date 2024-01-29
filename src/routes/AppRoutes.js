@@ -28,7 +28,7 @@ import SideBar from "../Layout/SideBar/SideBar";
 import TestimonialsDashboard from "../DashboardPages/Testimonials/TestimonialsDashboard";
 import Offers from "../DashboardPages/Offers/Offers";
 import { HelmetProvider } from 'react-helmet-async';
-
+import Categories from '../DashboardPages/Categories/Categories'
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
