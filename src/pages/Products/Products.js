@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import FilterSection from "../../components/filterSection/filterSection";
-import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet-async';
 const Products = () => {
   const [Products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,6 +28,10 @@ const Products = () => {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Equilibre - products</title>
+        <meta name="decription" content="" />
+      </Helmet>
       <h1 className={style.pageTitle}>All Products</h1>
       <main className={style.mainContainer}>
         <FilterSection

@@ -2,10 +2,18 @@ import React from 'react'
 import logo from '../../assets/svgComponent/photo-1575936123452-b67c3203c357.avif'
 import AboutUsParag from '../../components/AboutUs/AboutUsParag'
 import AboutUsComponent from '../../components/AboutUs/AboutUs'
+import imageABoutUs from '../../assets/download (1).jpeg' 
 import Style from './AboutUs.module.css'
+import { Helmet } from 'react-helmet-async';
+
 function AboutUs() {
   return (
     <>
+      <Helmet>
+        <title>Equilibre - About us</title>
+        <meta name="decription" content="information about us" />
+
+      </Helmet>
       <AboutUsComponent
         title="Welcome at equilibre!"
         parag="Hello and thank you for visiting Equilibre.
@@ -41,7 +49,7 @@ function AboutUs() {
         "
         image={logo}
         isReverse={true}
-        />
+      />
 
       <AboutUsComponent
         title="Many Blocks and Components"

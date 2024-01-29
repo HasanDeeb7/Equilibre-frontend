@@ -27,11 +27,15 @@ import ContactUsPage from '../pages/ContactUsPage/ContactUsPage'
 import SideBar from "../Layout/SideBar/SideBar";
 import TestimonialsDashboard from "../DashboardPages/Testimonials/TestimonialsDashboard";
 import Offers from "../DashboardPages/Offers/Offers";
+import { HelmetProvider } from 'react-helmet-async';
+
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
   return (
     <div>
+      <HelmetProvider>
+
       <Routes location={location} key={location.pathname}>
         <Route element={<WithFooter />}>
           <Route path="/" element={<Home key="home" />}></Route>
@@ -67,7 +71,7 @@ function AppRoutes() {
               <OverView />
               // </ProtectedRoute>
             }
-          />
+            />
           <Route path="users" element={<Users />}></Route>
           <Route path="products" element={<ProductsDashboard />}></Route>
           <Route path="orders" element={<Orders />}></Route>
@@ -75,12 +79,13 @@ function AppRoutes() {
           <Route
             path="testimonials"
             element={<TestimonialsDashboard />}
-          ></Route>
+            ></Route>
           <Route path="orders/singleOrder" element={<SingleOrder />}></Route>
           {/* <Route path="" element={<Overview />}></Route> */}
         </Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
+            </HelmetProvider>
     </div>
   );
 }

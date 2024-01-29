@@ -3,9 +3,14 @@ import ConstultingPackages from '../../components/ConsultingPage/ConstultingPack
 import image from '../../assets/Hero2Eq2.png'
 import ConsultingPackage from '../../components/ConsultingPage/ConsultingPackage'
 import ConsultingInfo from '../../components/ConsultingPage/ConsultingInfo'
+import { Helmet } from 'react-helmet-async';
 function ConsultingPage() {
     return (
         <>
+            <Helmet>
+                <title>Equilibre - for consulting</title>
+                <meta name="decription" content="" />
+            </Helmet>
             <ConsultingPackage />
             <ConstultingPackages
                 img={image}
@@ -28,7 +33,7 @@ function ConsultingPage() {
                 list_c="Weekly measurements monitoring."
                 list_d={false}
             />
-            <ConsultingInfo/>
+            <ConsultingInfo />
         </>
     )
 }
