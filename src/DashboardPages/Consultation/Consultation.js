@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import style from "./Categories.module.css";
+import style from "./Consultation.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 
-function Categories() {
-  const [categories, setCategories] = useState();
+function Consultation() {
+  const [consultation, setConsultation] = useState();
   const [loading, setLoading] = useState(true);
 
-  async function getCategories() {
+  async function getConsultations() {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_ENDPOINT}category/`
+        `${process.env.REACT_APP_ENDPOINT}consultation/`
       );
       if (response) {
-        setCategories(response.data);
+        setConsultation(response.data);
         setLoading(false);
         console.log(response.data);
       }
@@ -23,26 +23,24 @@ function Categories() {
     }
   }
   useEffect(() => {
-    getCategories();
+    getConsultations();
   }, []);
   const columns = [
-    { field: "name", headerName: "Category Name", width: 200 },
-    {
-      field: "products", headerName: "Related Products", width: 380,
+    { field: "name", headerName: "Consultation Name", width: 200 },
+    { field: "price", headerName: "Price", width: 200 },
+    { field: "description", headerName: "Description", width: 350,
 
-      renderCell: (params) => (
-        <ul className={style.products}>
-          {params.row.products.map((product, index) => (
-            <li key={index} >🟢{product.name}</li>
+    renderCell: (params) => (
+        <ul className={style.description}>
+          {params.row.description.map((description, index) => (
+            <li key={index} >🟢{description}</li>
           ))}
         </ul>
       ),
       type: 'string',
-
-    },
-    { field: "createdAt", headerName: "Created At", width: 200, }
-    ,
-    {
+    
+},
+  {
       field: "actions",
       headerName: "Actions",
       width: 250,
@@ -50,13 +48,13 @@ function Categories() {
         <div className={style.btnsContainer}>
           <button
             className={style.editBtn}
-          // onClick={() => handleButtonClick(params.row)}
+            // onClick={() => handleButtonClick(params.row)}
           >
             Edit
           </button>
           <button
             className={style.deleteBtn}
-          // onClick={() => handleButtonClick(params.row)}
+            // onClick={() => handleButtonClick(params.row)}
           >
             Delete
           </button>
@@ -67,13 +65,13 @@ function Categories() {
 
   return (
     !loading && (
-      <div className={style.categoriesContainer}>
-        <div className={style.categoriesTable}>
+      <div className={style.consultationsContainer}>
+        <div className={style.consultationsTable}>
           <DataGrid
-            rows={categories}
+            rows={consultation}
             columns={columns}
             getRowId={(row) => row._id}
-            getRowHeight={(params) => 100}
+            getRowHeight={(params) =>100} 
           />
         </div>
       </div>
@@ -81,4 +79,4 @@ function Categories() {
   );
 }
 
-export default Categories;
+export default Consultation;
