@@ -2,11 +2,20 @@ import { useEffect, useState } from "react";
 import style from "./Categories.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
-
+import ActionModal from "../../components/ActionModal/ActionModal";
+import SuccessModal from "../../components/SuccessModal/SuccessModal";
+import DashboardModal from "../../components/dashboardModal/DashboardModal";
+import CategorieForm from "../../components/CategorieForm/CategorieForm";
 function Categories() {
   const [categories, setCategories] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [modal, setModal] = useState(null);
+  const [message, setMessage] = useState();
+  const [target, setTarget] = useState(null);
+const [newCategorie,setNewCategorie]=useState({
+  name:'',
+})
+  //get all categories
   async function getCategories() {
     try {
       const response = await axios.get(
@@ -22,18 +31,45 @@ function Categories() {
       setLoading(false);
     }
   }
+
+  //add categorie
+  async function addCategorie(){
+try{const response= await axios.post(`${process.env.REACT_APP_ENDPOINT}category/create`,
+{...newCategorie},
+)
+if(response){
+  console.log(response.data)
+  setMessage('Added Categorie')
+  setModal("success")
+  getCategories()
+  setNewCategorie(response.data);
+  setLoading(false)
+
+}}
+catch(error){
+  console.log(error)
+}
+  }
+
+
+
+
+
   useEffect(() => {
     getCategories();
   }, []);
+
+
   const columns = [
     { field: "name", headerName: "Category Name", width: 200 },
     {
       field: "products", headerName: "Related Products", width: 380,
 
       renderCell: (params) => (
+        (params.row.products.length===0) ? <div>No Products Added yet</div>: 
         <ul className={style.products}>
           {params.row.products.map((product, index) => (
-            <li key={index} >🟢{product.name}</li>
+            <li key={index} >{index+1}- {product.name}</li>
           ))}
         </ul>
       ),
@@ -67,8 +103,46 @@ function Categories() {
 
   return (
     !loading && (
+      <>
+          {modal === "form" ? (
+          <DashboardModal
+            title="Categorie"
+            closeHandler={() => setModal(null)}
+            onConfirm={() => {
+              if (target) {
+                // update();
+              } else {
+                addCategorie();
+              }
+            }}
+          >
+            <CategorieForm 
+              categorie={target ? target : newCategorie}
+              setCategorie={target ? setTarget : setNewCategorie}
+            />
+          </DashboardModal>
+        ) : modal === "success" ? (
+          <SuccessModal closeHandler={() => setModal(null)} message={message} />
+        ) : modal === "action" ? (
+          <ActionModal
+            message="Are you sure you want to delete this Categorie"
+            closeHandler={() => setModal(null)}
+            // action={() => deleteTestimonial()}
+          />
+        ) : (
+          ""
+        )}
       <div className={style.categoriesContainer}>
         <div className={style.categoriesTable}>
+        <button
+              className={style.addBtn}
+              onClick={() => {
+                setTarget(null);
+                setModal("form");
+              }}
+            >
+              Add Categorie
+            </button>
           <DataGrid
             rows={categories}
             columns={columns}
@@ -77,6 +151,7 @@ function Categories() {
           />
         </div>
       </div>
+      </>
     )
   );
 }

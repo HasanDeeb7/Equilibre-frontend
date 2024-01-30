@@ -28,19 +28,20 @@ function Consultation() {
   const columns = [
     { field: "name", headerName: "Consultation Name", width: 200 },
     { field: "price", headerName: "Price", width: 200 },
-    { field: "description", headerName: "Description", width: 350,
+    {
+      field: "description", headerName: "Description", width: 350,
 
-    renderCell: (params) => (
-        <ul className={style.description}>
-          {params.row.description.map((description, index) => (
-            <li key={index} >🟢{description}</li>
-          ))}
-        </ul>
+      renderCell: (params) => (
+          <ul className={style.description}>
+            {params.row.description.map((description, index) => (
+              <li key={index} >🟢{index}_{description}</li>
+            ))}
+          </ul>
       ),
       type: 'string',
-    
-},
-  {
+
+    },
+    {
       field: "actions",
       headerName: "Actions",
       width: 250,
@@ -48,13 +49,13 @@ function Consultation() {
         <div className={style.btnsContainer}>
           <button
             className={style.editBtn}
-            // onClick={() => handleButtonClick(params.row)}
+          // onClick={() => handleButtonClick(params.row)}
           >
             Edit
           </button>
           <button
             className={style.deleteBtn}
-            // onClick={() => handleButtonClick(params.row)}
+          // onClick={() => handleButtonClick(params.row)}
           >
             Delete
           </button>
@@ -71,7 +72,7 @@ function Consultation() {
             rows={consultation}
             columns={columns}
             getRowId={(row) => row._id}
-            getRowHeight={(params) =>100} 
+            getRowHeight={(params) => 100}
           />
         </div>
       </div>
