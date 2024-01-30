@@ -15,6 +15,8 @@ function Consultation() {
   const [target, setTarget] = useState(null);
   const [newConsultation, setNewConsultation] = useState({
     name: '',
+    price:'',
+    description:[]
   })
 
   //get al consutation
@@ -45,7 +47,11 @@ function Consultation() {
         setMessage('Added Consultation')
         setModal("success")
         getConsultations()
-        setConsultation({});
+        setConsultation({
+          name: '',
+          price:'',
+          description:[]
+        });
         setLoading(false)
 
       }

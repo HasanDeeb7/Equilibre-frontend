@@ -7,6 +7,16 @@
     max-height: 300px;
     padding: 20px 5px;
 }
+
+.addDescriptionContainer{
+    display: flex;
+    width:70%;
+
+}
+.addDescriptionContainer button{
+   border: none;
+   margin-right: 10px;
+}
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-button,
 ::-webkit-scrollbar-corner{
