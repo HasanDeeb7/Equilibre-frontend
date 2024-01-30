@@ -27,8 +27,8 @@ font-size: 1rem
 }
 
 .filterBtn:hover {
-  background-color: transparent;
-  color: var(--primary-color);
+  background-color:#a2b72c;
+
   
 }
 .resetBtn{
@@ -36,8 +36,9 @@ font-size: 1rem
   border: 1px solid #ee544a;
 }
 .resetBtn:hover{
-  color: #ee544a;
-  background-color: transparent;
+  background-color:#b72c2c;
+
+
 }
 
 fieldset {

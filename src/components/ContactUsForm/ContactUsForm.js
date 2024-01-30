@@ -1,6 +1,9 @@
 import { useState } from "react";
 import FormStyle from "./ContactUsForm.module.css";
+import emailjs from '@emailjs/browser';
+import {  toast } from 'react-toastify';
 const ContactUsForm = () => {
+  const [isLoading, setisLoading] = useState(false)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -15,16 +18,38 @@ const ContactUsForm = () => {
       [name]: value,
     }));
   };
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      age: "",
+      phone: "",
+      packages: "",
+      email: "",
+      message: ""
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        message: "",
-    })
+    setisLoading(true)
+    emailjs.sendForm(`${process.env.REACT_APP_SERVICE_ID}, ${process.env.REACT_APP_TEMPLATEFORCONTACTUS_ID}, ${e.target}, ${process.env.REACT_APP_PUBLIC_KEY}`)
+
+      .then((result) => {
+        if (result.status) {
+          resetForm()
+          console.log(result);
+          setisLoading(false)
+          toast.success('Email Sent Successfully')
+        }
+      }, (error) => {
+        console.log(error);
+        setisLoading(false);
+        toast.error("An error occurd, email wasn't sent");
+
+
+      });
   };
 
   return (

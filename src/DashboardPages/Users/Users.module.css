@@ -24,8 +24,8 @@
   cursor: pointer;
 }
 .editBtn:hover {
-  background-color: transparent;
-  color: var(--primary-color);
+  background-color:#a2b72c;
+
 }
 .deleteBtn {
   padding: 10px 30px;
@@ -38,6 +38,6 @@
   cursor: pointer;
 }
 .deleteBtn:hover {
-  background-color: transparent;
-  color: var(--secondary-color);
+  background-color:#b72c2c;
+
 }

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import FilterSection from "../../components/filterSection/filterSection";
 import { Helmet } from 'react-helmet-async';
+import Loder from "../../components/LoderComponent/Loder";
 const Products = () => {
   const [Products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -41,7 +42,7 @@ const Products = () => {
         <section className={style.cardsContainer}>
           <SearchBar setProductLoading={setLoading} setProducts={setProducts} />
           {loading ? (
-            <p>Loading...</p>
+           <Loder/>
           ) : (
             <div className={style.cardsWrapper}>
               {Products.length === 0 ? (

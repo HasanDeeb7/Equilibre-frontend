@@ -74,8 +74,8 @@
   height: fit-content;
 }
 .secondaryBtn:hover {
-  background-color: transparent;
-  color: var(--secondary-color);
+  background-color:#b72c2c;
+
 }
 .primaryBtn {
   padding: 10px 30px;
@@ -88,8 +88,8 @@
   cursor: pointer;
 }
 .primaryBtn:hover {
-  background-color: transparent;
-  color: var(--primary-color);
+  background-color:#a2b72c;
+
 }
 .discountIndicator {
   display: flex;

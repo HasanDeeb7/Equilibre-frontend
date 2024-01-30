@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Style from './ConsultingInfo.module.css'
 import emailjs from '@emailjs/browser';
-import { Toast, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 function ConsultingInfo() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -37,7 +37,7 @@ function ConsultingInfo() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setisLoading(true)
-    emailjs.sendForm('service_99wpm17', 'template_egkex5g', event.target, 'eZbgPNjsgg-BVG94A')
+    emailjs.sendForm(`${process.env.REACT_APP_SERVICE_ID}, ${process.env.REACT_APP_TEMPLATEFORCONSULTING_ID}, ${event.target}, ${process.env.REACT_APP_PUBLIC_KEY}`)
 
       .then((result) => {
         if(result.status){

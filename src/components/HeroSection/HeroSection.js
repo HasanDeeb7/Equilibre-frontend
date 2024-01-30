@@ -1,13 +1,11 @@
 import style from "./HeroSection.module.css";
 import img from '../../assets/hero.png';
-import NavBar from "../../Layout/NavBar/NavBar";
 import facebookIcon from '../../assets/facebook 1.svg'
 import InstaIcon from '../../assets/instagram 1.png'
 import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <>
-    {/* <NavBar/> */}
       <header className={style.heroContainer}>
         <section className={style.textHeroWrap}>
           <h1 className={style.heroTile}>Eat better, Feel good 🌱</h1>
