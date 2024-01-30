@@ -34,9 +34,8 @@ line-height: 57.6px; /* 360% */
   transition: background-color 0.1s ease;
 }
 .btn:hover {
-  background-color: white;
-  border: 1px solid var(--primary-color);
-  color: var(--primary-color);
+  background-color:#a2b72c;
+
 }
 .title {
   color: #1d252c;

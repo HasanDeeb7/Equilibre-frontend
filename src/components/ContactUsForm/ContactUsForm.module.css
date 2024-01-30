@@ -25,11 +25,12 @@
 }
 
 .ContactBtn:hover {
-  background-color: #96b926;
+  background-color:#a2b72c;
 }
 .nameInput {
   width: 100%;
   height: 56px;
+
 }
 .nameInput,
 .message,
@@ -37,20 +38,26 @@
   flex-shrink: 0;
   border: none;
   background: #fff;
+  outline: none;
+
 }
 
 .message {
   width: 100%;
   height: 250px;
+  outline: none;
+
 }
 .emailInput {
   width: 100%;
   height: 56px;
+  outline: none;
+
 }
 .inputLabel,
 .nameLabel {
   color: #4f4f4f;
-  font-size: 14px;
+  font-size: 1px;
   font-style: normal;
   font-weight: 500;
   line-height: 175.4%; /* 24.556px */
@@ -83,7 +90,7 @@
 }
 .contactSubTitle {
   color: #777;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 189.5%; /* 24.635px */
