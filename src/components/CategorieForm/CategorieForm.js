@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./CategorieForm.module.css"
 import Input from "../Input/Input";
 
@@ -7,7 +7,7 @@ function CategorieForm({ categorie, setCategorie }) {
     <div>
       <div className={style.formContainer}>
         <Input
-          value={categorie.name}
+          value={categorie}
           setValue={setCategorie}
           control="name"
           label="Name"
