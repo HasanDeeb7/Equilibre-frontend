@@ -31,8 +31,8 @@
 }
 
 .backShopping:hover {
-    background-color: transparent;
-    color: var(--primary-color);
+  background-color:#a2b72c;
+
 }
 
 .title {
