@@ -31,7 +31,7 @@ const TopSellerHome =()=> {
       <p className={style.sectionSubTitle}>Our top selling product that you may like</p>
       <div className={style.cardWrapper}>
       {product && product.map((product, index) => (
-          <HomeProductCard key={index} name={product.name} image={product.image} />
+          <HomeProductCard key={index} name={product.name} image={product.image} slug={product.slug} />
         ))}
         </div>
       </section>

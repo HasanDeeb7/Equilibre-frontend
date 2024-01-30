@@ -33,12 +33,12 @@ function SingleProduct() {
         <title>Equilibre - single product</title>
         <meta name="decription" content="" />
       </Helmet>
-      !loading && (
+      {!loading && (
       <div className={style.singleProductContainer}>
         <SingleProductOverview product={product} />
         <RelatedProduct product={product} />
       </div>
-      )
+      )}
     </>
   );
 }

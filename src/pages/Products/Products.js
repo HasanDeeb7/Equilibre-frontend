@@ -4,10 +4,29 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import FilterSection from "../../components/filterSection/filterSection";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 const Products = () => {
+  const [title, setTitle] = useState("All Products");
   const [Products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
+  const totalItems = Products.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  // Handle page change
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  // Calculate the range of items to display on the current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // Filter data based on the current page
+  const currentPageData = Products.slice(startIndex, endIndex);
 
   useEffect(() => {
     async function getProducts() {
@@ -32,14 +51,19 @@ const Products = () => {
         <title>Equilibre - products</title>
         <meta name="decription" content="" />
       </Helmet>
-      <h1 className={style.pageTitle}>All Products</h1>
       <main className={style.mainContainer}>
         <FilterSection
           setProductLoading={setLoading}
           setProducts={setProducts}
+          setTitle={setTitle}
         />
         <section className={style.cardsContainer}>
-          <SearchBar setProductLoading={setLoading} setProducts={setProducts} />
+          <h1 className={style.pageTitle}>{title}</h1>
+          <SearchBar
+            setProductLoading={setLoading}
+            setProducts={setProducts}
+            setTitle={setTitle}
+          />
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -47,8 +71,8 @@ const Products = () => {
               {Products.length === 0 ? (
                 <p>No products available for this filter.</p>
               ) : (
-                Products &&
-                Products.map((product, index) => (
+                currentPageData &&
+                currentPageData.map((product, index) => (
                   <ProductCard
                     id={product._id}
                     key={index}
@@ -63,6 +87,15 @@ const Products = () => {
               )}
             </div>
           )}
+          <Stack spacing={2} mt={3} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={handlePageChange}
+              variant="outlined"
+              shape="rounded"
+            />
+          </Stack>
         </section>
       </main>
     </>
