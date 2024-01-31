@@ -13,11 +13,13 @@ function Consultation() {
   const [modal, setModal] = useState(null);
   const [message, setMessage] = useState();
   const [target, setTarget] = useState(null);
+  const [descriptionForm, setDescriptionForm] = useState({});
   const [newConsultation, setNewConsultation] = useState({
     name: '',
-    price:'',
-    description:[]
+    price: '',
+    description: []
   })
+
 
   //get al consutation
   async function getConsultations() {
@@ -36,38 +38,41 @@ function Consultation() {
     }
   }
 
-   //add consultation
-   async function addConsultation() {
+  //add consultation
+  async function addConsultation() {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}consultation/create`,
-        { ...newConsultation },
-      )
+      const response = await axios.post(
+        `${process.env.REACT_APP_ENDPOINT}consultation/create`,
+        {
+          ...newConsultation,
+          description:[...Object.values(descriptionForm)]
+        }
+      );
+  
       if (response) {
-        console.log(response.data)
-        setMessage('Added Consultation')
-        setModal("success")
-        getConsultations()
+        console.log(response.data);
+        setMessage('Added Consultation');
+        setModal('success');
+        getConsultations();
         setConsultation({
           name: '',
-          price:'',
-          description:[]
+          price: '',
+          description: [],
         });
-        setLoading(false)
-
+        setDescriptionForm({});
+        setLoading(false);
       }
-    }
-    catch (error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   }
-
   //update Consultation
   async function updateConsultation() {
     try {
       setLoading(true);
       const response = await axios.patch(
         `${process.env.REACT_APP_ENDPOINT}consultation/update`,
-        { ...target, id: target._id }
+        { ...target, id: target._id}
       );
       if (response) {
         console.log(response);
@@ -104,7 +109,6 @@ function Consultation() {
 
 
 
-
   useEffect(() => {
     getConsultations();
   }, []);
@@ -115,11 +119,11 @@ function Consultation() {
       field: "description", headerName: "Description", width: 600,
 
       renderCell: (params) => (
-          <ul className={style.description}>
-            {params.row.description.map((description, index) => (
-              <li key={index} >-{description}</li>
-            ))}
-          </ul>
+        <ul className={style.description}>
+          {params.row.description.map((description, index) => (
+            <li key={index} >-{description}</li>
+          ))}
+        </ul>
       ),
       type: 'string',
 
@@ -130,25 +134,25 @@ function Consultation() {
       width: 250,
       renderCell: (params) => (
         <div className={style.btnsContainer}>
-        <button
-          className={style.editBtn}
-          onClick={() => {
-            setModal("form");
-            setTarget(params.row);
-          }}
-        >
-          Edit
-        </button>
-        <button
-          className={style.deleteBtn}
-          onClick={() => {
-            setModal("action");
-            setTarget(params.row);
-          }}
-        >
-          Delete
-        </button>
-      </div>
+          <button
+            className={style.editBtn}
+            onClick={() => {
+              setModal("form");
+              setTarget(params.row);
+            }}
+          >
+            Edit
+          </button>
+          <button
+            className={style.deleteBtn}
+            onClick={() => {
+              setModal("action");
+              setTarget(params.row);
+            }}
+          >
+            Delete
+          </button>
+        </div>
       ),
     },
   ];
@@ -158,11 +162,12 @@ function Consultation() {
       <>
         {modal === "form" ? (
           <DashboardModal
-            title="Categorie"
+            title="Consultation"
             closeHandler={() => setModal(null)}
             onConfirm={() => {
               if (target) {
                 updateConsultation();
+
               } else {
                 addConsultation();
               }
@@ -171,6 +176,8 @@ function Consultation() {
             <ConsultationForm
               consultation={target ? target : newConsultation}
               setConsultation={target ? setTarget : setNewConsultation}
+              descriptionForm={target ? target :descriptionForm} 
+              setDescriptionForm={target ? setTarget :setDescriptionForm}
             />
           </DashboardModal>
         ) : modal === "success" ? (
@@ -184,9 +191,9 @@ function Consultation() {
         ) : (
           ""
         )}
-      <div className={style.consultationsContainer}>
-        <div className={style.consultationsTable}>
-        <button
+        <div className={style.consultationsContainer}>
+          <div className={style.consultationsTable}>
+            <button
               className={style.addBtn}
               onClick={() => {
                 setTarget(null);
@@ -195,14 +202,14 @@ function Consultation() {
             >
               Add Consultation
             </button>
-          <DataGrid
-            rows={consultation}
-            columns={columns}
-            getRowId={(row) => row._id}
-            getRowHeight={(params) => 100}
-          />
+            <DataGrid
+              rows={consultation}
+              columns={columns}
+              getRowId={(row) => row._id}
+              getRowHeight={(params) => 100}
+            />
+          </div>
         </div>
-      </div>
       </>
     )
   );
