@@ -18,6 +18,8 @@
   color: white;
   transition: 0.5s ease-in-out;
   cursor: pointer;
+  margin-right: 10px;
+  
 }
 .goHome:hover {
   background-color:#a2b72c;
