@@ -199,7 +199,7 @@ export default function SideBar() {
                     <List>
 
                         {sidebarItems.map((text, index) => (
-                            <ListItem key={text[0]} disablePadding sx={{ display: 'block' }}>
+                            <ListItem key={text[0]} disablePadding sx={{ display: 'block', '&:hover': { backgroundColor: 'rgb(227, 251, 156)'}}}>
                                 <ListItemButton
                                     className={{
                                         [style.active]: location.pathname === `/${text[0]}`,
