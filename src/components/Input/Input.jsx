@@ -11,6 +11,7 @@ function Input({
   type = "text",
   tag = "input",
   required = false,
+  className,
 }) {
   const [isShown, setIsShown] = useState(false);
   function handleChange(e) {
@@ -29,14 +30,13 @@ function Input({
         <>
           <form className={style.inputForm} autoComplete="off">
             <input
-              className={`${style.loginInput}`}
+              className={`${style.loginInput} ${className}`}
               type={isShown ? "text" : type}
               name={control}
               id={control}
               value={value[control]}
               onChange={handleChange}
               disabled={isDisabled}
-                
             />
             {required && <div className={style.requiredInput}></div>}
             {type === "password" &&

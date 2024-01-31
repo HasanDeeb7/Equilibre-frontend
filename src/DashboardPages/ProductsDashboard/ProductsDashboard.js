@@ -7,12 +7,14 @@ import ActionModal from "../../components/ActionModal/ActionModal";
 import { toast } from "react-toastify";
 import SuccessModal from "../../components/SuccessModal/SuccessModal";
 import ProductForm from "../../components/ProductForm/ProductForm";
+import ProductsModal from "../../components/ProductsModal/ProductsModal";
 
 function ProductsDashboard() {
+  const [title, setTitle] = useState();
   const [products, setProducts] = useState();
   const [newProduct, setNewproduct] = useState({
     name: "",
-    sizes: [],
+    sizes: [{ capacity: null, price: null, stock: null, unit: null }],
     categoryName: "",
     nutritionalInfo: "",
     decription: "",
@@ -174,12 +176,13 @@ function ProductsDashboard() {
   return (
     <>
       {modal === "form" ? (
-        <DashboardModal
+        <ProductsModal
           closeHandler={() => setModal(false)}
           onConfirm={addSizes}
-        >
-          <ProductForm product={newProduct} setProduct={setNewproduct} />
-        </DashboardModal>
+          title={title}
+          product={newProduct}
+          setProduct={setNewproduct}
+        />
       ) : modal === "action" ? (
         <ActionModal
           message={"Are you sure you want tot delete this product?"}
@@ -194,7 +197,13 @@ function ProductsDashboard() {
       {!loading && (
         <div className={style.productsContainer}>
           <div className={style.productsTable}>
-            <button className={style.addBtn} onClick={() => setModal("form")}>
+            <button
+              className={style.addBtn}
+              onClick={() => {
+                setModal("form");
+                setTitle("Add a product");
+              }}
+            >
               Add Product
             </button>
             <DataGrid
