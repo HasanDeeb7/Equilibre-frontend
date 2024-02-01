@@ -138,7 +138,7 @@ function Consultation() {
             className={style.editBtn}
             onClick={() => {
               setModal("form");
-              setTarget(params.row);
+              setTarget(params.row);  
             }}
           >
             Edit
@@ -178,6 +178,7 @@ function Consultation() {
               setConsultation={target ? setTarget : setNewConsultation}
               descriptionForm={target ? target :descriptionForm} 
               setDescriptionForm={target ? setTarget :setDescriptionForm}
+              description={target.description}
             />
           </DashboardModal>
         ) : modal === "success" ? (

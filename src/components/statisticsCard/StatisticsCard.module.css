@@ -1,7 +1,7 @@
 .cardContainer {
-    width: 300px;
-    margin:10px;
-    height: 160px;
+    width: 350px;
+    margin:0 10px 20px 0;
+    height: 180px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 6px 6px 54px 0px rgba(0, 0, 0, 0.05);
@@ -34,4 +34,10 @@
 .image {
     margin-left: 10px;
 }
+
+@media only screen and (max-width: 1100px) and (width >800px) {
+    .cardContainer{
+        width: 250px;
+    }
+  }
 

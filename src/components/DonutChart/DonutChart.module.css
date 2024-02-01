@@ -1,17 +1,53 @@
-
-.DonutContainer{
-background-color: white;
-width:30%;
-border-radius: 10px;
-padding: 10px;
+.DonutContainer {
+    background-color: white;
+    width: 30%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.Donut{
-    width:100%;
+.Donut {
+    width: 90%;
+    height: 95%;
 }
+
+
+@media only screen and (max-width:1200px) {
+    .DonutContainer {
+        background-color: white;
+        width: 100%;
+    }
+    .Donut {
+        width: 50%;
+        height: 100px;
+    }
+    
+}
+
+
 
 @media only screen and (max-width:800px) {
-.DonutContainer{
-    width: 100%;
-}
-}
+    .DonutContainer {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .Donut {
+        width: 70%;
+        height: 150px;
+    }
+    
+} 
+
+
+@media only screen and (max-width:450px) {
+    .DonutContainer {
+        width: 100%;
+        height: auto;
+    }
+    .Donut {
+        width: 90%;
+        height: fit-content;
+    }
+    
+} 

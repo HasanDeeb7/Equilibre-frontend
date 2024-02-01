@@ -58,16 +58,35 @@ const DonutChart = () => {
       labels: sales.map(item => item.category),
       responsive: [
         {
-          breakpoint: 1000,
+          breakpoint: 1150,
           options: {
-            chart: {
-              width: 200,
-              height:300
-            }
-
+            legend: {
+              show: true,
+              position: 'right',
+              markers: {
+                shape: 'square',
+                radius: 0, 
+                width:20
+              }, 
           },
         },
+      },
+      {
+        breakpoint: 400,
+        options: {
+          legend: {
+            show: true,
+            position: 'top',
+            markers: {
+              shape: 'square',
+              radius: 0, 
+              width:20
+            }, 
+        },
+      },
+    },
       ],
+      
     },
   }
 

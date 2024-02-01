@@ -3,7 +3,7 @@ import style from "./ConsultationForm.module.css"
 import Input from "../Input/Input";
 import { AddCircleOutline } from '@mui/icons-material'
 import { TextField } from "@mui/material";
-function ConsultationForm({ consultation, setConsultation, descriptionForm, setDescriptionForm }) {
+function ConsultationForm({ consultation, setConsultation, descriptionForm, setDescriptionForm,description }) {
   const [addDescription, setAddDescription] = useState(consultation.description.length + 1);
   const handleAddDescription = () => {
     setAddDescription(addDescription + 1);
@@ -32,13 +32,13 @@ function ConsultationForm({ consultation, setConsultation, descriptionForm, setD
           label="Price"
           required
         />
-        {[...Array(addDescription)].map((_, index) => (
+        {description.map((item, index) => (
           <div key={index}>
             <TextField
               label={`Description ${index + 1}`}
               name={`description${index + 1}`}
-              value={descriptionForm[`description${index + 1}`] || ''}
-              onChange={(e) => handleChange(e, index)}
+              value={item || ''}
+              onChange={(e) => {description[index] = e.target.value; console.log(description)}}
               required
             />
           </div>
