@@ -30,6 +30,7 @@ import Offers from "../DashboardPages/Offers/Offers";
 import { HelmetProvider } from 'react-helmet-async';
 import Categories from '../DashboardPages/Categories/Categories'
 import Consultation from "../DashboardPages/Consultation/Consultation";
+import EmtyCart from "../components/EmptyCart/EmptyCart";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -39,7 +40,7 @@ function AppRoutes() {
 
       <Routes location={location} key={location.pathname}>
         <Route element={<WithFooter />}>
-          <Route path="/" element={<Home key="home" />}></Route>
+          <Route path="/" element={<EmtyCart key="home" />}></Route>
           <Route path="/consultation" element={<ConsultingPage />}></Route>
           {/* <Route path="/consultingpage" element={<ConsultingPage />}></Route> */}
           <Route

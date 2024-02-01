@@ -14,7 +14,6 @@ const Shipping = ({ onFormDataChange }) => {
     //import user 
     const { user } = useUserStore();
     console.log(user)
-
     ///need update
     const totalQuantity = localStorage.getItem('totalPrice');
     //get all product info from localStorage
