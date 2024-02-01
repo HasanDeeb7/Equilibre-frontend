@@ -39,6 +39,8 @@
   border: none;
   background: #fff;
   outline: none;
+  padding: 10px ;
+  font-size: 15px;
 
 }
 
@@ -57,7 +59,7 @@
 .inputLabel,
 .nameLabel {
   color: #4f4f4f;
-  font-size: 1px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
   line-height: 175.4%; /* 24.556px */
