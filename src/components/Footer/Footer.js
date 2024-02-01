@@ -11,10 +11,10 @@ const Footer = () => {
                     Your natural product made for your sanity and for your well-being.
                 </p>
                 <div className={Styles.socialM}>
-                    <a href="https://www.facebook.com/equilibreka?mibextid=ZbWKwL" target="_blank">
+                    <a href="https://www.facebook.com/equilibreka?mibextid=ZbWKwL" rel="noreferrer" target="_blank">
                         <Facebook />
                     </a>
-                    <a href="https://www.instagram.com/equilibre.lb?igsh=MjJ3dWlweXk2N3Z4" target="_blank">
+                    <a href="https://www.instagram.com/equilibre.lb?igsh=MjJ3dWlweXk2N3Z4" rel="noreferrer" target="_blank">
                         <Instagram />
                     </a>
                 </div>

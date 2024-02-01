@@ -110,11 +110,18 @@
   font-size: 16px;
   font-weight: 500;
 }
+@media screen and (max-width: 1050px){
+  .FormSection {
+    height: auto;
+  }
+}
+@media screen and (max-width: 1000px){
+  .FormSection {
+    height: 75vh;
+  }
+}
 
 @media screen and (max-width: 800px) {
-  .FormSection {
-    height: 95vh;
-  }
   .contactTitle {
     font-size: 24px;
   }
@@ -152,7 +159,7 @@
 
 @media screen and (max-width: 576px) {
   .FormSection {
-    height: 75vh;
+    height: 90%;
   }
   .contactTitle {
     font-size: 20px;

@@ -25,7 +25,7 @@ const ConsultingSection = () => {
               wellbeing.
             </li>
           </ul>
-          <Link to="/about">
+          <Link to="/consultation">
             <button className={style.btn}>Read more</button>
           </Link>
         </div>

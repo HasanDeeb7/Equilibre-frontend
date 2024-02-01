@@ -17,14 +17,6 @@ const HeroSection = () => {
           <Link to="/products">
           <button className={style.exploreBtn}>Explore</button>
           </Link>
-          <div className={style.iconsWrapper}>
-            <div className={style.icon}>
-              <img alt="facebook icon" src={facebookIcon}></img>
-            </div>
-            <div className={style.icon}>
-              <img alt="instagram icon" src={InstaIcon}></img>
-            </div>
-          </div>
         </section>
         <img alt="products" src={img} className={style.heroimg}></img>
       </header>
