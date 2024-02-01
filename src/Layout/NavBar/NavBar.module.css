@@ -4,11 +4,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #5e6e98;
   border-left: 10px;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   font-size: 1.1rem;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .navbar {
@@ -34,7 +36,8 @@
 }
 
 .loginButton {
-  padding: 10px 30px;
+  padding-top: 10px ;
+  padding-bottom: 10px ;
   width:100px;
   border: 1px solid var(--primary-color);
   background: var(--primary-color);
@@ -110,7 +113,6 @@
   align-items: center;
   flex-direction: row;
   display: flex;
-  width: 15%;
 }
 
 .activeLinks{
@@ -209,7 +211,7 @@
     color: #000000;
     width: 70vw;
     height: 79vh;
-    left: -20vw;
+    left: -22vw;
     padding: 15px;
     text-align: right;
     border-radius: 10px;

@@ -37,7 +37,7 @@ const NavBar = () => {
           <img src={logo} alt="Equilibre" height={70} />
         </NavLink>
 
-        {windowWidth < 750 ? (
+        {windowWidth < 900 ? (
           // Mobile View
           <label className={style.menuButtonWrapper} htmlFor="">
             <input type="checkbox" className={style.menuButton} />
