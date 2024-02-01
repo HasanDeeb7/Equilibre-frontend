@@ -12,6 +12,7 @@ function Input({
   tag = "input",
   required = false,
 }) {
+ 
   const [isShown, setIsShown] = useState(false);
   function handleChange(e) {
     setValue({ ...value, [e.target.name]: e.target.value });
