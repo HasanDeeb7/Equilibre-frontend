@@ -10,7 +10,7 @@ import ActionModal from '../ActionModal/ActionModal';
 import SuccessModal from '../SuccessModal/SuccessModal';
 const Shipping = ({ onFormDataChange }) => {
     const navigate = useNavigate();
-    const [modal, setModal] = useState(null);
+    const [modal, setModal] = useState();
     //import user 
     const { user } = useUserStore();
     console.log(user)
@@ -118,7 +118,7 @@ const Shipping = ({ onFormDataChange }) => {
             const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}order/addNewOrder`, newOrder)
             if (response) {
                 console.log(response.data)
-                toast.success('Order send successfully')
+                setModal('success')
                 return response
             }
 
@@ -140,7 +140,7 @@ const Shipping = ({ onFormDataChange }) => {
             setModal('Empty Cart');
         } else if (
             !formData.country ||
-            !formData.city ||
+           (formData.country==='lebanon' && !formData.city) ||
             !formData.firstName ||
             !formData.lastName ||
             !formData.shippingAddress ||
@@ -174,7 +174,6 @@ const Shipping = ({ onFormDataChange }) => {
                 //clear local storage content 
                 localStorage.removeItem("Cart");
                 localStorage.removeItem("totalPrice");
-                setModal(null)
 
             } catch (error) {
                 toast.error('There is an error in sending the order!')
@@ -185,24 +184,25 @@ const Shipping = ({ onFormDataChange }) => {
 
 
     return (
-        <div className={style.shippingInfo}>
-            {modal === 'action' && (
+        <>
+            {modal === 'action' ? (
                 <ActionModal
-                    message="Are you sure you want to proceed with this order?"
-                    closeHandler={() => setModal(null)}
-                    action={handelSubmit}
+                message="Are you sure you want to proceed with this order?"
+                closeHandler={() => setModal(null)}
+                action={handelSubmit}
                 />
-            )}
+                ) : 
 
-            {modal === 'success' && (
-                <div>
+            modal === 'success' ? (
+                <>
                     {<SuccessModal
                         closeHandler={() => setModal(null)}
                         message="Your order was successfully placed!"
-                    />}
-                    {setModal(null)}
-                </div>
-            )}
+                        />}
+                </>
+            ): ""}
+        
+        <div className={style.shippingInfo}>
 
             {modal === `Missing Field` && (
                 <div>
@@ -230,7 +230,7 @@ const Shipping = ({ onFormDataChange }) => {
                     onChange={handleChange}
                     placeholder='Email'
                     required
-                />
+                    />
             </section>
 
             <section>
@@ -249,21 +249,21 @@ const Shipping = ({ onFormDataChange }) => {
                     placeholder="Select Country"
                     styles={customStyles}
                     required
-                />
+                    />
 
                 {formData.country === 'lebanon' && (
                     <Select
-                        name='city'
-                        id='city'
-                        options={cities.lebanon}
-                        onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
-                        value={cities.lebanon.find((option) => option.value === formData.city)}
+                    name='city'
+                    id='city'
+                    options={cities.lebanon}
+                    onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
+                    value={cities.lebanon.find((option) => option.value === formData.city)}
                         className={style.selector}
                         placeholder="Select City"
                         styles={customStyles}
                         required
-                    />
-                )}
+                        />
+                        )}
 
                 <section className={style.nameSection}>
 
@@ -278,7 +278,7 @@ const Shipping = ({ onFormDataChange }) => {
                             onChange={handleChange}
                             placeholder='First Name'
                             required
-                        />
+                            />
                     </label>
 
 
@@ -293,7 +293,7 @@ const Shipping = ({ onFormDataChange }) => {
                             onChange={handleChange}
                             placeholder='Last Name'
                             required
-                        />
+                            />
                     </label>
                 </section>
 
@@ -305,7 +305,7 @@ const Shipping = ({ onFormDataChange }) => {
                     onChange={handleChange}
                     placeholder='Address (e.g :Rue, Floor, Apartment) '
                     required
-                />
+                    />
 
                 <input
                     value={formData.phone}
@@ -315,7 +315,7 @@ const Shipping = ({ onFormDataChange }) => {
                     onChange={handleChange}
                     placeholder='Phone number'
                     required
-                />
+                    />
             </section>
             <h3 className={style.paymentTitle}>Payment</h3>
             <section className={style.payment}>
@@ -328,7 +328,7 @@ const Shipping = ({ onFormDataChange }) => {
                         className={style.paymentMethod}
                         onChange={handleChange}
                         required
-                    />
+                        />
                     Cash On Delivery (USD)
                 </label>
 
@@ -340,7 +340,7 @@ const Shipping = ({ onFormDataChange }) => {
                         className={style.paymentMethod}
                         onChange={handleChange}
                         required
-                    />
+                        />
                     Cash On Delivery (LBP on daily rate)
                 </label>
             </section>
@@ -348,6 +348,7 @@ const Shipping = ({ onFormDataChange }) => {
                 <Link to='/cart' className={style.navLink}>Back to cart</Link>
                 <button type='button' className={style.completeOrder} onClick={handelConfirmation} > Complete Order</button></nav>
         </div>
+                        </>
     );
 };
 
