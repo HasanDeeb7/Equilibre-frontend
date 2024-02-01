@@ -6,10 +6,11 @@ import Select from 'react-select';
 import countryList from 'country-list'
 import { useUserStore } from '../../Store.js';
 import { toast } from 'react-toastify'
-
+import ActionModal from '../ActionModal/ActionModal';
+import SuccessModal from '../SuccessModal/SuccessModal';
 const Shipping = ({ onFormDataChange }) => {
     const navigate = useNavigate();
-
+    const [modal, setModal] = useState(null);
     //import user 
     const { user } = useUserStore();
     console.log(user)
@@ -18,14 +19,14 @@ const Shipping = ({ onFormDataChange }) => {
     const totalQuantity = localStorage.getItem('totalPrice');
     //get all product info from localStorage
     const orderedProducts = []
-    JSON.parse(localStorage.getItem("Cart")).map(product => {
+  if(JSON.parse(localStorage.getItem("Cart"))){  JSON.parse(localStorage.getItem("Cart")).map(product => {
         orderedProducts.push({
             product: product._id,
             quantity: product.quantity,
             size: product.size
         })
 
-    })
+    })}
     console.log(orderedProducts);
 
 
@@ -134,33 +135,87 @@ const Shipping = ({ onFormDataChange }) => {
 
     }, [formData])
 
-
+    const handelConfirmation = () => {
+        if (orderedProducts.length === 0) {
+            setModal('Empty Cart');
+        } else if (
+            !formData.country ||
+            !formData.city ||
+            !formData.firstName ||
+            !formData.lastName ||
+            !formData.shippingAddress ||
+            !formData.paymentMethod ||
+            !formData.phone
+        ) {
+            setModal('Missing Field');
+        } else {
+            setModal('action');
+        }
+    };
     //handle submit info to create order
     const handelSubmit = () => {
         if (user) {
-            if (window.confirm('Are you sure you want to proceed with this order?')) {
+            try {
                 console.log(orderedProducts)
                 createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], userId: user._id, orderDate: new Date() })
-                // setFormData({
-                //     email: '',
-                //     country: '',
-                //     city: '',
-                //     firstName: '',
-                //     lastName: '',
-                //     shippingAddress: '',
-                //     phone: '',
-                //     paymentMethod: ''
-                // })
+
+                setModal('success')
                 console.log(formData)
+                setFormData({
+                    email: '',
+                    country: '',
+                    city: '',
+                    firstName: '',
+                    lastName: '',
+                    shippingAddress: '',
+                    phone: '',
+                    paymentMethod: ''
+                })
+                //clear local storage content 
+                localStorage.removeItem("Cart");
+                localStorage.removeItem("totalPrice");
+                setModal(null)
+
+            } catch (error) {
+                toast.error('There is an error in sending the order!')
             }
         }
-        else {
-            toast.error('Please log in before proceeding to checkout');
-            navigate('/login')
-        }
+        else { toast.error('Please log in before proceeding to checkout'); }
     }
+
+
     return (
         <div className={style.shippingInfo}>
+            {modal === 'action' && (
+                <ActionModal
+                    message="Are you sure you want to proceed with this order?"
+                    closeHandler={() => setModal(null)}
+                    action={handelSubmit}
+                />
+            )}
+
+            {modal === 'success' && (
+                <div>
+                    {<SuccessModal
+                        closeHandler={() => setModal(null)}
+                        message="Your order was successfully placed!"
+                    />}
+                    {setModal(null)}
+                </div>
+            )}
+
+            {modal === `Missing Field` && (
+                <div>
+                    {toast.error('Make sure to fill in the required field')}
+                    {setModal(null)}
+                </div>
+            )}
+            {modal === 'Empty Cart' && (
+                <div>
+                    {toast.error('Your cart is empty. Add products before confirming the order.')}
+                    {setModal(null)}
+                </div>
+            )}
             <section className={style.contactInfo}>
                 <label htmlFor='email' className={style.emailLabel}>
                     Contact
@@ -291,7 +346,7 @@ const Shipping = ({ onFormDataChange }) => {
             </section>
             <nav className={style.navSection}>
                 <Link to='/cart' className={style.navLink}>Back to cart</Link>
-                <button type='button' className={style.completeOrder} onClick={handelSubmit} > Complete Order</button></nav>
+                <button type='button' className={style.completeOrder} onClick={handelConfirmation} > Complete Order</button></nav>
         </div>
     );
 };
