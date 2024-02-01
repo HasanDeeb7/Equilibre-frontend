@@ -11,6 +11,7 @@ function Input({
   type = "text",
   tag = "input",
   required = false,
+  isArray,
   className,
 }) {
   const [isShown, setIsShown] = useState(false);

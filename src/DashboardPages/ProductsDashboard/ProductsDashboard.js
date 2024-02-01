@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import style from "./ProductsDashboard.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
-import DashboardModal from "../../components/dashboardModal/DashboardModal";
 import ActionModal from "../../components/ActionModal/ActionModal";
 import { toast } from "react-toastify";
 import SuccessModal from "../../components/SuccessModal/SuccessModal";
-import ProductForm from "../../components/ProductForm/ProductForm";
 import ProductsModal from "../../components/ProductsModal/ProductsModal";
 
 function ProductsDashboard() {
@@ -17,7 +15,7 @@ function ProductsDashboard() {
     sizes: [{ capacity: null, price: null, stock: null, unit: null }],
     categoryName: "",
     nutritionalInfo: "",
-    decription: "",
+    description: "",
     image: null,
   });
   const [loading, setLoading] = useState(true);

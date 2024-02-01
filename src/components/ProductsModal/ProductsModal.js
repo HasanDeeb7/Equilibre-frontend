@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Input from "../Input/Input";
 import style from "./ProductsModal.module.css";
 import { motion } from "framer-motion";
-
+import { toast } from "react-toastify";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 function ProductsModal({
   closeHandler,
   onConfirm,
@@ -10,12 +11,54 @@ function ProductsModal({
   product,
   setProduct,
 }) {
-  const [newSize, setNewSize] = useState({
-    capacity: null,
-    price: null,
-    stock: null,
-    unit: null,
-  });
+  const dropDownRef = useRef();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSelectChange = (index, selectedUnit) => {
+    const sizesCopy = [...product.sizes];
+    sizesCopy[index].unit = selectedUnit;
+    setProduct({ ...product, sizes: sizesCopy });
+    setIsOpen(false);
+  };
+
+  function handleAddSize() {
+    if (
+      !Object.values(product.sizes[product.sizes.length - 1]).some(
+        (item) => !item || item === ""
+      )
+    ) {
+      setProduct({
+        ...product,
+        sizes: [
+          ...product.sizes,
+          { capacity: "", stock: "", price: "", unit: "" },
+        ],
+      });
+    } else {
+      toast.error("All size data are required");
+    }
+  }
+  const handleInputChange = (index, event) => {
+    const { name, value } = event.target;
+    const sizesCopy = [...product.sizes];
+    sizesCopy[index][name] = value;
+    setProduct({ ...product, sizes: sizesCopy });
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e) => {
+    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -30,7 +73,11 @@ function ProductsModal({
         className={style.modal}
       >
         <h2 className={style.modalTitle}>{title}</h2>
-        <div className={style.formContainer}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className={style.formContainer}
+        >
           <Input
             value={product}
             setValue={setProduct}
@@ -70,45 +117,93 @@ function ProductsModal({
           </div>
           <p>Sizes</p>
           <div className={style.sizesContainer}>
-            <div className={style.sizeInputs}>
-              <Input
-                value={newSize}
-                setValue={setNewSize}
-                label="Capacity"
-                control="capacity"
-                className={style.sizeInput}
-                required
-                type="number"
-              />
-              <Input
-                value={newSize}
-                setValue={setNewSize}
-                label="Price"
-                control="price"
-                required
-                type="number"
-              />
-              <Input
-                value={newSize}
-                setValue={setNewSize}
-                label="Stock"
-                control="stock"
-                required
-                type="number"
-              />
-              <Input
-                value={newSize}
-                setValue={setNewSize}
-                label="Unit (g or Kg)"
-                control="unit"
-                required
-              />
-            </div>
+            {product.sizes.map((item, index) => (
+              <div className={style.sizeInputs}>
+                <div className={style.inputWrapper}>
+                  <input
+                    className={`${style.loginInput} `}
+                    type="number"
+                    name="capacity"
+                    value={item.capacity}
+                    onChange={(e) => handleInputChange(index, e)}
+                    // disabled={isDisabled}
+                  />
+                  {/* {required && <div className={style.requiredInput}></div>} */}
+                  <label
+                    className={`${style.loginInputLable} ${
+                      item.capacity && style.inputActive
+                    }`}
+                  >
+                    Capacity
+                  </label>
+                </div>
+                <div className={style.inputWrapper}>
+                  <input
+                    className={`${style.loginInput} `}
+                    type="number"
+                    name="stock"
+                    value={item.stock}
+                    onChange={(e) => handleInputChange(index, e)}
+                    // disabled={isDisabled}
+                  />
+                  {/* {required && <div className={style.requiredInput}></div>} */}
+                  <label
+                    className={`${style.loginInputLable} ${
+                      item.stock && style.inputActive
+                    }`}
+                  >
+                    Stock
+                  </label>
+                </div>
+                <div className={style.inputWrapper}>
+                  <input
+                    className={`${style.loginInput} `}
+                    type="number"
+                    name="price"
+                    value={item.price}
+                    onChange={(e) => handleInputChange(index, e)}
+                    // disabled={isDisabled}
+                  />
+                  {/* {required && <div className={style.requiredInput}></div>} */}
+                  <label
+                    className={`${style.loginInputLable} ${
+                      item.price && style.inputActive
+                    }`}
+                  >
+                    Price
+                  </label>
+                </div>
+                <section
+                  className={style.selectContainer}
+                  onClick={() => setIsOpen(index)}
+                  ref={dropDownRef}
+                >
+                  {item.unit}
+                  <MdOutlineKeyboardArrowDown />
+                  {isOpen === index && (
+                    <section className={style.optionsContainer}>
+                      <span
+                        className={style.option}
+                        name="g"
+                        onClick={() => handleSelectChange(index, "g")}
+                      >
+                        g
+                      </span>
+                      <span
+                        className={style.option}
+                        onClick={() => handleSelectChange(index, "ml")}
+                      >
+                        ml
+                      </span>
+                    </section>
+                  )}
+                </section>
+              </div>
+            ))}
             <p
               className={style.addSizeBtn}
               onClick={() => {
-                setProduct({ ...product, sizes: [...product.sizes, newSize] });
-                setNewSize({ capacity: 0, price: 0, stock: 0 });
+                handleAddSize();
               }}
             >
               <span>Add Size</span>
@@ -122,7 +217,7 @@ function ProductsModal({
               Confirm
             </button>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );
