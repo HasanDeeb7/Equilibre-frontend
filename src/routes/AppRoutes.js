@@ -40,7 +40,7 @@ function AppRoutes() {
 
       <Routes location={location} key={location.pathname}>
         <Route element={<WithFooter />}>
-          <Route path="/" element={<EmtyCart key="home" />}></Route>
+          <Route path="/" element={<Home key="home" />}></Route>
           <Route path="/consultation" element={<ConsultingPage />}></Route>
           {/* <Route path="/consultingpage" element={<ConsultingPage />}></Route> */}
           <Route

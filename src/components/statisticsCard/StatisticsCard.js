@@ -8,7 +8,7 @@ const StatisticsCard = ({ title, value, unit, imageSrc }) => {
                 <p className={style.data}>{unit}{value}</p>
             </section>
             <figure>
-                <img className={style.image} alt={title} src={imageSrc} width={70} lazy={true} />
+                <img className={style.image} alt={title} src={imageSrc} width={70} height={70}loading='lazy' />
             </figure>
         </section>
     )
