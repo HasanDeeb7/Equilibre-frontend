@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import style from './TopSellerDash.module.css'
+import Loder from '../LoderComponent/Loder';
 import axios from 'axios'
 const TopSellerDash = () => {
 
@@ -25,7 +26,7 @@ const TopSellerDash = () => {
     return (
         <div className={style.containerSales}>
           {isLoading ? (
-            <div>Loading...</div>
+            <Loder/>
           ) : (
             <div className={style.allProduct}>
               <h4 className={style.title}>Top Seller</h4>

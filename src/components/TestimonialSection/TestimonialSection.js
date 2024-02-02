@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ArrowCarousel } from "../ArrowCarousel/ArrowCarousel";
 import { useEffect, useState } from "react";
+import Loder from "../LoderComponent/Loder";
 import axios from "axios";
 
 const TestimonialSection = () => {
@@ -77,7 +78,7 @@ const TestimonialSection = () => {
         <p className={style.text}>Some reviews from our happy customers</p>
         <div className={style.cardWrapper}>
           {loading ? (
-            <p>Loading testimonials...</p>
+            <Loder/>
           ) : (
             <Slider {...settings}>
               {testimonials &&
