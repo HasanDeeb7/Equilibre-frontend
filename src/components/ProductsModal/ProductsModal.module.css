@@ -23,6 +23,18 @@
   flex-direction: column;
 }
 
+.textareasWrapper{
+  display: flex;
+  justify-content: space-between;
+}
+.fileWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 2px dashed rgba(0, 0, 0, .7);
+  border-radius: 5px;
+}
 .confirmBtn {
   padding: 8px 30px;
   border: 1px solid var(--primary-color);
@@ -50,13 +62,13 @@
   background-color: #fff;
 }
 .btnsContainer {
-  display: flex;
-  /* flex-direction: ; */
-  border-top: 1px solid lightgray;
-  padding-top: 30px;
-  background-color: white;
-  padding: 30px 0;
-  width: 100%;
+  justify-content: end;
+    display: flex;
+    border-top: 1px solid lightgray;
+    background-color: white;
+    padding: 30px 0;
+    width: 100%;
+    gap: 25px;
 }
 .formContainer {
   overflow: scroll;

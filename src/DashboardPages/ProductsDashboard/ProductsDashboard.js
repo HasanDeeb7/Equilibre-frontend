@@ -21,6 +21,36 @@ function ProductsDashboard() {
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState();
   const [target, setTarget] = useState();
+  async function handleUpdateSizes() {
+    try {
+      const response = await axios.patch(
+        `${process.env.REACT_APP_ENDPOINT}product/editSize`,
+        { sizes: target.sizes }
+      );
+      if (response) {
+        console.log(response.data);
+        getProducts();
+        updateProduct();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function updateProduct() {
+    try {
+      const response = await axios.patch(
+        `${process.env.REACT_APP_ENDPOINT}product/editProduct`,
+        target,
+        { headers: { "Content-Type": "multipart/form-data" } }
+        
+      );
+      if (response) {
+        console.log(response.data);
+        getProducts()
+        setModal('success')
+      }
+    } catch (error) {console.log(error)}
+  }
   async function getProducts() {
     try {
       const response = await axios.get(
@@ -153,7 +183,19 @@ function ProductsDashboard() {
         <div className={style.btnsContainer}>
           <button
             className={style.editBtn}
-            // onClick={() => handleButtonClick(params.row)}
+            onClick={() => {
+              setModal("form");
+              const newState = {
+                ...params.row,
+                sizes: params.row.sizes.map((size) => {
+                  const { __v, ...newSize } = size;
+                  return newSize;
+                }),
+              };
+              const {__v, ...filtered} = newState 
+              setTarget(filtered);
+              setTitle("Edit Product");
+            }}
           >
             Edit
           </button>
@@ -175,11 +217,25 @@ function ProductsDashboard() {
     <>
       {modal === "form" ? (
         <ProductsModal
-          closeHandler={() => setModal(false)}
-          onConfirm={addSizes}
+          closeHandler={() => {
+            setModal(false);
+            target
+              ? setTarget(null)
+              : setNewproduct({
+                  name: "",
+                  sizes: [
+                    { capacity: null, price: null, stock: null, unit: null },
+                  ],
+                  categoryName: "",
+                  nutritionalInfo: "",
+                  description: "",
+                  image: null,
+                });
+          }}
+          onConfirm={target ? handleUpdateSizes : addSizes}
           title={title}
-          product={newProduct}
-          setProduct={setNewproduct}
+          product={target ? target : newProduct}
+          setProduct={target ? setTarget : setNewproduct}
         />
       ) : modal === "action" ? (
         <ActionModal

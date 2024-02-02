@@ -12,16 +12,28 @@ const ContactInfo = () => {
           <h2 className={style.followUs}>Follow Us</h2>
           <div className={style.iconsWrapper}>
             <div className={style.icon}>
-              <img alt="facebook icon" src={facebookIcon}></img>
+              <a
+                href="https://www.facebook.com/equilibreka?mibextid=ZbWKwL"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <img alt="facebook icon" src={facebookIcon}></img>
+              </a>
             </div>
             <div className={style.icon}>
-              <img alt="instagram icon" src={InstaIcon}></img>
+              <a
+                href="https://www.instagram.com/equilibre.lb?igsh=MjJ3dWlweXk2N3Z4"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <img alt="instagram icon" src={InstaIcon}></img>
+              </a>
             </div>
           </div>
         </article>
         <article className={style.phoneContainer}>
           <img src={PhoneIcon} alt="phone icon"></img>
-          <p className={style.number}>+94 4444 5555 6</p>
+          <p className={style.number}>+961 70820265</p>
         </article>
         <address className={style.locationContainer}>
           <img src={locationIcon} alt="location icon"></img>

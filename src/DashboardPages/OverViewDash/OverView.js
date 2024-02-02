@@ -13,6 +13,7 @@ import SalesOverview from '../../components/SalesOverview/SalesOverview'
 import TopSellerDash from '../../components/TopSellerDashboard/TopSellerDash'
 function OverView() {
   const [isLoading, setLoading] = useState(true);
+
   const [dataCards, setDataCards] = useState({
     totalProductsSold: null,
     totalOrders: null,
@@ -53,28 +54,27 @@ function OverView() {
 
   return (
     <div className={style.container}>
-      {/* <Sidebar /> */}
-      {isLoading ? (
-        <div>loading....</div>
-      ) : (
-        <section className={style.cards}>
-          <StatisticsCard title='Total Products Sold' value={dataCards.totalProductsSold} unit='' imageSrc={product} />
-          <StatisticsCard title='Total Order' value={dataCards.totalOrders} unit='' imageSrc={order} />
-          <StatisticsCard title='Total Income' value={dataCards.totalIncome} unit='$' imageSrc={income} />
-          <StatisticsCard title='Total User' value={dataCards.totalUser} unit='' imageSrc={income} />
 
-        </section>
-      )}
-      <div className={style.section2}>
-      <SalesOverview/>
-      <TopSellerDash/>
-      </div>
-      <div className={style.section3}>
-      <DonutChart/>
-      <BarChart/>
-      </div>
+          {isLoading ? (
+            <div>loading....</div>
+          ) : (
+            <section className={style.cards}>
+              <StatisticsCard title='Total Products Sold' value={dataCards.totalProductsSold} unit='' imageSrc={product} />
+              <StatisticsCard title='Total Order' value={dataCards.totalOrders} unit='' imageSrc={order} />
+              <StatisticsCard title='Total Income' value={dataCards.totalIncome} unit='$' imageSrc={income} />
+              <StatisticsCard title='Total User' value={dataCards.totalUser} unit='' imageSrc={income} />
+            </section>
+          )}
+          <div className={style.section2}>
+            <SalesOverview />
+            <TopSellerDash />
+          </div>
+          <div className={style.section3}>
+            <DonutChart />
+            <BarChart />
+          </div>
     </div>
   );
-}
+};
 
-export default OverView
+export default OverView;

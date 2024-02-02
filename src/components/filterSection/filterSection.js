@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import Styles from "./filterSection.module.css";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-const FilterSection = ({ setProducts, setProductLoading }) => {
+const FilterSection = ({setTitle, setProducts, setProductLoading }) => {
   const [loading, setLoading] = useState(false);
   const [defaultCategories, setDefaultCategories] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categories, setCategories] = useState([]);
-
+  const location = useLocation()
   const handleCategoryChange = (categoryId) => {
     const isSelected = categories.includes(categoryId);
     setCategories((prevCategories) =>
@@ -43,6 +44,9 @@ const FilterSection = ({ setProducts, setProductLoading }) => {
       );
       if (response) {
         setProducts(response.data);
+        const newUrl = generateFilterUrl(categories, prices);
+        window.history.replaceState(null, "", newUrl);
+        setTitle("Filtered Results")
         setProductLoading(false);
       }
     } catch (error) {
@@ -50,6 +54,31 @@ const FilterSection = ({ setProducts, setProductLoading }) => {
       console.log(error);
     }
   };
+
+  const generateFilterUrl = (selectedCategories, selectedPrices) => {
+    // Customize this logic based on your URL structure and parameters
+    const baseUrl = window.location.pathname;
+    const categoryParams = selectedCategories.map((categoryId) => `category=${categoryId}`).join("&");
+    const priceParams = selectedPrices.map((range) => `price=${range.minPrice}-${range.maxPrice}`).join("&");
+  
+    const queryParams = [categoryParams, priceParams].filter(param => param !== "").join("&");
+  
+    return `${baseUrl}?${queryParams}`;
+  };
+
+  useEffect(() => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const priceParam = urlSearchParams.get("price");
+  
+    if (priceParam) {
+      // Handle the case where the query parameter exists on page load
+      // For example, remove the query parameter from the URL
+      const cleanUrl = location.pathname;
+      window.history.replaceState(null, "", cleanUrl);
+  
+      // Perform any other actions you need when the query parameter is removed
+    }
+  }, [location]);
 
   const handleReset = async () => {
     try {
@@ -60,6 +89,9 @@ const FilterSection = ({ setProducts, setProductLoading }) => {
         `${process.env.REACT_APP_ENDPOINT}product/AllProducts`
       );
       if (response) {
+        const cleanUrl = location.pathname;
+        window.history.replaceState(null, "", cleanUrl);
+        setTitle("All Products")
         setProducts(response.data.data);
         setProductLoading(false)
       }

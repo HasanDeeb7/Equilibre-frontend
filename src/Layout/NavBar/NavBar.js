@@ -14,8 +14,6 @@ const NavBar = () => {
   const { user } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [categories, setCategories] = useState([])
-  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
 
@@ -32,23 +30,6 @@ const NavBar = () => {
 
   }, []);
 
-
-  //get dynamic data for categories
-  useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_ENDPOINT}category`)
-        console.log(response.data)
-        setCategories(response.data)
-        setLoading(false)
-      }
-      catch (error) {
-        console.log(error)
-      }
-    }
-    fetchCategory()
-  }, [])
-
   return (
     <>
       <nav className={style.container}>
@@ -56,7 +37,7 @@ const NavBar = () => {
           <img src={logo} alt="Equilibre" height={70} />
         </NavLink>
 
-        {windowWidth < 750 ? (
+        {windowWidth < 900 ? (
           // Mobile View
           <label className={style.menuButtonWrapper} htmlFor="">
             <input type="checkbox" className={style.menuButton} />
@@ -78,19 +59,7 @@ const NavBar = () => {
               <li>
                 <p>
                   Products
-                  <KeyboardArrowDown />
                 </p>
-                <ul className={style.dropdownMenu}>
-                  {(isLoading) ? <div>...</div> : (<div className={style.categories}>
-                    {categories.map((category) => (
-                      <li key={category.name}>
-                        <NavLink to={`/products/${category.name}`}>
-                          {category.name}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </div>)}
-                </ul>
               </li>
 
               <NavLink
@@ -193,21 +162,8 @@ const NavBar = () => {
                         alignContent: "center",
                         height: '20px'
                       }}>
-                        <KeyboardArrowDown />
                       </div>
                     </p>
-                    {/* Dropdown Menu for Desktop */}
-                    <ul className={style.dropdownMenuDesktop}>
-                      {(isLoading) ? <div>...</div> : (<div className={style.categories}>
-                        {categories.map((category) => (
-                          <li key={category.name} className={style.categories}>
-                            <NavLink to={`/products/${category._id}`}>
-                              {category.name}
-                            </NavLink>
-                          </li>
-                        ))}
-                      </div>)}
-                    </ul>
                   </li>
                 </NavLink>
                 <NavLink
@@ -284,10 +240,10 @@ const NavBar = () => {
                     <ShoppingCartOutlined
                       sx={{
                         cursor: "pointer",
-                        height: 30,
-                        width: 35,
+                        height: 25,
+                        width: 30,
                         marginLeft: 1.5,
-                        marginRight: 1.5,
+                        marginRight: 1.8,
                         color: "black",
                       }}
                     />

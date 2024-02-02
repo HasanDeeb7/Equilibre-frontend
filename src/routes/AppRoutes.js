@@ -29,6 +29,7 @@ import TestimonialsDashboard from "../DashboardPages/Testimonials/TestimonialsDa
 import Offers from "../DashboardPages/Offers/Offers";
 import { HelmetProvider } from 'react-helmet-async';
 import Categories from '../DashboardPages/Categories/Categories'
+import Consultation from "../DashboardPages/Consultation/Consultation";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();
@@ -76,6 +77,7 @@ function AppRoutes() {
           <Route path="products" element={<ProductsDashboard />}></Route>
           <Route path="orders" element={<Orders />}></Route>
           <Route path="offers" element={<Offers />}></Route>
+          <Route path="consultation" element={<Consultation />}></Route>
           <Route
             path="testimonials"
             element={<TestimonialsDashboard />}

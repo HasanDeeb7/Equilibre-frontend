@@ -33,10 +33,10 @@ function SingleProduct() {
         <meta name="decription" content="" />
       </Helmet>
       {!loading && (
-        <div className={style.singleProductContainer}>
-          <SingleProductOverview product={product} />
-          {/* <RelatedProduct product={product} /> */}
-        </div>
+      <div className={style.singleProductContainer}>
+        <SingleProductOverview product={product} />
+        <RelatedProduct product={product} />
+      </div>
       )}
     </>
   );

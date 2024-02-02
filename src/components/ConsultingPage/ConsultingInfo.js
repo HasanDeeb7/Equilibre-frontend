@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Style from './ConsultingInfo.module.css'
 import emailjs from '@emailjs/browser';
-import { Toast, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 function ConsultingInfo() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -37,7 +37,7 @@ function ConsultingInfo() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setisLoading(true)
-    emailjs.sendForm('service_99wpm17', 'template_egkex5g', event.target, 'eZbgPNjsgg-BVG94A')
+    emailjs.sendForm(`${process.env.REACT_APP_SERVICE_ID}, ${process.env.REACT_APP_TEMPLATEFORCONSULTING_ID}, ${event.target}, ${process.env.REACT_APP_PUBLIC_KEY}`)
 
       .then((result) => {
         if(result.status){
@@ -59,7 +59,7 @@ function ConsultingInfo() {
 
   return (
     <section className={Style.section}>
-      <h3>Book now</h3>
+      <h1>Book Now</h1>
       <span>Lorem ipsum is simple dummy test of printing.</span>
       <form className={Style.form} onSubmit={handleSubmit}>
         <div className={Style.inputs}>
@@ -72,6 +72,7 @@ function ConsultingInfo() {
               value={formData.firstName}
               onChange={handleChange}
               id='firstName'
+              className={Style.inputText}
               required
             />
           </div>
@@ -82,6 +83,7 @@ function ConsultingInfo() {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
+              className={Style.inputText}
               id='lastName'
               required
             />
@@ -97,6 +99,7 @@ function ConsultingInfo() {
               value={formData.age}
               onChange={handleChange}
               id='age'
+              className={Style.inputText}
               required
             />
           </div>
@@ -108,6 +111,7 @@ function ConsultingInfo() {
               value={formData.phone}
               onChange={handleChange}
               id='phone'
+              className={Style.inputText}
               required
             />
           </div>

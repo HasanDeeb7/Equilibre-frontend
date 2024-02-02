@@ -13,6 +13,7 @@
   border: none;
   border-radius: 5px;
   padding: 10px;
+  font-size: 15px;
 }
 .inputSearch:focus {
   outline: none;
@@ -30,6 +31,6 @@
 }
 @media only screen and (max-width: 950px){
   .inputContainer{
-    width: 80%;
+    width: 100%;
   } 
 }

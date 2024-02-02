@@ -11,8 +11,8 @@ function Input({
   type = "text",
   tag = "input",
   required = false,
-  isArray,
   className,
+  container
 }) {
   const [isShown, setIsShown] = useState(false);
   function handleChange(e) {
@@ -26,7 +26,7 @@ function Input({
   }
 
   return (
-    <div className={style.inputWrapper}>
+    <div className={`${style.inputWrapper} ${container && container}`}>
       {tag === "input" ? (
         <>
           <form className={style.inputForm} autoComplete="off">
@@ -61,7 +61,7 @@ function Input({
       ) : (
         <>
           <textarea
-            className={style.textarea}
+            className={`${style.textarea}`}
             type={type}
             name={control}
             id={control}

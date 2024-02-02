@@ -6,10 +6,11 @@ import Select from 'react-select';
 import countryList from 'country-list'
 import { useUserStore } from '../../Store.js';
 import { toast } from 'react-toastify'
-
+import ActionModal from '../ActionModal/ActionModal';
+import SuccessModal from '../SuccessModal/SuccessModal';
 const Shipping = ({ onFormDataChange }) => {
     const navigate = useNavigate();
-
+    const [modal, setModal] = useState();
     //import user 
     const { user } = useUserStore();
     console.log(user)
@@ -18,14 +19,14 @@ const Shipping = ({ onFormDataChange }) => {
     const totalQuantity = localStorage.getItem('totalPrice');
     //get all product info from localStorage
     const orderedProducts = []
-    JSON.parse(localStorage.getItem("Cart")).map(product => {
+  if(JSON.parse(localStorage.getItem("Cart"))){  JSON.parse(localStorage.getItem("Cart")).map(product => {
         orderedProducts.push({
             product: product._id,
             quantity: product.quantity,
             size: product.size
         })
 
-    })
+    })}
     console.log(orderedProducts);
 
 
@@ -117,7 +118,7 @@ const Shipping = ({ onFormDataChange }) => {
             const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}order/addNewOrder`, newOrder)
             if (response) {
                 console.log(response.data)
-                toast.success('Order send successfully')
+                setModal('success')
                 return response
             }
 
@@ -134,33 +135,87 @@ const Shipping = ({ onFormDataChange }) => {
 
     }, [formData])
 
-
+    const handelConfirmation = () => {
+        if (orderedProducts.length === 0) {
+            setModal('Empty Cart');
+        } else if (
+            !formData.country ||
+           (formData.country==='lebanon' && !formData.city) ||
+            !formData.firstName ||
+            !formData.lastName ||
+            !formData.shippingAddress ||
+            !formData.paymentMethod ||
+            !formData.phone
+        ) {
+            setModal('Missing Field');
+        } else {
+            setModal('action');
+        }
+    };
     //handle submit info to create order
     const handelSubmit = () => {
         if (user) {
-            if (window.confirm('Are you sure you want to proceed with this order?')) {
+            try {
                 console.log(orderedProducts)
                 createOrder({ ...formData, totalAmount: totalQuantity, products: [...orderedProducts], userId: user._id, orderDate: new Date() })
-                // setFormData({
-                //     email: '',
-                //     country: '',
-                //     city: '',
-                //     firstName: '',
-                //     lastName: '',
-                //     shippingAddress: '',
-                //     phone: '',
-                //     paymentMethod: ''
-                // })
+
+                setModal('success')
                 console.log(formData)
+                setFormData({
+                    email: '',
+                    country: '',
+                    city: '',
+                    firstName: '',
+                    lastName: '',
+                    shippingAddress: '',
+                    phone: '',
+                    paymentMethod: ''
+                })
+                //clear local storage content 
+                localStorage.removeItem("Cart");
+                localStorage.removeItem("totalPrice");
+
+            } catch (error) {
+                toast.error('There is an error in sending the order!')
             }
         }
-        else {
-            toast.error('Please log in before proceeding to checkout');
-            navigate('/login')
-        }
+        else { toast.error('Please log in before proceeding to checkout'); }
     }
+
+
     return (
+        <>
+            {modal === 'action' ? (
+                <ActionModal
+                message="Are you sure you want to proceed with this order?"
+                closeHandler={() => setModal(null)}
+                action={handelSubmit}
+                />
+                ) : 
+
+            modal === 'success' ? (
+                <>
+                    {<SuccessModal
+                        closeHandler={() => setModal(null)}
+                        message="Your order was successfully placed!"
+                        />}
+                </>
+            ): ""}
+        
         <div className={style.shippingInfo}>
+
+            {modal === `Missing Field` && (
+                <div>
+                    {toast.error('Make sure to fill in the required field')}
+                    {setModal(null)}
+                </div>
+            )}
+            {modal === 'Empty Cart' && (
+                <div>
+                    {toast.error('Your cart is empty. Add products before confirming the order.')}
+                    {setModal(null)}
+                </div>
+            )}
             <section className={style.contactInfo}>
                 <label htmlFor='email' className={style.emailLabel}>
                     Contact
@@ -175,7 +230,7 @@ const Shipping = ({ onFormDataChange }) => {
                     onChange={handleChange}
                     placeholder='Email'
                     required
-                />
+                    />
             </section>
 
             <section>
@@ -194,21 +249,21 @@ const Shipping = ({ onFormDataChange }) => {
                     placeholder="Select Country"
                     styles={customStyles}
                     required
-                />
+                    />
 
                 {formData.country === 'lebanon' && (
                     <Select
-                        name='city'
-                        id='city'
-                        options={cities.lebanon}
-                        onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
-                        value={cities.lebanon.find((option) => option.value === formData.city)}
+                    name='city'
+                    id='city'
+                    options={cities.lebanon}
+                    onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
+                    value={cities.lebanon.find((option) => option.value === formData.city)}
                         className={style.selector}
                         placeholder="Select City"
                         styles={customStyles}
                         required
-                    />
-                )}
+                        />
+                        )}
 
                 <section className={style.nameSection}>
 
@@ -223,7 +278,7 @@ const Shipping = ({ onFormDataChange }) => {
                             onChange={handleChange}
                             placeholder='First Name'
                             required
-                        />
+                            />
                     </label>
 
 
@@ -238,7 +293,7 @@ const Shipping = ({ onFormDataChange }) => {
                             onChange={handleChange}
                             placeholder='Last Name'
                             required
-                        />
+                            />
                     </label>
                 </section>
 
@@ -250,7 +305,7 @@ const Shipping = ({ onFormDataChange }) => {
                     onChange={handleChange}
                     placeholder='Address (e.g :Rue, Floor, Apartment) '
                     required
-                />
+                    />
 
                 <input
                     value={formData.phone}
@@ -260,7 +315,7 @@ const Shipping = ({ onFormDataChange }) => {
                     onChange={handleChange}
                     placeholder='Phone number'
                     required
-                />
+                    />
             </section>
             <h3 className={style.paymentTitle}>Payment</h3>
             <section className={style.payment}>
@@ -273,7 +328,7 @@ const Shipping = ({ onFormDataChange }) => {
                         className={style.paymentMethod}
                         onChange={handleChange}
                         required
-                    />
+                        />
                     Cash On Delivery (USD)
                 </label>
 
@@ -285,14 +340,15 @@ const Shipping = ({ onFormDataChange }) => {
                         className={style.paymentMethod}
                         onChange={handleChange}
                         required
-                    />
+                        />
                     Cash On Delivery (LBP on daily rate)
                 </label>
             </section>
             <nav className={style.navSection}>
                 <Link to='/cart' className={style.navLink}>Back to cart</Link>
-                <button type='button' className={style.completeOrder} onClick={handelSubmit} > Complete Order</button></nav>
+                <button type='button' className={style.completeOrder} onClick={handelConfirmation} > Complete Order</button></nav>
         </div>
+                        </>
     );
 };
 

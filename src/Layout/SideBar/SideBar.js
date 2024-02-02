@@ -154,12 +154,14 @@ export default function SideBar() {
                             >
                                 <Dashboard sx={{ color: 'gray' }} />
                             </IconButton >
-                            <img alt='Equilibre' src={logo} width={80}  style={{
-                                ...(open && { display: 'none' }),
-                                '@media(width<500px)': {
-                                    display: 'none',
-                                }
-                            }} />
+                            <img alt='Equilibre' src={logo} width={80}
+                            //   style={{
+                            //     ...(open && { display: 'none' }),
+                            //     '@media(width<500px)': {
+                            //         display: 'none',
+                            //     }
+                            // }}
+                             />
                         </Box>
                         <Box component='nav' sx={{ display: 'flex' }}>
                             <Avatar
@@ -176,16 +178,17 @@ export default function SideBar() {
                         </Box>
                     </Toolbar>
                 </AppBar>
-                <Drawer variant="permanent" open={open} sx={{
-
+                <Drawer variant="permanent" open={open} 
+                sx={{
                     ...(!open && {
                         '@media(width<500px)': {
                             display: 'none'
                         }
                     })
-                }}>
+                }}
+                >
                     <DrawerHeader>
-                        <img alt='Equilibre' src={logo} width={80} lazy />
+                        {/* <img alt='Equilibre' src={logo} width={80} lazy /> */}
                         <IconButton onClick={handleDrawerClose}>
                             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                         </IconButton>
@@ -196,7 +199,7 @@ export default function SideBar() {
                     <List>
 
                         {sidebarItems.map((text, index) => (
-                            <ListItem key={text[0]} disablePadding sx={{ display: 'block' }}>
+                            <ListItem key={text[0]} disablePadding sx={{ display: 'block', '&:hover': { backgroundColor: 'rgb(227, 251, 156)'}}}>
                                 <ListItemButton
                                     className={{
                                         [style.active]: location.pathname === `/${text[0]}`,

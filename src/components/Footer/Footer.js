@@ -1,88 +1,44 @@
-import { useState } from "react";
+import { Instagram } from "@mui/icons-material"
+import Facebook from "../../assets/svgComponent/Facebook"
 import Styles from "./Footer.module.css"
-import axios from "axios";
+import { Link } from "react-router-dom"
 const Footer = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        text: '',
-    });
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevformData) => ({
-            ...prevformData,
-            [name]: value,
-        }));
-    };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (!formData.email || !formData.text) {
-            return alert('Please fill in both email and message fields.');
-        }
-        const endpoint = 'http://localhost:3000/send-message';
-    
-        axios.post(endpoint, formData)
-            .then(response => {
-                alert(response.data.message);
-                setFormData({
-                    email: '',
-                    message: '',
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while sending the message.');
-            });
-    }
-
-return (
-    <header className={Styles.footer}>
-        <div>
-            <h1>Equilibre</h1>
-            <p className={Styles.parag}>Your natural product made for your sanity and for your well-being.</p>
-        </div>
-        <ul>
-            <li>Discovery</li>
-            <li>New season</li>
-            <li>Most searched</li>
-            <li>Most selled</li>
-        </ul>
-        <ul>
-            <li>About</li>
-            <li>Help</li>
-            <li>Shipping</li>
-            <li>Affiliate</li>
-        </ul>
-        <ul>
-            <li>info</li>
-            <li>Contact us</li>
-            <li>Privacy Policies</li>
-            <li>Terms & Conditions</li>
-        </ul>
-        <div className={Styles.sentMessage}>
-            <p className={Styles.contactUs}>Contact us : (+961) 70 820 265</p>
-            <div className={Styles.message}>
-                <span className={Styles.messageUs}>Message us :</span>
-                <form className={Styles.form}>
-                    <input type="email"
-                        placeholder="your email"
-                        className={Styles.firstInput}
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}></input>
-                    <input type="text"
-                        placeholder="your message..."
-                        name="text"
-                        value={formData.text}
-                        onChange={handleInputChange}
-                        className={Styles.secondInput}></input>
-                    <button type="submit" onClick={handleSubmit}>Submit</button>
-                </form>
+    return (
+        <footer className={Styles.footer}>
+            <div>
+                <h1>Equilibre</h1>
+                <p className={Styles.parag}>
+                    Your natural product made for your sanity and for your well-being.
+                </p>
+                <div className={Styles.socialM}>
+                    <a href="https://www.facebook.com/equilibreka?mibextid=ZbWKwL" rel="noreferrer" target="_blank">
+                        <Facebook />
+                    </a>
+                    <a href="https://www.instagram.com/equilibre.lb?igsh=MjJ3dWlweXk2N3Z4" rel="noreferrer" target="_blank">
+                        <Instagram />
+                    </a>
+                </div>
             </div>
-        </div>
+            <ul>
+                <li>Discovery</li>
+                <li><Link to='/' className={Styles.Link}>Home</Link></li>
+                <li><Link to='/products' className={Styles.Link}>Products</Link></li>
+                <li><Link to='/#mostPopular' className={Styles.Link}>Most Popular</Link></li>
+            </ul>
+            <ul>
+                <li>Equilibre</li>
+                <li><Link to='/about' className={Styles.Link}>About us</Link></li>
+                <li><Link to='/contact' className={Styles.Link}>Contact us</Link></li>
+                <li><Link to='' className={Styles.Link}>Location</Link></li>
+            </ul>
+            <ul>
+                <li>Clinic</li>
+                <li><Link to='/consultation' className={Styles.Link}>Packages</Link></li>
+                <li><Link to='' className={Styles.Link}>Location</Link></li>
+            </ul>
 
-    </header>
-)
+        </footer>
+    )
 }
 
 export default Footer

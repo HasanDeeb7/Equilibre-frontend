@@ -36,7 +36,7 @@ const ProductCard = ({ offerId, name, description, size, imgurl, slug }) => {
           </section>
           <section className={ProductStyle.PricingPart}>
             <div className={ProductStyle.priceContainer}>
-              <p className={ProductStyle.originalPrice}>
+              <p className={`${ProductStyle.originalPrice} ${offerId && ProductStyle.originalPriceDiscount}`}>
                 {offerId && <span className={ProductStyle.offerLine}></span>}$
                 {size[0].price}
               </p>

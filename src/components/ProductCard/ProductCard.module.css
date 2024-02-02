@@ -1,4 +1,5 @@
 .cardContainer {
+  transition: box-shadow 0.3s;
   width: 275px;
   max-height: 430px;
   border: 1px solid white;
@@ -9,6 +10,9 @@
   background-color: white;
   margin-bottom: 7%;
   padding-bottom: 15px;
+}
+.cardContainer:hover {
+  box-shadow: 0 0 15px rgba(0,0,0,0.3); 
 }
 .discountRateContainer {
   background-color: #ffe1e1;
@@ -51,21 +55,6 @@
   width: 100%;
   justify-content: space-between;
 }
-/* .addToCartBtn {
-  border: none;
-  background-color: #b7cf33;
-  font-size: 1.2rem;
-  color: white;
-  padding: 15px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px;
-  transition:  background-color 0.3s ease;
-}
-
-.addToCartBtn:hover { 
-  background-color: #96b926;
-} */
 
 .priceContainer{
     margin-left: 10px;
@@ -86,20 +75,23 @@
   padding-right: 5px;
   color: #000;
 }
-
+.originalPriceDiscount{
+  color: rgb(127, 127, 127);
+}
 .offerLine {
   content: '';
   position: absolute;
   top: 50%;
   left: 0;
   width: 100%;
-  height: 1px;
-  background-color: black;
+  height: 2px;
+  background-color: rgb(127, 127, 127);
 }
 
 .discoutedPrice{
     color: #F66;
     padding-left: 10px ;
+    font-weight: 900;
 }
 .productName {
   color: #000;

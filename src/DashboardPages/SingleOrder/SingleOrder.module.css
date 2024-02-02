@@ -149,8 +149,8 @@
   background-color: var(--primary-color);
 }
 .updateBtn:hover {
-  background-color: #fff;
-  color: var(--primary-color);
+  background-color:#a2b72c;
+
 }
 .cancelledBtn {
   background-color: red;

@@ -21,6 +21,13 @@ function ProductsModal({
     setIsOpen(false);
   };
 
+  function handleConfirm(){
+    // if(Object.values(product).some(item => item.value === '')){
+    //   console.log(product)
+    //  return  toast.error('All fields are required')
+    // }
+    onConfirm()
+  }
   function handleAddSize() {
     if (
       !Object.values(product.sizes[product.sizes.length - 1]).some(
@@ -84,32 +91,36 @@ function ProductsModal({
             label="Product Name"
             control="name"
             required
-          />
+            />
           <Input
             value={product}
             setValue={setProduct}
             label="Category Name"
             control="categoryName"
             required
-          />
+            />
+            <div className={style.textareasWrapper}>
+
           <Input
             value={product}
             setValue={setProduct}
             label="Nutritional Info"
             control="nutritionalInfo"
             required
-          />
+            tag="textarea"
+            />
           <Input
             value={product}
             setValue={setProduct}
             label="Description"
             control="description"
             required
-          />
-          <div>
+            tag="textarea"
+            />
+            </div>
+          <div className={style.fileWrapper}>
             <input
               type="file"
-              style={{ marginBottom: "30px" }}
               onChange={(e) =>
                 setProduct({ ...product, image: e.target.files[0] })
               }
@@ -213,7 +224,7 @@ function ProductsModal({
             <button onClick={() => closeHandler()} className={style.cancelBtn}>
               Cancel
             </button>
-            <button className={style.confirmBtn} onClick={onConfirm}>
+            <button className={style.confirmBtn} onClick={handleConfirm}>
               Confirm
             </button>
           </div>

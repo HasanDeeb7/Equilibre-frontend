@@ -1,6 +1,6 @@
 .inputWrapper {
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,14 +117,14 @@ input:-webkit-autofill:focus {
   pointer-events: none;
 }
 .inputWrapper:focus-within .textareaLabel {
-  transform: translateY(-255%) scale(0.9);
-  background-color: var(--secondary-bg-clr);
+  transform: translateY(-272%) scale(0.9);
+  background-color: white;
   color: var(--primary-color);
 }
 
 .textareActive {
-  transform: translateY(-250%) scale(0.9);
-  background-color: var(--secondary-bg-clr);
+  transform: translateY(-272%) scale(0.9);
+  background-color: white;
 }
 
 input:-webkit-autofill,

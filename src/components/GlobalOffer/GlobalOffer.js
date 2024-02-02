@@ -3,7 +3,7 @@ import style from './GlobalOffer.module.css'
   return (
     <>
     <section className={style.offerContainer}>
-            <p>🚨 Don't miss your {offer && offer.title}: {offer && offer.rate}% OFF on all products! 🚨</p> 
+            <p>Don't miss your {offer && offer.title}: {offer && offer.rate}% OFF on all products!</p> 
       </section>
     </>
   )

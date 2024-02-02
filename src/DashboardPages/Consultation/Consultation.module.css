@@ -1,26 +1,23 @@
-.productsContainer {
-    padding-left: 350px;
+.consultationsContainer {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
   }
-  .addBtn{
-    padding: 10px 30px;
-    width: 120px;
-    border: 1px solid var(--primary-color);
-    background: var(--primary-color);
-    color: white;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  .consultationsTable {
+    width: 70%;
   }
-  .addBtn:hover{
-    background-color: #a2b72c
+
+  .description{
+    height: 80px;
+    overflow-y: scroll;
+   width: 90%;
+
   }
-  .productsTable {
-    width: 60%;
+
+  .description>li{
+   margin: 10px;
   }
   .btnsContainer {
     display: flex;
@@ -37,8 +34,8 @@
     cursor: pointer;
   }
   .editBtn:hover {
-    background-color:#a2b72c;
-  
+    background-color: transparent;
+    color: var(--primary-color);
   }
   .deleteBtn {
     padding: 10px 30px;
@@ -51,9 +48,24 @@
     cursor: pointer;
   }
   .deleteBtn:hover {
-    background-color:#b72c2c;
-  
+    background-color: transparent;
+    color: var(--secondary-color);
   }
-  .image{
-    object-fit: contain;
+  .addBtn {
+    padding: 10px 30px;
+    width: 160px;
+    border: 1px px solid var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  @media only screen and(width<500) {
+    .categoriesContainer{
+        width: 90%;
+    }
+    
   }

@@ -1,30 +1,34 @@
 import { useEffect, useState } from "react";
-import style from "./Categories.module.css";
+import style from "./Consultation.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import { toast } from "react-toastify";
 import ActionModal from "../../components/ActionModal/ActionModal";
 import SuccessModal from "../../components/SuccessModal/SuccessModal";
 import DashboardModal from "../../components/dashboardModal/DashboardModal";
-import CategorieForm from "../../components/CategorieForm/CategorieForm";
-function Categories() {
-  const [categories, setCategories] = useState();
+import ConsultationForm from "../../components/ConsultationForm/ConsultationForm"
+function Consultation() {
+  const [consultation, setConsultation] = useState();
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(null);
   const [message, setMessage] = useState();
   const [target, setTarget] = useState(null);
-  const [pagination, setPagination] = useState({ pageSize: 5, page: 0 });
-  const [newCategorie, setNewCategorie] = useState({
+  const [descriptionForm, setDescriptionForm] = useState({});
+  const [newConsultation, setNewConsultation] = useState({
     name: '',
+    price: '',
+    description: []
   })
-  //get all categories
-  async function getCategories() {
+
+
+  //get al consutation
+  async function getConsultations() {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_ENDPOINT}category/`
+        `${process.env.REACT_APP_ENDPOINT}consultation/`
       );
       if (response) {
-        setCategories(response.data);
+        setConsultation(response.data);
         setLoading(false);
         console.log(response.data);
       }
@@ -34,40 +38,47 @@ function Categories() {
     }
   }
 
-  //add categorie
-  async function addCategorie() {
+  //add consultation
+  async function addConsultation() {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}category/create`,
-        { ...newCategorie },
-      )
+      const response = await axios.post(
+        `${process.env.REACT_APP_ENDPOINT}consultation/create`,
+        {
+          ...newConsultation,
+          description:[...Object.values(descriptionForm)]
+        }
+      );
+  
       if (response) {
-        console.log(response.data)
-        setMessage('Added Categorie')
-        setModal("success")
-        getCategories()
-        setNewCategorie({ name: '' });
-        setLoading(false)
-
+        console.log(response.data);
+        setMessage('Added Consultation');
+        setModal('success');
+        getConsultations();
+        setConsultation({
+          name: '',
+          price: '',
+          description: [],
+        });
+        setDescriptionForm({});
+        setLoading(false);
       }
-    }
-    catch (error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   }
-
-  //update categorieName
-  async function updateCategory() {
+  //update Consultation
+  async function updateConsultation() {
     try {
       setLoading(true);
       const response = await axios.patch(
-        `${process.env.REACT_APP_ENDPOINT}category/update`,
-        { ...target, id: target._id }
+        `${process.env.REACT_APP_ENDPOINT}consultation/update`,
+        { ...target, id: target._id}
       );
       if (response) {
         console.log(response);
-        setMessage("Categorie Updated");
+        setMessage("Consultation Updated");
         setModal("success");
-        getCategories();
+        getConsultations();
         setLoading(false);
       }
     } catch (error) {
@@ -77,18 +88,18 @@ function Categories() {
     }
   }
 
-  //delete categorie
-  async function deleteCategory() {
+  //delete consultation
+  async function deleteConsultation() {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_ENDPOINT}category/delete/`,
+        `${process.env.REACT_APP_ENDPOINT}consultation/delete/`,
         { params: { id: target._id } }
       );
       if (response) {
         console.log(response.data);
-        setMessage("Categorie deleted ");
+        setMessage("Consultation deleted ");
         setModal("success");
-        getCategories();
+        getConsultations();
         setLoading(false);
       }
     } catch (error) {
@@ -99,28 +110,24 @@ function Categories() {
 
 
   useEffect(() => {
-    getCategories();
+    getConsultations();
   }, []);
-
-
   const columns = [
-    { field: "name", headerName: "Category Name", width: 200 },
+    { field: "name", headerName: "Consultation Name", width: 200 },
+    { field: "price", headerName: "Price", width: 200 },
     {
-      field: "products", headerName: "Related Products", width: 380,
+      field: "description", headerName: "Description", width: 600,
 
       renderCell: (params) => (
-        (params.row.products.length === 0) ? <div>No Products Added yet</div> :
-          <ul className={style.products}>
-            {params.row.products.map((product, index) => (
-              <li key={index} >{index + 1}- {product.name}</li>
-            ))}
-          </ul>
+        <ul className={style.description}>
+          {params.row.description.map((description, index) => (
+            <li key={index} >-{description}</li>
+          ))}
+        </ul>
       ),
       type: 'string',
 
     },
-    { field: "createdAt", headerName: "Created At", width: 200, }
-    ,
     {
       field: "actions",
       headerName: "Actions",
@@ -131,7 +138,7 @@ function Categories() {
             className={style.editBtn}
             onClick={() => {
               setModal("form");
-              setTarget(params.row);
+              setTarget(params.row);  
             }}
           >
             Edit
@@ -155,34 +162,38 @@ function Categories() {
       <>
         {modal === "form" ? (
           <DashboardModal
-            title="Categorie"
+            title="Consultation"
             closeHandler={() => setModal(null)}
             onConfirm={() => {
               if (target) {
-                updateCategory();
+                updateConsultation();
+
               } else {
-                addCategorie();
+                addConsultation();
               }
             }}
           >
-            <CategorieForm
-              categorie={target ? target : newCategorie}
-              setCategorie={target ? setTarget : setNewCategorie}
+            <ConsultationForm
+              consultation={target ? target : newConsultation}
+              setConsultation={target ? setTarget : setNewConsultation}
+              descriptionForm={target ? target :descriptionForm} 
+              setDescriptionForm={target ? setTarget :setDescriptionForm}
+              description={target.description}
             />
           </DashboardModal>
         ) : modal === "success" ? (
           <SuccessModal closeHandler={() => setModal(null)} message={message} />
         ) : modal === "action" ? (
           <ActionModal
-            message="Are you sure you want to delete this Categorie"
+            message="Are you sure you want to delete this Consultation"
             closeHandler={() => setModal(null)}
-            action={() => deleteCategory()}
+            action={() => deleteConsultation()}
           />
         ) : (
           ""
         )}
-        <div className={style.categoriesContainer}>
-          <div className={style.categoriesTable}>
+        <div className={style.consultationsContainer}>
+          <div className={style.consultationsTable}>
             <button
               className={style.addBtn}
               onClick={() => {
@@ -190,17 +201,13 @@ function Categories() {
                 setModal("form");
               }}
             >
-              Add Categorie
+              Add Consultation
             </button>
             <DataGrid
-              rows={categories}
+              rows={consultation}
               columns={columns}
               getRowId={(row) => row._id}
               getRowHeight={(params) => 100}
-              paginationModel={pagination}
-              pagination
-              pageSizeOptions={[5, 10, 20, 50]}
-              onPaginationModelChange={setPagination}
             />
           </div>
         </div>
@@ -209,4 +216,4 @@ function Categories() {
   );
 }
 
-export default Categories;
+export default Consultation;
