@@ -11,6 +11,8 @@ function Input({
   type = "text",
   tag = "input",
   required = false,
+  className,
+  container
 }) {
  
   const [isShown, setIsShown] = useState(false);
@@ -25,19 +27,18 @@ function Input({
   }
 
   return (
-    <div className={style.inputWrapper}>
+    <div className={`${style.inputWrapper} ${container && container}`}>
       {tag === "input" ? (
         <>
           <form className={style.inputForm} autoComplete="off">
             <input
-              className={`${style.loginInput}`}
+              className={`${style.loginInput} ${className}`}
               type={isShown ? "text" : type}
               name={control}
               id={control}
               value={value[control]}
               onChange={handleChange}
               disabled={isDisabled}
-                
             />
             {required && <div className={style.requiredInput}></div>}
             {type === "password" &&
@@ -61,7 +62,7 @@ function Input({
       ) : (
         <>
           <textarea
-            className={style.textarea}
+            className={`${style.textarea}`}
             type={type}
             name={control}
             id={control}

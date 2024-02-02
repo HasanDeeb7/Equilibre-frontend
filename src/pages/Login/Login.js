@@ -4,8 +4,9 @@ import Input from "../../components/Input/Input";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useUserStore } from "../../Store";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { IoReturnUpBack } from "react-icons/io5";
 
 function Login() {
   const { user, setUser } = useUserStore();
@@ -67,9 +68,10 @@ function Login() {
             <button className={style.loginButton} onClick={handleLogin}>
               Login
             </button>
-            <button className={style.homepageBtn} onClick={handleLogin}>
+            <Link to={'/'} className={style.homepageBtn}>
+              <IoReturnUpBack />
               Homepage
-            </button>
+            </Link>
           </section>
           <span>
             You don't have an account?{" "}

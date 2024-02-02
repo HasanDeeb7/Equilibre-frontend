@@ -6,7 +6,19 @@
     justify-content: center;
     width: 100%;
   }
-  
+  .addBtn{
+    padding: 10px 30px;
+    width: 120px;
+    border: 1px solid var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .addBtn:hover{
+    background-color: #a2b72c
+  }
   .productsTable {
     width: 60%;
   }
