@@ -3,10 +3,27 @@ import style from "./Offers.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 
+import { toast } from "react-toastify";
+import ActionModal from "../../components/ActionModal/ActionModal";
+import SuccessModal from "../../components/SuccessModal/SuccessModal";
+import DashboardModal from "../../components/dashboardModal/DashboardModal";
+import GlobalOfferForm from "../../components/GlobalOfferForm/GlobalOffer";
+
 function Offers() {
   const [offers, setOffers] = useState();
   const [globalOffers, setGlobalOffers] = useState();
   const [loading, setLoading] = useState(true);
+
+  const [modal, setModal] = useState(null);
+  const [message, setMessage] = useState();
+  const [target, setTarget] = useState(false);
+  const [pagination, setPagination] = useState({ pageSize: 5, page: 0 });
+  const [newGlobalOffer, setNewGlobalOffer] = useState({
+    title: "",
+    rate: 0,
+    startDate: "",
+    endDate: "",
+  });
 
   async function getOffers() {
     // setLoading(true);
@@ -35,7 +52,8 @@ function Offers() {
         console.log(response.data);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.error);
+      toast.error(error.error)
       setLoading(false);
     }
   }
@@ -49,6 +67,32 @@ function Offers() {
         setLoading(false);
       });
   }, []);
+
+  async function addGlobalOffer() {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}globalOffer/create`,
+        { ...newGlobalOffer },
+      )
+      if (response) {
+        console.log(response.data)
+        setMessage('Added Global Offer')
+        setModal("success")
+        setNewGlobalOffer({
+          title: "",
+          rate: 0,
+          startDate: "",
+          endDate: "",
+        });
+        setLoading(false)
+
+      }
+    }
+    catch (error) {
+      
+    }
+  }
+
+
   const offersColumns = [
     { field: "discountRate", headerName: "Discount", width: 150 },
     { field: "startDate", headerName: "Start Date", width: 150 },
@@ -147,13 +191,60 @@ function Offers() {
               />
             </div>
             <div>
-              <h2>Global Offers</h2>
-              <DataGrid
-                rows={globalOffers}
-                columns={globalOfferColumns}
-                getRowId={(row) => row._id}
-                autoHeight
-              />
+              {!loading && (
+                <>
+                  {modal === "form" ? (
+                    <DashboardModal
+                      title="GlobalOffer"
+                      closeHandler={() => setModal(null)}
+                      onConfirm={() => {
+                        if (target) {
+                          // updateCategory();
+                        } else {
+                          addGlobalOffer();
+                        }
+                      }}
+                    >
+                      <GlobalOfferForm
+                        newGlobalOffer={target ? target : newGlobalOffer}
+                        setNewGlobalOffer={target ? setTarget : setNewGlobalOffer}
+                      />
+                    </DashboardModal>
+                  ) : modal === "success" ? (
+                    <SuccessModal
+                      closeHandler={() => setModal(null)}
+                      message={message}
+                    />
+                  ) : modal === "action" ? (
+                    <ActionModal
+                      message="Are you sure you want to delete this Categorie"
+                      closeHandler={() => setModal(null)}
+                      // action={() => deleteCategory()}
+                    />
+                  ) : (
+                    ""
+                  )}
+
+                  <div>
+                    <h2>Global Offers</h2>
+                    <button
+                      className={style.addBtn}
+                      onClick={() => {
+                        setTarget(null);
+                        setModal("form");
+                      }}
+                    >
+                      Add
+                    </button>
+                    <DataGrid
+                      rows={globalOffers}
+                      columns={globalOfferColumns}
+                      getRowId={(row) => row._id}
+                      autoHeight
+                    />
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

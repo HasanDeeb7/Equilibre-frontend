@@ -3,7 +3,7 @@ import AppRoutes from "./routes/AppRoutes";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useUserStore } from "./Store";
-
+import ScrollToTop from "./Layout/ScrollToTheTop/ScrollToTheTop";
 function App() {
   axios.defaults.withCredentials = true;
   const { user, setUser, removeUser } = useUserStore();
@@ -33,6 +33,7 @@ function App() {
   return (
     !loading && (
       <div className="App">
+        <ScrollToTop/>
         <AppRoutes />
       </div>
     )

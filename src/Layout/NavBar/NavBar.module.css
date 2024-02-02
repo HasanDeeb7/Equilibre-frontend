@@ -300,3 +300,8 @@
     transform: rotate(45deg);
   }
 }
+@media only screen and (max-width: 425px){
+  .menuButtonWrapper .itemList{
+    left: -13vw;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
 import PersonOutline from "@mui/icons-material/PersonOutline";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
@@ -8,15 +8,16 @@ import { usePopover } from "./usePopover.js";
 import logo from "../../assets/logo.jpeg";
 import { useUserStore } from "../../Store.js";
 import style from "./NavBar.module.css";
-import axios from 'axios'
+import { toast } from "react-toastify";
+import axios from "axios";
 const NavBar = () => {
   const accountPopover = usePopover();
-  const { user } = useUserStore();
+  const navigate = useNavigate();
+  const { user, removeUser } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
       setIsOpen(false);
@@ -27,8 +28,22 @@ const NavBar = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-
   }, []);
+
+  async function logout() {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_ENDPOINT}user/logout`
+      );
+      if (response) {
+        toast.success(response.data.message);
+        removeUser();
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -56,11 +71,16 @@ const NavBar = () => {
               </label>
             </div>
             <ul className={style.itemList}>
-              <li>
-                <p>
-                  Products
-                </p>
-              </li>
+              <NavLink
+                to="/products"
+                className={({ isActive }) =>
+                  isActive ? style.activeLinks : style.navLinks
+                }
+              >
+                <li>
+                  <p>Products</p>
+                </li>
+              </NavLink>
 
               <NavLink
                 to="/consultation"
@@ -102,16 +122,7 @@ const NavBar = () => {
                   <p>Profile</p>
                 </li>
               </NavLink>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
-                  isActive ? style.activeLinks : style.navLinks
-                }
-              >
-                <li>
-                  <p>Login</p>
-                </li>
-              </NavLink>
+
               <NavLink
                 to="/cart"
                 className={({ isActive }) =>
@@ -122,6 +133,30 @@ const NavBar = () => {
                   <p>Cart</p>
                 </li>
               </NavLink>
+              {user && (
+                <NavLink
+                  to="/cart"
+                  className={({ isActive }) =>
+                    isActive ? style.activeLinks : style.navLinks
+                  }
+                >
+                  <li onClick={logout}>
+                    <p style={{ color: "#ee544a" }}>log out</p>
+                  </li>
+                </NavLink>
+              )}
+              {!user && (
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive ? style.activeLinks : style.navLinks
+                  }
+                >
+                  <li>
+                    <p>Login</p>
+                  </li>
+                </NavLink>
+              )}
             </ul>
           </label>
         ) : (
@@ -143,7 +178,7 @@ const NavBar = () => {
 
                 <NavLink
                   className={`${style.navLinks} ${style.dropDownContainer}`}
-                  to='/products'
+                  to="/products"
                 >
                   <li>
                     <p
@@ -152,17 +187,18 @@ const NavBar = () => {
                         justifyContent: "center",
                         alignContent: "center",
                         padding: 0,
-                        margin: 0
+                        margin: 0,
                       }}
                     >
                       Products
-                      <div style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignContent: "center",
-                        height: '20px'
-                      }}>
-                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignContent: "center",
+                          height: "20px",
+                        }}
+                      ></div>
                     </p>
                   </li>
                 </NavLink>
@@ -229,7 +265,8 @@ const NavBar = () => {
                       }}
                     />
                   </NavLink>
-                </>) : (
+                </>
+              ) : (
                 <>
                   <NavLink
                     to="/cart"
@@ -251,7 +288,8 @@ const NavBar = () => {
                   <NavLink to="/login">
                     <button className={style.loginButton}>Login</button>
                   </NavLink>
-                </>)}
+                </>
+              )}
             </div>
           </>
         )}

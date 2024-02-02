@@ -33,8 +33,8 @@ const TopSellerDash = () => {
                 <h4>Product</h4>
                 <h4>Total Sold</h4>
               </header>
-              {topSeller.map(({ id, name, image, soldQuantityCounter }) => (
-                <section className={style.productCard} key={id}>
+              {topSeller.map(({ id, name, image, soldQuantityCounter },i) => (
+                <section className={style.productCard} key={i}>
                   <figure>
                     <img alt={name} src={image} loading="lazy" width={57} />
                     <p>{name}</p>
