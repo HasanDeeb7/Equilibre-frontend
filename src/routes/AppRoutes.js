@@ -30,6 +30,7 @@ import Offers from "../DashboardPages/Offers/Offers";
 import { HelmetProvider } from 'react-helmet-async';
 import Categories from '../DashboardPages/Categories/Categories'
 import Consultation from "../DashboardPages/Consultation/Consultation";
+import EmtyCart from "../components/EmptyCart/EmptyCart";
 function AppRoutes() {
   const { user } = useUserStore();
   const location = useLocation();

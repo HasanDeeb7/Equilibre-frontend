@@ -1,6 +1,7 @@
 import style from './OrderedProducts.module.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import EmptyCard from '../../components/EmptyCart/EmptyCart'
 import { toast } from 'react-toastify'
 const OrderedProducts = ({ formData }) => {
     const [deliveryDetails, setDeliveryDetails] = useState({})
@@ -53,7 +54,7 @@ const OrderedProducts = ({ formData }) => {
                         return (
                             <section className={style.productDetails} key={i}>
                                 <figure>
-                                    <img src={elt.image} alt={elt.name} width={80} className={style.image} />
+                                    <img src={elt.image} alt={elt.name} width={80} className={style.image} loading='lazy' />
                                 </figure>
                                 <section>
                                     {selectedSize && (
@@ -83,7 +84,7 @@ const OrderedProducts = ({ formData }) => {
                 </section>
                 <p className={style.total}>Total  Total <span > $ {totalQuantity + (checkDelivery(totalQuantity, country) !== null ? checkDelivery(totalQuantity, country) : 0)}</span></p>
             </div>)
-            : <div>Emtyyyyy cartttttttttt</div>
+            : <div>...</div>
     )
 }
 

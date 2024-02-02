@@ -1,0 +1,55 @@
+.container {
+    margin: auto;
+    width: 80%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.text {
+    font-size: 24px;
+
+}
+
+.image {
+    width: 60%;
+    height: auto;
+}
+
+.shopButton {
+    padding: 10px 30px;
+    width: 150px;
+    border: 1px solid var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+@media (max-width:1000px) {
+    .image {
+        width: 100%;
+    }
+
+}
+
+@media  (width<600px) {
+    .container {
+        margin: auto;
+        width: 80%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .text {
+        font-size: 18px;
+     
+    }
+
+}

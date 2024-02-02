@@ -11,6 +11,10 @@ import axios from 'axios'
 import style from './OverView.module.css'
 import SalesOverview from '../../components/SalesOverview/SalesOverview'
 import TopSellerDash from '../../components/TopSellerDashboard/TopSellerDash'
+import money from '../../assets/money.png'
+import userDash from '../../assets/userDash.png'
+import products from '../../assets/products.png'
+import orders from '../../assets/orders.png'
 function OverView() {
   const [isLoading, setLoading] = useState(true);
 
@@ -59,10 +63,10 @@ function OverView() {
             <div>loading....</div>
           ) : (
             <section className={style.cards}>
-              <StatisticsCard title='Total Products Sold' value={dataCards.totalProductsSold} unit='' imageSrc={product} />
-              <StatisticsCard title='Total Order' value={dataCards.totalOrders} unit='' imageSrc={order} />
-              <StatisticsCard title='Total Income' value={dataCards.totalIncome} unit='$' imageSrc={income} />
-              <StatisticsCard title='Total User' value={dataCards.totalUser} unit='' imageSrc={income} />
+              <StatisticsCard title='Total Products Sold' value={dataCards.totalProductsSold} unit='' imageSrc={products} />
+              <StatisticsCard title='Total Order' value={dataCards.totalOrders} unit='' imageSrc={orders} />
+              <StatisticsCard title='Total Income' value={dataCards.totalIncome} unit='$' imageSrc={money} />
+              <StatisticsCard title='Total User' value={dataCards.totalUser} unit='' imageSrc={userDash} />
             </section>
           )}
           <div className={style.section2}>
