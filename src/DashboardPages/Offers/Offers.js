@@ -7,12 +7,12 @@ import ActionModal from "../../components/ActionModal/ActionModal";
 import SuccessModal from "../../components/SuccessModal/SuccessModal";
 import DashboardModal from "../../components/dashboardModal/DashboardModal";
 import GlobalOfferForm from "../../components/GlobalOfferForm/GlobalOffer";
-
+import SingleOfferForm from "../../components/SingleOfferForm/SingleOfferForm";
 function Offers() {
-  const [singleOffers, setSingleOffers] = useState();
-  const [globalOffers, setGlobalOffers] = useState();
+  const [singleOffers, setSingleOffers] = useState([]);
+  const [globalOffers, setGlobalOffers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [OfferType, setOfferType] = useState('globalOffer')
+  const [OfferType, setOfferType] = useState('')
   const [modal, setModal] = useState(null);
   const [message, setMessage] = useState();
   const [target, setTarget] = useState(false);
@@ -24,9 +24,15 @@ function Offers() {
     endDate: "",
   });
 
+  const [newSingleOffer, setNewSingleOffer] = useState({
+    discountRate: 0,
+    startDate: "",
+    endDate: "",
+    products:[],
+  });
   //singleOffer
   async function getSingleOffers() {
-    // setLoading(true);
+    setLoading(true);
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_ENDPOINT}product/AllOffers`
@@ -40,6 +46,73 @@ function Offers() {
       setLoading(false);
     }
   }
+//add Single Offer
+async function addSingleOffer() {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}product/addOffer`,
+      { ...newSingleOffer },
+    )
+    if (response) {
+      console.log(response.data)
+      setMessage('Added Single Offer')
+      setModal("success")
+      getSingleOffers()
+      setNewSingleOffer({
+        discountRate: 0,
+        startDate: "",
+        endDate: "",
+        products:[]
+      });
+      setLoading(false)
+
+    }
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
+
+//update Single Offer 
+async function updateSingleOffers(){
+  try {
+    setLoading(true);
+    const response = await axios.patch(
+      `${process.env.REACT_APP_ENDPOINT}product/editOffer`,
+      { ...target, id: target._id }
+    );
+    if (response) {
+      console.log(response);
+      setMessage("Single Offer Updated");
+      setModal("success");
+      getSingleOffers();
+      setLoading(false);
+    }
+  } catch (error) {
+    console.log(error);
+    setLoading(false);
+    toast.error("Error updating data");
+  }
+}
+
+  //delete Single Offer
+  async function deleteSingleOffer() {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_ENDPOINT}product/deleteOffer/`,
+        { params: { id: target._id } }
+      );
+      if (response) {
+        console.log(response.data);
+        setMessage("Single Offer deleted ");
+        setModal("success");
+        getSingleOffers();
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  /////////////////////////////////////////////////////////
 
   //get global Offer
   async function getGlobalOffers() {
@@ -81,9 +154,14 @@ function Offers() {
         setLoading(false)
 
       }
+    
     }
     catch (error) {
       console.log(error)
+      if(error.response){
+        const errorMessage = error.response.data.error || 'Error occurred while processing the request';
+        toast.error(errorMessage);
+      }
     }
   }
 
@@ -161,13 +239,21 @@ function Offers() {
         <div className={style.btnsContainer}>
           <button
             className={style.editBtn}
-          // onClick={() => handleButtonClick(params.row)}
+            onClick={() => {
+              setOfferType('singleOffer')
+              setModal("form");
+              setTarget(params.row);
+            }}
           >
             Edit
           </button>
           <button
             className={style.deleteBtn}
-          // onClick={() => handleButtonClick(params.row)}
+            onClick={() => {
+              setOfferType('singleOffer')
+              setModal("action");
+              setTarget(params.row);
+            }}
           >
             Delete
           </button>
@@ -178,22 +264,6 @@ function Offers() {
 
   //global Offer Grid
   const globalOfferColumns = [
-    // {
-    //   field: "image",
-    //   headerName: "Image",
-    //   width: 150,
-    //   renderCell: (params) => (
-    //     <figure>
-    //       <img
-    //         src={params.row.image}
-    //         alt=""
-    //         width={100}
-    //         height={100}
-    //         className={style.image}
-    //       />
-    //     </figure>
-    //   ),
-    // },
     { field: "title", headerName: "Title", width: 150 },
     { field: "rate", headerName: "Discount", width: 100 },
     { field: "startDate", headerName: "Start Date", width: 120 },
@@ -212,6 +282,7 @@ function Offers() {
           <button
             className={style.editBtn}
             onClick={() => {
+              setOfferType('globalOffer')
               setModal("form");
               setTarget(params.row);
             }}
@@ -221,6 +292,7 @@ function Offers() {
           <button
             className={style.deleteBtn}
             onClick={() => {
+              setOfferType('globalOffer')
               setModal("action");
               setTarget(params.row);
             }}
@@ -237,48 +309,81 @@ function Offers() {
       <>
 
 {(OfferType === 'globalOffer') ? (
-      modal === "form" ? (
-        <DashboardModal
-          title="GlobalOffer"
-          closeHandler={() => setModal(null)}
-          onConfirm={() => {
-            if (target) {
-              updateGlobalOffers()
-            } else {
-              addGlobalOffer();
-            }
-          }}
-        >
-          <GlobalOfferForm
-            globalOffer={target ? target : newGlobalOffer}
-            setGlobalOffer={target ? setTarget : setNewGlobalOffer}
-          />
-        </DashboardModal>
-      ) : modal === "success" ? (
-        <SuccessModal
-          closeHandler={() => setModal(null)}
-          message={message}
+  modal === "form" ? (
+    <DashboardModal
+      title="Global Offer"
+      closeHandler={() => setModal(null)}
+      onConfirm={() => {
+        if (target) {
+          updateGlobalOffers()
+        } else {
+          addGlobalOffer();
+        }
+      }}
+    >
+      <GlobalOfferForm
+        globalOffer={target ? target : newGlobalOffer}
+        setGlobalOffer={target ? setTarget : setNewGlobalOffer}
+      />
+    </DashboardModal>
+  ) : modal === "success" ? (
+    <SuccessModal
+      closeHandler={() => setModal(null)}
+      message={message}
+    />
+  ) : modal === "action" ? (
+    <ActionModal
+      message="Are you sure you want to delete this Offer"
+      closeHandler={() => setModal(null)}
+      action={() => deleteGlobalOffer()}
+    />
+  ) : (
+    null
+  )
+) : (
+  (OfferType === 'singleOffer') ? (
+    modal === "form" ? (
+      <DashboardModal
+        title="Single Offer" 
+        closeHandler={() => setModal(null)}
+        onConfirm={() => {
+          if (target) {
+            updateSingleOffers()
+          } else {
+            addSingleOffer();
+          }
+        }}
+      >
+        <SingleOfferForm
+          singleOffer={target ? target : newSingleOffer}
+          setSingleOffer={target ? setTarget : setNewSingleOffer}
         />
-      ) : modal === "action" ? (
-        <ActionModal
-          message="Are you sure you want to delete this Offer"
-          closeHandler={() => setModal(null)}
-          action={() => deleteGlobalOffer()}
-        />
-      ) : (
-        ""
-      )
+      </DashboardModal>
+    ) : modal === "success" ? (
+      <SuccessModal
+        closeHandler={() => setModal(null)}
+        message={message}
+      />
+    ) : modal === "action" ? (
+      <ActionModal
+        message="Are you sure you want to delete this Offer"
+        closeHandler={() => setModal(null)}
+        action={() => deleteSingleOffer()}
+      />
     ) : (
-      <div>Hello</div>
-    )}
+      null
+    )
+  ) : null
+)}
         <h1>Offers</h1>
         <div className={style.offersContainer}>
           <div className={style.offersTable}>
-            {/* <div>
+            <div>
               <h2>Single Offers</h2>
               <button
                 className={style.addBtn}
                 onClick={() => {
+                  setOfferType('singleOffer')
                   setTarget(null);
                   setModal("form");
                 }}
@@ -286,12 +391,12 @@ function Offers() {
                 Add Single Offer
               </button>
               <DataGrid
-                rows={offers}
+                rows={singleOffers}
                 columns={offersColumns}
                 getRowId={(row) => row._id}
                 autoHeight
               />
-            </div> */}
+            </div>
 
         
               <div>
@@ -299,6 +404,7 @@ function Offers() {
                 <button
                   className={style.addBtn}
                   onClick={() => {
+                    setOfferType('globalOffer')
                     setTarget(null);
                     setModal("form");
                   }}

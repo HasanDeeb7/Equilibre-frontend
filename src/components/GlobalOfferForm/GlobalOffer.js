@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./GlobalOffer.css";
+import style from "./GlobalOffer.module.css";
 import Input from "../Input/Input";
 
 function GlobalOfferForm({ globalOffer, setGlobalOffer }) {
