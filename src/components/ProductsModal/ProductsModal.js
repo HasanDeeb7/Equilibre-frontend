@@ -128,7 +128,7 @@ function ProductsModal({
                 onClick={() => setCatOpen(!catOpen)}
                 ref={dropDownRef}
               >
-                {product.categoryName}
+                {product.categoryName || product.categoryId?.name || ""}
                 <MdOutlineKeyboardArrowDown />
 
                 <section className={style.catContainer}>

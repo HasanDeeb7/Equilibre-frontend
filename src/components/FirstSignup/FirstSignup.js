@@ -39,7 +39,6 @@ function FirstSignup({ newUser, setNewUser, setCurrentStep }) {
     }
     if (existingData.some((item) => item.username === newUser.username)) {
       console.log("first");
-      setError("username");
       return toast.error("Username is taken!");
     }
     if (

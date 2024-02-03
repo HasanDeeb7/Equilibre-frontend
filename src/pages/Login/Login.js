@@ -27,6 +27,9 @@ function Login() {
       if (response.status) {
         setUser(response.data);
         toast.success(`Welcome Back ${response.data.firstName}`);
+        if (response.data.isAdmin)
+          return navigate("/dashboard", { replace: true });
+      } else {
         return navigate("/", { replace: true });
       }
     } catch (error) {
@@ -68,7 +71,7 @@ function Login() {
             <button className={style.loginButton} onClick={handleLogin}>
               Login
             </button>
-            <Link to={'/'} className={style.homepageBtn}>
+            <Link to={"/"} className={style.homepageBtn}>
               <IoReturnUpBack />
               Homepage
             </Link>

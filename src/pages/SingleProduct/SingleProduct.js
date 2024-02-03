@@ -5,6 +5,10 @@ import RelatedProduct from "../../components/RelatedProduct/RelatedProduct";
 import style from "./SingleProduct.module.css";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import Loder from "../../components/LoderComponent/Loder";
+
+
+
 function SingleProduct() {
   const slug = useParams();
   const [product, setProduct] = useState();
@@ -32,12 +36,12 @@ function SingleProduct() {
         <title>Equilibre - single product</title>
         <meta name="decription" content="" />
       </Helmet>
-      {!loading && (
+      {!loading ? (
       <div className={style.singleProductContainer}>
         <SingleProductOverview product={product} />
         <RelatedProduct product={product} />
       </div>
-      )}
+      ): <section className={style.loadingComponent}><Loder /></section>}
     </>
   );
 }

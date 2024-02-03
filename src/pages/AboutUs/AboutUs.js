@@ -1,17 +1,8 @@
 import React from "react";
 import logo from "../../assets/svgComponent/photo-1575936123452-b67c3203c357.avif";
-// import AboutUsParag from '../../components/AboutUs/AboutUsParag'
-// import AboutUsComponent from '../../components/AboutUs/AboutUs'
-import imageABoutUs from "../../assets/download (1).jpeg";
-import Style from "./AboutUs.module.css";
+import AboutUsParag from "../../components/AboutUs/AboutUsParag";
+import AboutUsComponent from "../../components/AboutUs/AboutUs";
 import { Helmet } from "react-helmet-async";
-import { lazy } from "react";
-import { Suspense } from "react";
-
-const AboutUsComponent = lazy(() => import("../../components/AboutUs/AboutUs"));
-const AboutUsParag = lazy(() =>
-  import("../../components/AboutUs/AboutUsParag")
-);
 
 function AboutUs() {
   return (
@@ -33,11 +24,11 @@ function AboutUs() {
       />
       <AboutUsParag
         title="Our values "
-        parag_a="We aim to build a community that shares in the joys
+        parag_a=" We aim to build a community that shares in the joys
       and challenges of pursuing a healthier lifestyle.
       Together, we create a supportive network that celebrates individual
       successes and fosters a sense of belonging."
-        parag_b="Transparency and honesty are at the core of our practice.
+        parag_b=" Transparency and honesty are at the core of our practice.
       We uphold the highest standards of integrity in all
       aspects of our work, from product selection to personalized guidance."
         parag_c=" We are committed to providing personalized
@@ -45,23 +36,21 @@ function AboutUs() {
       recognizing that one size does not fit all."
       />
 
-      <Suspense fallback={<div>Loading</div>}>
-        <AboutUsComponent
-          title="Who I am ?"
-          parag="Hello, I'm Kawthar Alawa, founder of Equilibre. Thank you for joining us.
+      <AboutUsComponent
+        title="Who I am ?"
+        parag="Hello, I'm Kawthar Alawa, founder of Equilibre. Thank you for joining us.
         My passion for nutrition stems from a personal journey. Growing up, I witnessed the transformative power of a healthy lifestyle. Equilibre is a reflection of that journey—a space to discover personalized nutrition and wholesome products.
         Let's embark on your wellness journey together.
         "
-          image={logo}
-          isReverse={true}
-        />
+        image={logo}
+        isReverse={true}
+      />
 
-        <AboutUsComponent
-          title="Many Blocks and Components"
-          parag="Startup Framework contains components and complex blocks which can easily be integrated into almost any design. "
-          image={logo}
-        />
-      </Suspense>
+      <AboutUsComponent
+        title="Many Blocks and Components"
+        parag="Startup Framework contains components and complex blocks which can easily be integrated into almost any design. "
+        image={logo}
+      />
     </>
   );
 }

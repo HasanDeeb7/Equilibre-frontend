@@ -35,6 +35,7 @@ function ProductsDashboard() {
   // }
 
   async function handleUpdateSizes() {
+    setToDelete([]);
     console.log(toDelete);
     try {
       const response = await axios.patch(
@@ -101,6 +102,7 @@ function ProductsDashboard() {
     }
   }
   async function addSizes() {
+    setToDelete([]);
     setTarget(null);
     setLoading(true);
     console.log(newProduct.sizes);
@@ -165,9 +167,9 @@ function ProductsDashboard() {
       headerName: "Price",
       width: 150,
       valueGetter: (params) =>
-        (params.row.sizes && params.row.sizes.length > 0)
-          && params.row.sizes[0].price
-          
+        params.row.sizes &&
+        params.row.sizes.length > 0 &&
+        params.row.sizes[0].price,
     },
     {
       field: "size",

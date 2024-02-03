@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import EmtyCart from "../../components/EmptyCart/EmptyCart";
+import Loder from "../../components/LoderComponent/Loder";
 function Cart() {
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("Cart")) || []
@@ -17,7 +18,12 @@ function Cart() {
         `${process.env.REACT_APP_ENDPOINT}globalOffer/`
       );
       if (response) {
-        setGlobalOffer(response.data);
+        const currentDate = new Date().toISOString().split("T")[0];
+
+        const activeOffer = response.data.filter(
+          (item) => currentDate < item.endDate.split("T")[0]
+        );
+        setGlobalOffer(activeOffer);
         console.log(response.data);
         setLoading(false);
       }
@@ -62,7 +68,9 @@ function Cart() {
   }, [cartItems]);
 
   return loading ? (
-    <section>Loading...</section>
+    <section className={style.loadingComponent}>
+      <Loder />
+    </section>
   ) : cartItems.length < 1 ? (
     <EmtyCart />
   ) : (
@@ -106,7 +114,7 @@ function Cart() {
             <section className={style.subtotal}>
               <p>Subtotal</p>
               <span>
-                {!globalOffer ? (
+                {!globalOffer || !globalOffer.length > 0 ? (
                   <span>${subtotal}</span>
                 ) : (
                   <span className={style.discountIndicator}>
