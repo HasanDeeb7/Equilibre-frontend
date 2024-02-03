@@ -53,7 +53,7 @@ function SingleOrder() {
         setProducts(response.data.data.products);
         setLoading(false);
         setCurrentStatus(response.data.data.status);
-        console.log(response.data.data.products);
+        console.log('helloo',response.data.data.products);
         console.log(response.data.data);
       }
     } catch (error) {
@@ -69,14 +69,13 @@ function SingleOrder() {
       field: "name",
       headerName: "Product Name",
       width: 250,
-      renderCell: (params) => params.row.product.name,
+      renderCell: (params) => (params.row.product ? params.row.product.name : "deleted")
     },
     {
       field: "size",
       headerName: "Size",
       width: 250,
-      valueGetter: (params) =>
-        `${params.row.size.capacity}${params.row.size.unit}`,
+      valueGetter: (params) => (params.row.size ? `${params.row.size.capacity}${params.row.size.unit}` : "deleted")
     },
     {
       field: "quantity",
@@ -88,18 +87,23 @@ function SingleOrder() {
       field: "price",
       headerName: "Price",
       width: 250,
-      valueGetter: (params) => params.row.size.price,
+      valueGetter: (params) => params.row.size ? params.row.size.price : 0,
     },
     {
       field: "totalPrice",
       headerName: "Total Price",
       width: 150,
-      valueGetter: (params) => params.row.quantity * params.row.size.price,
+      valueGetter: (params) => (params.row.size ? params.row.quantity * params.row.size.price : 0),
     },
   ];
   function getTotal() {
     let total = 0;
-    products.map((item) => (total += item.size.price * item.quantity));
+    products.map((item) => {
+      if (item.size && item.size.price) {
+        total += item.size.price * item.quantity;
+      }
+      return null; 
+    });
     return order.deliveryFee ? total + order.deliveryFee : total;
   }
   function getDate() {
