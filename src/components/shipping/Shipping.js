@@ -18,14 +18,16 @@ const Shipping = ({ onFormDataChange }) => {
     const totalQuantity = localStorage.getItem('totalPrice');
     //get all product info from localStorage
     const orderedProducts = []
-  if(JSON.parse(localStorage.getItem("Cart"))){  JSON.parse(localStorage.getItem("Cart")).map(product => {
-        orderedProducts.push({
-            product: product._id,
-            quantity: product.quantity,
-            size: product.size
-        })
+    if (JSON.parse(localStorage.getItem("Cart"))) {
+        JSON.parse(localStorage.getItem("Cart")).map(product => {
+            orderedProducts.push({
+                product: product._id,
+                quantity: product.quantity,
+                size: product.size
+            })
 
-    })}
+        })
+    }
     console.log(orderedProducts);
 
 
@@ -139,7 +141,7 @@ const Shipping = ({ onFormDataChange }) => {
             setModal('Empty Cart');
         } else if (
             !formData.country ||
-           (formData.country==='lebanon' && !formData.city) ||
+            (formData.country === 'lebanon' && !formData.city) ||
             !formData.firstName ||
             !formData.lastName ||
             !formData.shippingAddress ||
@@ -186,168 +188,168 @@ const Shipping = ({ onFormDataChange }) => {
         <>
             {modal === 'action' ? (
                 <ActionModal
-                message="Are you sure you want to proceed with this order?"
-                closeHandler={() => setModal(null)}
-                action={handelSubmit}
+                    message="Are you sure you want to proceed with this order?"
+                    closeHandler={() => setModal(null)}
+                    action={handelSubmit}
                 />
-                ) : 
+            ) :
 
-            modal === 'success' ? (
-                <>
-                    {<SuccessModal
-                        closeHandler={() => setModal(null)}
-                        message="Your order was successfully placed!"
+                modal === 'success' ? (
+                    <>
+                        {<SuccessModal
+                            closeHandler={() => setModal(null)}
+                            message="Your order was successfully placed!"
                         />}
-                </>
-            ): ""}
-        
-        <div className={style.shippingInfo}>
+                    </>
+                ) : ""}
 
-            {modal === `Missing Field` && (
-                <div>
-                    {toast.error('Make sure to fill in the required field')}
-                    {setModal(null)}
-                </div>
-            )}
-            {modal === 'Empty Cart' && (
-                <div>
-                    {toast.error('Your cart is empty. Add products before confirming the order.')}
-                    {setModal(null)}
-                </div>
-            )}
-            <section className={style.contactInfo}>
-                <label htmlFor='email' className={style.emailLabel}>
-                    Contact
-                </label>
+            <div className={style.shippingInfo}>
 
-                <input
-                    value={formData.email}
-                    id='email'
-                    name='email'
-                    type='email'
-                    className={style.emailField}
-                    onChange={handleChange}
-                    placeholder='Email'
-                    required
-                    />
-            </section>
+                {modal === `Missing Field` && (
+                    <div>
+                        {toast.error('Make sure to fill in the required field')}
+                        {setModal(null)}
+                    </div>
+                )}
+                {modal === 'Empty Cart' && (
+                    <div>
+                        {toast.error('Your cart is empty. Add products before confirming the order.')}
+                        {setModal(null)}
+                    </div>
+                )}
+                <section className={style.contactInfo}>
+                    <label htmlFor='email' className={style.emailLabel}>
+                        Contact
+                    </label>
 
-            <section>
-                <h3>Delivery</h3>
-                <label htmlFor='country'>
-
-                </label>
-
-                <Select
-                    name='country'
-                    id='country'
-                    options={countries}
-                    onChange={(selectedOption) => handleChangeSelector(selectedOption, 'country')}
-                    value={countries.find((option) => option.value === formData.country)}
-                    className={style.selector}
-                    placeholder="Select Country"
-                    styles={customStyles}
-                    required
-                    />
-
-                {formData.country === 'lebanon' && (
-                    <Select
-                    name='city'
-                    id='city'
-                    options={cities.lebanon}
-                    onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
-                    value={cities.lebanon.find((option) => option.value === formData.city)}
-                        className={style.selector}
-                        placeholder="Select City"
-                        styles={customStyles}
+                    <input
+                        value={formData.email}
+                        id='email'
+                        name='email'
+                        type='email'
+                        className={style.emailField}
+                        onChange={handleChange}
+                        placeholder='Email'
                         required
-                        />
-                        )}
-
-                <section className={style.nameSection}>
-
-                    <label htmlFor='firstName'>
-
-
-                        <input
-                            value={formData.firstName}
-                            name='firstName'
-                            type='text'
-                            className={style.nameField}
-                            onChange={handleChange}
-                            placeholder='First Name'
-                            required
-                            />
-                    </label>
-
-
-                    <label htmlFor='lastName'>
-
-
-                        <input
-                            value={formData.lastName}
-                            name='lastName'
-                            type='text'
-                            className={style.nameField}
-                            onChange={handleChange}
-                            placeholder='Last Name'
-                            required
-                            />
-                    </label>
+                    />
                 </section>
 
-                <input
-                    value={formData.shippingAddress}
-                    name='shippingAddress'
-                    type='text'
-                    className={style.selector}
-                    onChange={handleChange}
-                    placeholder='Address (e.g :Rue, Floor, Apartment) '
-                    required
+                <section>
+                    <h3>Delivery</h3>
+                    <label htmlFor='country'>
+
+                    </label>
+
+                    <Select
+                        name='country'
+                        id='country'
+                        options={countries}
+                        onChange={(selectedOption) => handleChangeSelector(selectedOption, 'country')}
+                        value={countries.find((option) => option.value === formData.country)}
+                        className={style.selector}
+                        placeholder="Select Country"
+                        styles={customStyles}
+                        required
                     />
 
-                <input
-                    value={formData.phone}
-                    name='phone'
-                    type='text'
-                    className={style.selector}
-                    onChange={handleChange}
-                    placeholder='Phone number'
-                    required
+                    {formData.country === 'lebanon' && (
+                        <Select
+                            name='city'
+                            id='city'
+                            options={cities.lebanon}
+                            onChange={(selectedOption) => handleChangeSelector(selectedOption, 'city')}
+                            value={cities.lebanon.find((option) => option.value === formData.city)}
+                            className={style.selector}
+                            placeholder="Select City"
+                            styles={customStyles}
+                            required
+                        />
+                    )}
+
+                    <section className={style.nameSection}>
+
+                        <label htmlFor='firstName'>
+
+
+                            <input
+                                value={formData.firstName}
+                                name='firstName'
+                                type='text'
+                                className={style.nameField}
+                                onChange={handleChange}
+                                placeholder='First Name'
+                                required
+                            />
+                        </label>
+
+
+                        <label htmlFor='lastName'>
+
+
+                            <input
+                                value={formData.lastName}
+                                name='lastName'
+                                type='text'
+                                className={style.nameField}
+                                onChange={handleChange}
+                                placeholder='Last Name'
+                                required
+                            />
+                        </label>
+                    </section>
+
+                    <input
+                        value={formData.shippingAddress}
+                        name='shippingAddress'
+                        type='text'
+                        className={style.selector}
+                        onChange={handleChange}
+                        placeholder='Address (e.g :Rue, Floor, Apartment) '
+                        required
                     />
-            </section>
-            <h3 className={style.paymentTitle}>Payment</h3>
-            <section className={style.payment}>
 
-                <label>
                     <input
-                        value='USD'
-                        name='paymentMethod'
-                        type='radio'
-                        className={style.paymentMethod}
+                        value={formData.phone}
+                        name='phone'
+                        type='text'
+                        className={style.selector}
                         onChange={handleChange}
+                        placeholder='Phone number'
                         required
-                        />
-                    Cash On Delivery (USD)
-                </label>
+                    />
+                </section>
+                <h3 className={style.paymentTitle}>Payment</h3>
+                <section className={style.payment}>
 
-                <label>
-                    <input
-                        value='LBP'
-                        name='paymentMethod'
-                        type='radio'
-                        className={style.paymentMethod}
-                        onChange={handleChange}
-                        required
+                    <label>
+                        <input
+                            value='USD'
+                            name='paymentMethod'
+                            type='radio'
+                            className={style.paymentMethod}
+                            onChange={handleChange}
+                            required
                         />
-                    Cash On Delivery (LBP on daily rate)
-                </label>
-            </section>
-            <nav className={style.navSection}>
-                <Link to='/cart' className={style.navLink}>Back to cart</Link>
-                <button type='button' className={style.completeOrder} onClick={handelConfirmation} > Complete Order</button></nav>
-        </div>
-                        </>
+                        Cash On Delivery (USD)
+                    </label>
+
+                    <label>
+                        <input
+                            value='LBP'
+                            name='paymentMethod'
+                            type='radio'
+                            className={style.paymentMethod}
+                            onChange={handleChange}
+                            required
+                        />
+                        Cash On Delivery (LBP on daily rate)
+                    </label>
+                </section>
+                <nav className={style.navSection}>
+                    <Link to='/cart' className={style.navLink}>Back to cart</Link>
+                    <button type='button' className={style.completeOrder} onClick={handelConfirmation} > Complete Order</button></nav>
+            </div>
+        </>
     );
 };
 

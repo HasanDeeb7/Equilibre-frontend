@@ -1,38 +1,38 @@
 import React from "react";
-import style from "./GlobalOffer.css";
+import style from "./GlobalOffer.module.css";
 import Input from "../Input/Input";
 
-function GlobalOfferForm({ newGlobalOffer, setNewGlobalOffer }) {
-  console.log(newGlobalOffer)
+function GlobalOfferForm({ globalOffer, setGlobalOffer }) {
+  console.log(globalOffer)
   return (
     <div>
       <div className={style.formContainer}>
         <Input
-          value={newGlobalOffer.title || ""}
-          setValue={setNewGlobalOffer}
+          value={globalOffer}
+          setValue={setGlobalOffer}
           control="title"
           label="Title"
           required
         />
         <Input
-          value={newGlobalOffer.startDate || ""}
-          setValue={setNewGlobalOffer}
+          value={globalOffer}
+          setValue={setGlobalOffer}
           control="startDate"
           label="Start Date"
           type="date"
           required
         />
         <Input
-          value={newGlobalOffer.endDate || ""}
-          setValue={setNewGlobalOffer}
+          value={globalOffer}
+          setValue={setGlobalOffer}
           control="endDate"
           label="End Date"
           type="date"
           required
         />
         <Input
-          value={newGlobalOffer.rate || 0}
-          setValue={setNewGlobalOffer}
+          value={globalOffer}
+          setValue={setGlobalOffer}
           control="rate"
           label="Rate"
           type="number"
