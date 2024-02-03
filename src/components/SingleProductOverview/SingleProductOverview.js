@@ -74,7 +74,7 @@ function SingleProductOverview({ product }) {
   return (
     <section className={style.overviewContainer}>
       <figure className={style.imageContainer}>
-        <img src={image} alt={product.name} className={style.image} />
+        <img src={product.image} alt={product.name} className={style.image} />
       </figure>
       <section className={style.productOverview}>
         <h1 className={style.productName}>{product.name}</h1>
@@ -103,8 +103,7 @@ function SingleProductOverview({ product }) {
         </section>
         <section className={style.description}>
           <span>
-            {product.description ||
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit"}
+            {product.description}
           </span>
         </section>
         <section className={style.sizeContainer}>

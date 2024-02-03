@@ -49,8 +49,14 @@ function AppRoutes() {
             <Route path="/single/:slug" element={<SingleProduct />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/about" element={<AboutUs />}></Route>
-            <Route path="/checkout" element={<Checkout />}></Route>
-            <Route path="/shipping" element={<ShippingPage />}></Route>
+            <Route
+              path="/shipping"
+              element={
+                <ProtectedRoute isAllowed={user} redirectPath="/login">
+                  <ShippingPage />{" "}
+                </ProtectedRoute>
+              }
+            ></Route>
             <Route path="/contact" element={<ContactUsPage />}></Route>
           </Route>
           <Route element={<WithoutFooter />}>
@@ -62,7 +68,14 @@ function AppRoutes() {
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute isAllowed={user} redirectPath="/login">
+                <Checkout />
+              </ProtectedRoute>
+            }
+          ></Route>
           <Route path="/profile" element={<UserProfile />}></Route>
 
           <Route

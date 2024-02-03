@@ -38,7 +38,9 @@ function Cart() {
     localStorage.setItem(
       "totalPrice",
       JSON.stringify(
-        globalOffer ? (subtotal * (100 - globalOffer[0].rate)) / 100 : subtotal
+        globalOffer && globalOffer.length > 0
+          ? (subtotal * (100 - globalOffer[0].rate)) / 100
+          : subtotal
       )
     );
     navigate("/shipping");
