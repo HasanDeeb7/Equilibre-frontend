@@ -1,6 +1,6 @@
 .offersContainer {
-  padding-left: 350px;
-  height: 100vh;
+  margin:100px auto;
+  overflow-y: scroll;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,9 +8,12 @@
 }
 .offersTable {
   display: flex;
-  width: 70%;
   flex-direction: column;
-  gap: 50px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 85%;
+  /* flex-direction: column; */
+  gap: 60px;
 }
 .btnsContainer {
   display: flex;

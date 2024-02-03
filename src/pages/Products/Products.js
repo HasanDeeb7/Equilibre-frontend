@@ -6,6 +6,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import FilterSection from "../../components/filterSection/filterSection";
 import { Helmet } from "react-helmet-async";
 import Pagination from "@mui/material/Pagination";
+import Loder from "../../components/LoderComponent/Loder";
 import Stack from "@mui/material/Stack";
 const Products = () => {
   const [title, setTitle] = useState("All Products");
@@ -65,7 +66,7 @@ const Products = () => {
             setTitle={setTitle}
           />
           {loading ? (
-            <p>Loading...</p>
+            <Loder />
           ) : (
             <div className={style.cardsWrapper}>
               {Products.length === 0 ? (
@@ -87,14 +88,24 @@ const Products = () => {
               )}
             </div>
           )}
-          <Stack spacing={2} mt={3} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Pagination
-              count={totalPages}
-              page={currentPage}
-              onChange={handlePageChange}
-              variant="outlined"
-              shape="rounded"
-            />
+          <Stack
+            spacing={2}
+            mt={3}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {Products && Products.length > 0 && (
+              <Pagination
+                count={totalPages}
+                page={currentPage}
+                onChange={handlePageChange}
+                variant="outlined"
+                shape="rounded"
+              />
+            )}
           </Stack>
         </section>
       </main>
