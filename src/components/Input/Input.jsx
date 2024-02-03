@@ -69,7 +69,7 @@ function Input({
             value={value[control]}
             onChange={handleChange}
             disabled={isDisabled}
-            style={{ resize: "none", width: "300px", height: "100px" }}
+            style={{ resize: "none", width: "100%", height: "100px" }}
           />
           <label
             className={`${style.textareaLabel} ${

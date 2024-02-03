@@ -1,8 +1,14 @@
 import aboutStyle from "./AboutUsSection.module.css";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 const AboutUsSection = () => {
   return (
-    <>
+    <motion.div
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // transition={{ delay: 0.5 }}
+    >
       <section className={aboutStyle.aboutUsSection}>
         <div className={aboutStyle.textContainer}>
           <h2 className={aboutStyle.title}> About Us </h2>
@@ -17,17 +23,19 @@ const AboutUsSection = () => {
             achieve vitality through personalized nutrition and lifestyle
             choices.
           </p>
-          <Link to="/about"><button className={aboutStyle.btn}>Read more</button></Link>
+          <Link to="/about">
+            <button className={aboutStyle.btn}>Read more</button>
+          </Link>
         </div>
         <iframe
-        className={aboutStyle.video}
+          className={aboutStyle.video}
           title="the story of equilibre"
           height="345"
           frameborder="0"
           src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1"
         ></iframe>
       </section>
-    </>
+    </motion.div>
   );
 };
 export default AboutUsSection;

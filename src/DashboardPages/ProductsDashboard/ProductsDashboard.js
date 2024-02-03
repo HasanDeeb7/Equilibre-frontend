@@ -21,11 +21,25 @@ function ProductsDashboard() {
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState();
   const [target, setTarget] = useState();
+  const [toDelete, setToDelete] = useState([]);
+
+  // async function deleteSize(ids){
+  //   try {
+  //     const response = await axios(`${process.env.REACT_APP_ENDPOINT}product/editSize`, {sizes: ids})
+  //     if(response){
+  //       updateProduct()
+  //     }
+  //   } catch (error) {
+
+  //   }
+  // }
+
   async function handleUpdateSizes() {
+    console.log(toDelete);
     try {
       const response = await axios.patch(
         `${process.env.REACT_APP_ENDPOINT}product/editSize`,
-        { sizes: target.sizes }
+        { sizes: target.sizes, toDelete: toDelete }
       );
       if (response) {
         console.log(response.data);
@@ -42,14 +56,15 @@ function ProductsDashboard() {
         `${process.env.REACT_APP_ENDPOINT}product/editProduct`,
         target,
         { headers: { "Content-Type": "multipart/form-data" } }
-        
       );
       if (response) {
         console.log(response.data);
-        getProducts()
-        setModal('success')
+        getProducts();
+        setModal("success");
       }
-    } catch (error) {console.log(error)}
+    } catch (error) {
+      console.log(error);
+    }
   }
   async function getProducts() {
     try {
@@ -150,9 +165,9 @@ function ProductsDashboard() {
       headerName: "Price",
       width: 150,
       valueGetter: (params) =>
-        params.row.sizes && params.row.sizes.length
-          ? params.row.sizes[0].price
-          : "N/A",
+        (params.row.sizes && params.row.sizes.length > 0)
+          && params.row.sizes[0].price
+          
     },
     {
       field: "size",
@@ -192,7 +207,7 @@ function ProductsDashboard() {
                   return newSize;
                 }),
               };
-              const {__v, ...filtered} = newState 
+              const { __v, ...filtered } = newState;
               setTarget(filtered);
               setTitle("Edit Product");
             }}
@@ -236,6 +251,8 @@ function ProductsDashboard() {
           title={title}
           product={target ? target : newProduct}
           setProduct={target ? setTarget : setNewproduct}
+          isEditing={target ? true : false}
+          toDelete={toDelete}
         />
       ) : modal === "action" ? (
         <ActionModal

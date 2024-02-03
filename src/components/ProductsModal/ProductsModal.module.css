@@ -22,17 +22,41 @@
   display: flex;
   flex-direction: column;
 }
-
-.textareasWrapper{
+.nameCatWrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row-reverse;
+  gap: 20px;
 }
-.fileWrapper{
+
+.textareasWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+}
+.catContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+  overflow-y: scroll;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  z-index: 2;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  max-height: 130px;
+}
+.fileWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 30px;
-  border: 2px dashed rgba(0, 0, 0, .7);
+  border: 2px dashed rgba(0, 0, 0, 0.7);
   border-radius: 5px;
 }
 .confirmBtn {
@@ -63,12 +87,12 @@
 }
 .btnsContainer {
   justify-content: end;
-    display: flex;
-    border-top: 1px solid lightgray;
-    background-color: white;
-    padding: 30px 0;
-    width: 100%;
-    gap: 25px;
+  display: flex;
+  border-top: 1px solid lightgray;
+  background-color: white;
+  padding: 30px 0;
+  width: 100%;
+  gap: 25px;
 }
 .formContainer {
   overflow: scroll;
@@ -102,6 +126,15 @@
 .sizeInputs {
   display: flex;
   gap: 20px;
+}
+.trashIcon{
+  font-size: 100px;
+  height: 47px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.trashIcon:hover{
+  color: red;
 }
 .inputWrapper {
   position: relative;
@@ -161,15 +194,7 @@
   font-size: 20px;
   cursor: pointer;
 }
-.errorInput {
-  border: 3px solid red;
-}
-.errorInput:hover {
-  border: 3px solid red;
-}
-.errorInput:focus {
-  border: 3px solid red;
-}
+
 .inputWrapper:focus-within .loginInputLable {
   transform: translateY(-121%) scale(0.9);
   background-color: white;
@@ -220,8 +245,9 @@ input:-webkit-autofill:focus {
 }
 .optionsContainer {
   display: flex;
+  width: 100%;
   flex-direction: column;
-  height: 150px;
+  height: fit-content;
   overflow-y: scroll;
   position: absolute;
   top: 32px;
@@ -230,6 +256,7 @@ input:-webkit-autofill:focus {
   background-color: #fff;
   border: 1px solid lightgray;
   border-radius: 5px;
+  max-height: 130px;
 }
 .option {
   display: flex;
@@ -237,7 +264,7 @@ input:-webkit-autofill:focus {
   justify-content: center;
   padding: 10px 0;
   cursor: pointer;
-  width: 100px;
+  width: 100%;
   transition: all 0.2s ease;
 }
 .option:hover {

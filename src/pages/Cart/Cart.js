@@ -4,6 +4,7 @@ import style from "./Cart.module.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import EmtyCart from "../../components/EmptyCart/EmptyCart";
 function Cart() {
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("Cart")) || []
@@ -59,8 +60,11 @@ function Cart() {
       setSubtotal(totalQuantity);
     }
   }, [cartItems]);
+
   return loading ? (
     <section>Loading...</section>
+  ) : cartItems.length < 1 ? (
+    <EmtyCart />
   ) : (
     <section className={style.cartPageContainer}>
       <section className={style.cartItemsContainer}>
