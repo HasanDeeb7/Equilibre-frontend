@@ -2,14 +2,26 @@ import ProductStyle from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 const ProductCard = ({ offerId, name, description, size, imgurl, slug }) => {
+  let existingOffer = null;
+  if (offerId) {
+    const currentDateISO = new Date().toISOString();
+    if (
+      offerId &&
+      offerId.startDate <= currentDateISO &&
+      offerId.endDate >= currentDateISO
+    ) {
+      existingOffer = offerId;
+    }
+  }
+  console.log(name, existingOffer);
   return (
     <>
       <Link to={`/single/${slug}`} style={{ textDecoration: "none" }}>
         <article className={ProductStyle.cardContainer}>
-          {offerId && (
+          {existingOffer && (
             <div className={ProductStyle.discountRateContainer}>
               <p className={ProductStyle.discountRate}>
-                {offerId.discountRate}% Off
+                {existingOffer.discountRate}% Off
               </p>
             </div>
           )}
@@ -36,15 +48,21 @@ const ProductCard = ({ offerId, name, description, size, imgurl, slug }) => {
           </section>
           <section className={ProductStyle.PricingPart}>
             <div className={ProductStyle.priceContainer}>
-              <p className={`${ProductStyle.originalPrice} ${offerId && ProductStyle.originalPriceDiscount}`}>
-                {offerId && <span className={ProductStyle.offerLine}></span>}$
-                {size[0].price}
+              <p
+                className={`${ProductStyle.originalPrice} ${
+                  existingOffer && ProductStyle.originalPriceDiscount
+                }`}
+              >
+                {existingOffer && (
+                  <span className={ProductStyle.offerLine}></span>
+                )}
+                ${size[0].price}
               </p>
-              {offerId && (
+              {existingOffer && (
                 <p className={ProductStyle.discoutedPrice}>
                   $
                   {Number(size[0].price) -
-                    (Number(size[0].price) * offerId.discountRate) / 100}
+                    (Number(size[0].price) * existingOffer.discountRate) / 100}
                 </p>
               )}
             </div>
