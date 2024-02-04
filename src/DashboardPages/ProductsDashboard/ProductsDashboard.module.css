@@ -1,14 +1,16 @@
 .productsContainer {
-    padding-left: 350px;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  margin-top: 100px;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin: 150px 0 0 180px;
+
   }
   .addBtn{
     padding: 10px 30px;
-    width: 120px;
+    margin-bottom: 20px;
+    width: 150px;
     border: 1px solid var(--primary-color);
     background: var(--primary-color);
     color: white;
@@ -20,7 +22,9 @@
     background-color: #a2b72c
   }
   .productsTable {
-    width: 60%;
+    width: 80%;
+    height: 500px;
+    overflow-y: scroll;
   }
   .btnsContainer {
     display: flex;
@@ -57,3 +61,11 @@
   .image{
     object-fit: contain;
   }
+
+  @media only screen and (width<500px){
+    .productsContainer {
+      margin: 150px auto 0 auto;
+    
+    }
+  }
+  

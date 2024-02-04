@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import ShippingDetails from "../../components/ShippingDetailsDash/ShippingDetails";
 function Orders() {
   const [orders, setOrders] = useState();
   const [loading, setLoading] = useState(true);
+  const [pagination, setPagination] = useState({ pageSize: 10, page: 0 });
   const navigate = useNavigate();
 
   async function getorders() {
@@ -35,6 +36,7 @@ function Orders() {
       valueGetter: (params) =>
         `${params.row.userId[0].firstName} ${params.row.userId[0].lastName}`,
     },
+     { field: "country", headerName: "Country", width: 250 },
     { field: "shippingAddress", headerName: "Address", width: 250 },
     {
       field: "orderDate",
@@ -73,6 +75,8 @@ function Orders() {
   return (
     !loading && (
       <div className={style.ordersContainer}>
+        <h1>Orders </h1>
+        <ShippingDetails/>
         <div className={style.ordersTable}>
           <DataGrid
             rows={orders}
@@ -80,6 +84,10 @@ function Orders() {
             getRowId={(row) => row._id}
             autoHeight
             rowSelection={false}
+            paginationModel={pagination}
+            pagination
+            pageSizeOptions={[5, 10, 20, 50,100]}
+            onPaginationModelChange={setPagination}
           />
         </div>
       </div>

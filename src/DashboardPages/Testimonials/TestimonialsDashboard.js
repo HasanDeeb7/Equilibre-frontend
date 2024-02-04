@@ -113,7 +113,7 @@ function TestimonialsDashboard() {
       ),
     },
     { field: "author", headerName: "Author", width: 200 },
-    { field: "content", headerName: "Content", width: 350 },
+    { field: "content", headerName: "Content", width: 400 },
     {
       field: "actions",
       headerName: "Actions",
@@ -175,6 +175,7 @@ function TestimonialsDashboard() {
           ""
         )}
         <div className={style.testimonialsContainer}>
+          <h1>Testimonials</h1>
           <div className={style.testimonialsTable}>
             <button
               className={style.addBtn}

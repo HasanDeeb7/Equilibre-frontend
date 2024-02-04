@@ -1,24 +1,21 @@
 .offersContainer {
-  margin:100px auto;
-  overflow-y: scroll;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
 }
 .offersTable {
+  margin: 150px 20px;
+  gap: 30px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
-  width: 85%;
-  /* flex-direction: column; */
-  gap: 60px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }
+
 .btnsContainer {
   display: flex;
   gap: 15px;
 }
+
 .editBtn {
   padding: 10px 30px;
   width: 100px;
@@ -29,10 +26,12 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .editBtn:hover {
-  background-color:#a2b72c;
+  background-color: #a2b72c;
 
 }
+
 .deleteBtn {
   padding: 10px 30px;
   width: 100px;
@@ -43,10 +42,12 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .deleteBtn:hover {
-  background-color:#b72c2c;
+  background-color: #b72c2c;
 
 }
+
 .addBtn {
   padding: 10px 30px;
   width: 160px;
@@ -59,3 +60,9 @@
   margin-bottom: 20px;
 }
 
+@media only screen and (width<500px){
+  .offersTable {
+    margin: 150px auto 0 auto;
+  
+  }
+}

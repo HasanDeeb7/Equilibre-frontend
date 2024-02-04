@@ -1,13 +1,23 @@
 .ordersContainer {
-  padding-left: 350px;
-  height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 80%;
+  margin: 150px 0 0 180px;
+
+}
+
+.shipppingConatiner{
+  width:100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 .ordersTable {
-  width: 70%;
+  height: 500px;
+  overflow-y: scroll;
+  width: 100%;
 }
 .btnsContainer {
   display: flex;
@@ -68,7 +78,7 @@
   color: #ffa756;
 }
 .viewMoreBtn {
-  padding: 10px 30px;
+  padding: 10px 20px;
   border: 1px solid var(--primary-color);
   background: var(--primary-color);
   color: white;
@@ -81,4 +91,11 @@
 .viewMoreBtn:hover {
   background-color:#a2b72c;
 
+}
+
+@media only screen and (width<500px){
+  .ordersContainer {
+    margin: 150px auto 0 auto;
+  
+  }
 }

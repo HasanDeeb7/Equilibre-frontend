@@ -182,6 +182,7 @@ function Categories() {
           ""
         )}
         <div className={style.categoriesContainer}>
+          <h1>Products Categories</h1>
           <div className={style.categoriesTable}>
             <button
               className={style.addBtn}

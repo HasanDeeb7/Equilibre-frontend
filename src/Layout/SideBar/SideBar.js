@@ -21,7 +21,6 @@ import Settings from '@mui/icons-material/Settings';
 import Store from '@mui/icons-material/Store';
 import Diversity1 from '@mui/icons-material/Diversity1';
 import Category from '@mui/icons-material/Category';
-import MedicationLiquid from '@mui/icons-material/MedicationLiquid';
 import { Avatar } from '@mui/material'
 import { Outlet, NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.jpeg'
@@ -32,7 +31,7 @@ import { ContactMail } from '@mui/icons-material';
 import style from './SideBar.module.css'
 import { useLocation } from 'react-router-dom';
 const drawerWidth = 240;
-const icons = [<GridView />, <LocalShipping />, <Store />, <LocalOffer />, <ContactMail />, <Diversity1 />, <Category />, <MedicationLiquid />];
+const icons = [<GridView />, <LocalShipping />, <Store />, <LocalOffer />, <ContactMail />, <Diversity1 />, <Category />];
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -131,7 +130,6 @@ export default function SideBar() {
         ['dashboard/testimonials', 'Testimonials',],
         ['dashboard/users', 'Users',],
         ['dashboard/categories', 'Categories',],
-        ['dashboard/consultation', 'Consultation Package',]
 
     ]
 

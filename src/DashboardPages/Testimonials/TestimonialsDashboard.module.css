@@ -1,10 +1,11 @@
 .testimonialsContainer {
-  padding-left: 350px;
-  height: 100vh;
   display: flex;
-  align-items: center;
+  margin-top: 100px;
+  flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 80%;
+  margin: 150px 0 0 180px;
+
 }
 .testimonialsTable {
   width: 100%;
@@ -54,4 +55,11 @@
 }
 .addBtn:hover{
   filter: brightness(.7);
+}
+
+@media only screen and (width<500px){
+  .testimonialsContainer {
+    margin: 150px auto 0 auto;
+  
+  }
 }
