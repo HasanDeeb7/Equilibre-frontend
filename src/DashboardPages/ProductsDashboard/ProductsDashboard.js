@@ -269,6 +269,7 @@ function ProductsDashboard() {
       )}
       {!loading && (
         <div className={style.productsContainer}>
+          <h1>Products</h1>
           <div className={style.productsTable}>
             <button
               className={style.addBtn}

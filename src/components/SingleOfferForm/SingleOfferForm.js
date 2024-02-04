@@ -3,6 +3,8 @@ import style from "./SingleOfferForm.module.css";
 import Select from 'react-select';
 import axios from 'axios'
 import Input from "../Input/Input";
+import Flatpickr from 'react-flatpickr';
+import 'flatpickr/dist/themes/material_green.css';
 function SingleOfferForm({ singleOffer, setSingleOffer }) {
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
@@ -72,22 +74,40 @@ function SingleOfferForm({ singleOffer, setSingleOffer }) {
                     type="number"
                     required
                 />
-                <Input
-                    value={singleOffer}
-                    setValue={setSingleOffer}
-                    control="startDate"
-                    label="Start Date"
-                    type="date"
-                    required
-                />
-                <Input
-                    value={singleOffer}
-                    setValue={setSingleOffer}
-                    control="endDate"
-                    label="End Date"
-                    type="date"
-                    required
-                />
+            <Flatpickr
+            className={style.calendar}
+              id="start-date"
+              placeholder="Select start date"
+              value={singleOffer.startDate}
+              onChange={(selectedDates) => setSingleOffer((prevData) => ({
+                ...prevData,
+                startDate: selectedDates[0],
+                endDate: prevData.endDate && selectedDates[0] > prevData.endDate ? selectedDates[0] : prevData.endDate,
+              }))}
+              options={{
+                enableTime: false,
+                dateFormat: 'Y-m-d',
+              }}
+             
+            />
+    
+            <Flatpickr
+            className={style.calendar}
+              id="end-date"
+              placeholder="Select end date"
+              value={singleOffer.endDate}
+              onChange={(selectedDates) => setSingleOffer((prevData) => ({
+                ...prevData,
+                endDate: selectedDates[0] > prevData.startDate ? selectedDates[0] : prevData.startDate,
+              }))}
+              options={{
+                enableTime: false,
+                dateFormat: 'Y-m-d',
+                minDate: singleOffer.startDate || 'today',
+              }}
+             
+            />
+
                 <Select
                     name='products'
                     id='products'

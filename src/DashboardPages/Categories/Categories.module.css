@@ -1,13 +1,15 @@
 .categoriesContainer {
-  height: 100vh;
   display: flex;
-  align-items: center;
+  margin-top: 100px;
+  flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 80%;
+  margin: 150px 0 0 180px;
 }
 
 .categoriesTable {
-  width: 60%;
+  width: 70%;
+  height: 500px;
 }
 
 .products {
@@ -70,9 +72,12 @@
   margin-bottom: 20px;
 }
 
-@media only screen and(width<500) {
+@media (width<500px) {
   .categoriesContainer {
     width: 90%;
+    margin:150px auto 0 auto;
   }
-
+.categoriesTable{
+  width:90%
+}
 }

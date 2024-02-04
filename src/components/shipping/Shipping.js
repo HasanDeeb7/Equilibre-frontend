@@ -35,6 +35,7 @@ const Shipping = ({ onFormDataChange }) => {
         control: (defaultStyles, state) => ({
             ...defaultStyles,
             ...style.selector,
+            width:'100%',
             border: '0 !important',
             boxShadow: '0 !important',
             '&:hover': {
@@ -162,22 +163,23 @@ const Shipping = ({ onFormDataChange }) => {
 
                 setModal('success')
                 console.log(formData)
-                setFormData({
-                    email: '',
-                    country: '',
-                    city: '',
-                    firstName: '',
-                    lastName: '',
-                    shippingAddress: '',
-                    phone: '',
-                    paymentMethod: ''
-                })
-                //clear local storage content 
-                localStorage.removeItem("Cart");
-                localStorage.removeItem("totalPrice");
-
+                console.log(modal)
             } catch (error) {
                 toast.error('There is an error in sending the order!')
+            }finally {
+                // setFormData({
+                //     email: '',
+                //     country: '',
+                //     city: '',
+                //     firstName: '',
+                //     lastName: '',
+                //     shippingAddress: '',
+                //     phone: '',
+                //     paymentMethod: ''
+                // })
+                // Clear local storage content 
+                localStorage.removeItem("Cart");
+                localStorage.removeItem("totalPrice");
             }
         }
         else { toast.error('Please log in before proceeding to checkout'); }

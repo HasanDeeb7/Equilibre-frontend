@@ -20,6 +20,7 @@ function Offers() {
   const [newGlobalOffer, setNewGlobalOffer] = useState({
     title: "",
     rate: 0,
+    description:'',
     startDate: "",
     endDate: "",
   });
@@ -148,6 +149,7 @@ async function updateSingleOffers(){
         setNewGlobalOffer({
           title: "",
           rate: 0,
+          description:'',
           startDate: "",
           endDate: "",
         });
@@ -221,13 +223,13 @@ async function updateSingleOffers(){
 
   //single offer Grid
   const offersColumns = [
-    { field: "discountRate", headerName: "Discount", width: 100 },
-    { field: "startDate", headerName: "Start Date", width: 120 },
-    { field: "endDate", headerName: "End Date", width: 120 },
+    { field: "discountRate", headerName: "Discount", width: 120 },
+    { field: "startDate", headerName: "Start Date", width: 150 },
+    { field: "endDate", headerName: "End Date", width: 150 },
     {
       field: "product",
       headerName: "Product",
-      width: 150,
+      width: 180,
       valueGetter: (params) =>
         params.row.products.length > 0 ? params.row.products[0].name : "",
     },
@@ -264,8 +266,8 @@ async function updateSingleOffers(){
 
   //global Offer Grid
   const globalOfferColumns = [
-    { field: "title", headerName: "Title", width: 150 },
-    { field: "rate", headerName: "Discount", width: 100 },
+    { field: "title", headerName: "Title", width: 100 },
+    { field: "rate", headerName: "Discount", width: 120 },
     { field: "startDate", headerName: "Start Date", width: 120 },
     { field: "endDate", headerName: "End Date", width: 120 },
     {
@@ -375,7 +377,6 @@ async function updateSingleOffers(){
     )
   ) : null
 )}
-        <h1>Offers</h1>
         <div className={style.offersContainer}>
           <div className={style.offersTable}>
             <div>

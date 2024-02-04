@@ -11,7 +11,7 @@ import UserForm from "../../components/Userform/UserForm";
 function Users() {
   const [users, setUsers] = useState();
   const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState({ pageSize: 20, page: 0 });
+  const [pagination, setPagination] = useState({ pageSize: 10, page: 0 });
   const [modal, setModal] = useState();
   const [target, setTarget] = useState();
   const [newUser, setNewUser] = useState({
@@ -85,14 +85,14 @@ function Users() {
     getUsers();
   }, []);
   const columns = [
-    { field: "username", headerName: "Username", width: 150 },
-    { field: "email", headerName: "Email", width: 150 },
-    { field: "firstName", headerName: "First Name", width: 150 },
-    { field: "lastName", headerName: "Last Name", width: 150 },
+    { field: "username", headerName: "Username", width: 200 },
+    { field: "email", headerName: "Email", width: 200 },
+    { field: "firstName", headerName: "First Name", width: 200 },
+    { field: "lastName", headerName: "Last Name", width: 200 },
     {
       field: "actions",
       headerName: "Actions",
-      width: 250,
+      width: 300,
       renderCell: (params) => (
         <div className={style.btnsContainer}>
           {/* <button
@@ -144,6 +144,7 @@ function Users() {
         )}
 
         <div className={style.usersContainer}>
+          <h1>Users</h1>
           <div className={style.usersTable}>
             <button
               className={style.addBtn}

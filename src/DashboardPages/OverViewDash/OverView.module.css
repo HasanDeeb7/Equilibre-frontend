@@ -1,5 +1,6 @@
 .container {
   width: 100%;
+  min-height:100vh;
   padding: 80px 120px 20px 180px;
   display: flex;
   align-items: center;
@@ -8,8 +9,6 @@
   background-color: rgb(239, 237, 237);
 
 }
-
-
 
 .cards {
   margin: auto;

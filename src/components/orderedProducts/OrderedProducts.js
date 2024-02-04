@@ -54,7 +54,7 @@ const OrderedProducts = ({ formData }) => {
                         return (
                             <section className={style.productDetails} key={i}>
                                 <figure>
-                                    <img src={elt.image} alt={elt.name} width={80} className={style.image} loading='lazy' />
+                                    <img src={elt.image} alt={elt.name} width={80} height={80} className={style.image} loading='lazy' />
                                 </figure>
                                 <section>
                                     {selectedSize && (
