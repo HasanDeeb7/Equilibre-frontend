@@ -36,9 +36,9 @@
 }
 
 .loginButton {
-  padding-top: 10px ;
-  padding-bottom: 10px ;
-  width:100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100px;
   border: 1px solid var(--primary-color);
   background: var(--primary-color);
   color: white;
@@ -47,13 +47,11 @@
   cursor: pointer;
 }
 
-
 .loginButton:hover {
-  background-color:#a2b72c;
-
+  background-color: #a2b72c;
 }
 
-.dropDownContainer{
+.dropDownContainer {
   position: relative;
 }
 
@@ -66,44 +64,43 @@
   border-radius: 5px;
   padding: 15px;
   z-index: 100;
-  transition: all .4s ease;
-}  
+  transition: all 0.4s ease;
+}
 .dropDownContainer:hover .dropdownMenuDesktop {
   display: block;
   /* flex-direction: column; */
   background: white;
-  box-shadow: 4px 8px 35px -10px rgba(191,180,180,0.75);
+  box-shadow: 4px 8px 35px -10px rgba(191, 180, 180, 0.75);
 }
 .dropdownMenu {
   display: none;
 }
 
-
 .itemList li:first-child:hover .dropdownMenu {
   display: block;
 }
-.categories{
+.categories {
   display: flex;
   flex-direction: column;
   /* gap: 5px; */
   padding: 12px 0;
   align-items: center;
 }
-.categories >li{
+.categories > li {
   width: 100%;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   border-radius: 10px;
 }
-.categories > li:hover{
+.categories > li:hover {
   background-color: var(--primary-color);
 }
-.categories > li > a{
+.categories > li > a {
   color: black;
   text-decoration: none;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.categories > li:hover > a{
+.categories > li:hover > a {
   color: white;
 }
 
@@ -115,33 +112,26 @@
   display: flex;
 }
 
-.activeLinks{
+.activeLinks {
   border-bottom: 4px solid var(--primary-color);
   text-decoration: none;
   color: black;
   padding: 0.5rem 0;
-
 }
 .navLinks:hover {
   border-bottom: 4px solid var(--primary-color);
   transition: all 0.2s ease-out;
 }
-.dropdownMenuDesktop .categories>li {
+.dropdownMenuDesktop .categories > li {
   list-style: none;
   margin-bottom: 3px;
   font-size: 16px;
 }
 
-
-
-.navLinks:first-child{
+.navLinks:first-child {
   /* transition-duration: 2s;  */
   position: relative;
 }
-
-
-
-
 
 .hamburger {
   position: relative;
@@ -162,7 +152,7 @@
     bottom: 0;
     border-radius: 5px;
     transform: rotate(0deg);
-    transition: all 0.4s cubic-bezier(0.54, -0.10, 0.57, 0.57);
+    transition: all 0.4s cubic-bezier(0.54, -0.1, 0.57, 0.57);
   }
 
   .hamburgerInput {
@@ -206,7 +196,7 @@
     top: 100px;
     transform: translateX(-50%) scale(0);
     transform-origin: center;
-    transition: all 0.4s cubic-bezier(0.54, -0.10, 0.57, 0.57);
+    transition: all 0.4s cubic-bezier(0.54, -0.1, 0.57, 0.57);
     background-color: #ffffff;
     color: #000000;
     width: 70vw;
@@ -221,48 +211,43 @@
     z-index: 1000;
   }
 
-  .itemList>a>li {
+  .itemList > a > li {
     padding: 2px 30px;
     cursor: pointer;
-
   }
 
-  .itemList>a>li>p {
+  .itemList > a > li > p {
     text-align: right;
   }
 
-  .categories>li {
+  .categories > li {
     border-radius: 0;
     margin-right: 40px;
     list-style: none;
     padding: 5px 10px;
- 
   }
-  .categories{
+  .categories {
     display: flex;
     flex-direction: column;
     padding: 10px 0;
     align-items: center;
-    
   }
 
-  .categories>li>a {
+  .categories > li > a {
     color: black;
     text-decoration: none;
   }
 
-  .categories>li:hover {
+  .categories > li:hover {
     background-color: rgb(240, 240, 240);
   }
-  
 
-  .itemList>a>li>p:hover {
+  .itemList > a > li > p:hover {
     background-color: rgb(240, 240, 240);
   }
-  .itemList>a>li>p {
-   gap:10px;
-   padding: 10px 0;
-
+  .itemList > a > li > p {
+    gap: 10px;
+    padding: 10px 0;
   }
 
   .menuButton {
@@ -276,32 +261,47 @@
   }
 }
 
+.homeBtn {
+  padding: 10px 30px;
+  width: 120px px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.homeBtn:hover {
+  background-color: #b53027;
+}
+
 .menuButton {
-  &:checked~.itemList {
+  &:checked ~ .itemList {
     transform: translateX(-50%) scale(1);
     border-radius: 20px;
     opacity: 1;
     user-select: auto;
   }
 
-  &:checked~.iconWrapper .hamburgerLine.second {
+  &:checked ~ .iconWrapper .hamburgerLine.second {
     transform: rotate(-45deg);
   }
 
-  &:checked~.iconWrapper .hamburgerLine.first {
+  &:checked ~ .iconWrapper .hamburgerLine.first {
     transform: translate(2px, 8px) rotate(-135deg);
   }
 
-  &:checked~.iconWrapper .hamburgerLine.third {
+  &:checked ~ .iconWrapper .hamburgerLine.third {
     transform: translate(11px, -3px) rotate(-135deg);
   }
 
-  &:checked~.iconWrapper .hamburger:before {
+  &:checked ~ .iconWrapper .hamburger:before {
     transform: rotate(45deg);
   }
 }
-@media only screen and (max-width: 425px){
-  .menuButtonWrapper .itemList{
+@media only screen and (max-width: 425px) {
+  .menuButtonWrapper .itemList {
     left: -13vw;
   }
 }

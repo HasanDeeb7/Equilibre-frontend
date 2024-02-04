@@ -1,5 +1,18 @@
-    .active {
-        border-left: 4px solid var(--primary-color) !important;
-        background-color: rgb(227, 251, 156) !important;
-    }
-
+.active {
+  border-left: 4px solid var(--primary-color) !important;
+  background-color: rgb(227, 251, 156) !important;
+}
+.homeBtn {
+  padding: 10px 30px;
+  width: 120px px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.homeBtn:hover {
+  background-color: #a2b72c;
+}

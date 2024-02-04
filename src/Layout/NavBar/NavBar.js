@@ -235,6 +235,11 @@ const NavBar = () => {
               </ul>
             </div>
             <div className={style.containerRight}>
+              {user && user.isAdmin && (
+                <NavLink to={"/dashboard"} className={style.homeBtn}>
+                  Dashboard
+                </NavLink>
+              )}
               {user ? (
                 <>
                   <PersonOutline
