@@ -9,6 +9,7 @@
 }
 .testimonialsTable {
   width: 70%;
+  height: 800px;
 }
 .btnsContainer {
   display: flex;
