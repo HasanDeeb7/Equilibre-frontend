@@ -20,6 +20,7 @@ function Offers() {
   const [newGlobalOffer, setNewGlobalOffer] = useState({
     title: "",
     rate: 0,
+    description:'',
     startDate: "",
     endDate: "",
   });
@@ -148,6 +149,7 @@ async function updateSingleOffers(){
         setNewGlobalOffer({
           title: "",
           rate: 0,
+          description:'',
           startDate: "",
           endDate: "",
         });

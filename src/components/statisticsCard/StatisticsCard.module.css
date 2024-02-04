@@ -1,6 +1,6 @@
 .cardContainer {
     width: 350px;
-    margin:0 10px 20px 0;
+    margin:0 20px 20px 0;
     height: 180px;
     padding: 20px;
     border-radius: 10px;
@@ -13,7 +13,7 @@
 }
 
 .dataContainer {
-    min-width:70%;
+width:70%;
     display: flex;
     flex-direction: column;
 }
@@ -32,12 +32,12 @@
 }
 
 .image {
+    width:70px;
     margin-left: 10px;
 }
 
-@media only screen and (max-width: 1100px) and (width >800px) {
-    .cardContainer{
-        width: 250px;
+@media (width<300px){
+    .data{
+        font-size: 22px;
     }
-  }
-
+}

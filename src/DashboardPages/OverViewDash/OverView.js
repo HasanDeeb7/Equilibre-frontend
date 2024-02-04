@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Sidebar from '../../components/Sidebar/Sidebar'
-import { Outlet } from 'react-router-dom'
 import StatisticsCard from '../../components/statisticsCard/StatisticsCard'
-import order from '../../assets/order.png'
-import product from '../../assets/confirmed.png'
-import income from '../../assets/income.png'
 import DonutChart from '../../components/DonutChart/DonutChart'
 import BarChart from '../../components/BarChart/BarChart'
 import axios from 'axios'
@@ -15,6 +10,7 @@ import money from '../../assets/money.png'
 import userDash from '../../assets/userDash.png'
 import products from '../../assets/products.png'
 import orders from '../../assets/orders.png'
+import Loder from '../../components/LoderComponent/Loder'
 function OverView() {
   const [isLoading, setLoading] = useState(true);
 
@@ -58,26 +54,27 @@ function OverView() {
 
   return (
     <div className={style.container}>
-
-          {isLoading ? (
-            <div>loading....</div>
-          ) : (
-            <section className={style.cards}>
-              <StatisticsCard title='Total Products Sold' value={dataCards.totalProductsSold} unit='' imageSrc={products} />
-              <StatisticsCard title='Total Order' value={dataCards.totalOrders} unit='' imageSrc={orders} />
-              <StatisticsCard title='Total Income' value={dataCards.totalIncome} unit='$' imageSrc={money} />
-              <StatisticsCard title='Total User' value={dataCards.totalUser} unit='' imageSrc={userDash} />
-            </section>
-          )}
-          <div className={style.section2}>
-            <SalesOverview />
-            <TopSellerDash />
-          </div>
-          <div className={style.section3}>
-            <DonutChart />
-            <BarChart />
-          </div>
-    </div>
+    {isLoading ? (
+    <Loder />
+    ) : (
+      <>
+        <section className={style.cards}>
+          <StatisticsCard title='Total Products Sold' value={dataCards.totalProductsSold} unit='' imageSrc={products} />
+          <StatisticsCard title='Total Order' value={dataCards.totalOrders} unit='' imageSrc={orders} />
+          <StatisticsCard title='Total Income' value={dataCards.totalIncome} unit='$' imageSrc={money} />
+          <StatisticsCard title='Total User' value={dataCards.totalUser} unit='' imageSrc={userDash} />
+        </section>
+        <div className={style.section2}>
+          <SalesOverview />
+          <TopSellerDash />
+        </div>
+        <div className={style.section3}>
+          <DonutChart />
+          <BarChart />
+        </div>
+      </>
+    )}
+  </div>
   );
 };
 
