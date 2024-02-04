@@ -23,7 +23,7 @@
   }
   .productsTable {
     width: 80%;
-    height: 500px;
+    height: 800px;
     overflow-y: scroll;
   }
   .btnsContainer {
@@ -63,6 +63,9 @@
   }
 
   @media only screen and (width<500px){
+    .productsTable {
+      width: 90%;
+    }
     .productsContainer {
       margin: 150px auto 0 auto;
     

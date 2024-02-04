@@ -11,7 +11,7 @@ import UserForm from "../../components/Userform/UserForm";
 function Users() {
   const [users, setUsers] = useState();
   const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState({ pageSize: 20, page: 0 });
+  const [pagination, setPagination] = useState({ pageSize: 10, page: 0 });
   const [modal, setModal] = useState();
   const [target, setTarget] = useState();
   const [newUser, setNewUser] = useState({

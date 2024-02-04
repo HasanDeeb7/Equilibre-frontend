@@ -9,6 +9,7 @@
 
 .categoriesTable {
   width: 70%;
+  height: 500px;
 }
 
 .products {
@@ -71,10 +72,12 @@
   margin-bottom: 20px;
 }
 
-@media only screen and(width<500) {
+@media (width<500px) {
   .categoriesContainer {
     width: 90%;
     margin:150px auto 0 auto;
   }
-
+.categoriesTable{
+  width:90%
+}
 }

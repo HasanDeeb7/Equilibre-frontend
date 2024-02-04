@@ -7,7 +7,7 @@ import ShippingDetails from "../../components/ShippingDetailsDash/ShippingDetail
 function Orders() {
   const [orders, setOrders] = useState();
   const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState({ pageSize: 10, page: 0 });
+  const [pagination, setPagination] = useState({ pageSize: 5, page: 0 });
   const navigate = useNavigate();
 
   async function getorders() {

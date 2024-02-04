@@ -57,9 +57,20 @@
   filter: brightness(.7);
 }
 
+
+
+@media  (width<800px){
+  .testimonialsTable{
+    width:80%;
+  }
+}
+
 @media only screen and (width<500px){
   .testimonialsContainer {
     margin: 150px auto 0 auto;
   
+  }
+  .testimonialsTable{
+    width:90%;
   }
 }

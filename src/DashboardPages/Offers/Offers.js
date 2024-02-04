@@ -375,7 +375,6 @@ async function updateSingleOffers(){
     )
   ) : null
 )}
-        <h1>Offers</h1>
         <div className={style.offersContainer}>
           <div className={style.offersTable}>
             <div>
