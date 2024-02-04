@@ -176,6 +176,9 @@ input[type='radio'] {
 }
 
 @media only screen and (width<500px) {
+    .payment > label{
+        font-size: 14px;
+    }
     .nameSection {
         display: flex;
         flex-direction: column;
