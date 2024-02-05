@@ -1,0 +1,23 @@
+.loadingComponent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 86px);
+}
+.singleProductContainer {
+  margin: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+@media screen and (max-width: 800px) {
+  .singleProductContainer {
+    margin: 100px 25px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .singleProductContainer {
+    margin: 30px 25px;
+  }
+}

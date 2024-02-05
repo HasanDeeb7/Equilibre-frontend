@@ -1,0 +1,140 @@
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inputForm {
+  width: 100%;
+}
+.loginInput {
+  color: black;
+  padding: 15px 10px;
+  width: 100%;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid black;
+  transition: border-color 0.25s ease, outline 0.15s ease;
+}
+.loginInput:hover {
+  border: 0.1px solid black;
+}
+.loginInput:focus {
+  border: 1px solid var(--primary-color);
+  outline: 2px solid var(--primary-color);
+}
+.loginInputLable {
+  position: absolute;
+  left: 10px;
+  top: 14px;
+  transform: translate(0, 0) scale(1);
+  transform-origin: top left;
+  transition: all 0.3s, font-size 0.3s;
+  pointer-events: none;
+}
+.requiredInput {
+  position: relative;
+}
+
+.requiredInput::after {
+  content: "*";
+  position: absolute;
+  color: red;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  right: 5px;
+  top: -40px;
+  border-radius: 50%;
+}
+.eyeIcon {
+  position: absolute;
+  right: 34px;
+  top: 14px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.errorInput {
+  border: 3px solid red;
+}
+.errorInput:hover {
+  border: 3px solid red;
+}
+.errorInput:focus {
+  border: 3px solid red;
+}
+.inputWrapper:focus-within .loginInputLable {
+  transform: translateY(-121%) scale(0.9);
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.inputActive {
+  transform: translateY(-122%) scale(0.9);
+  background-color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  color: white;
+  background-color: white;
+  padding: 10px;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid white;
+  transition: border-color 0.25s ease, outline 0.15s ease;
+}
+.inputWrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.textarea {
+  color: black;
+  padding: 10px;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid black;
+  transition: border-color 0.25s ease, outline 0.15s ease;
+}
+.textarea:hover {
+  border: 0.1px solid var(--primary-color);
+}
+.textarea:focus {
+  border: 1px solid var(--primary-color);
+  outline: 2px solid var(--primary-color);
+}
+.textareaLabel {
+  position: absolute;
+  left: 10px;
+  transform: translate(0, 0) scale(1);
+  transform-origin: top left;
+  transition: all 0.3s, font-size 0.3s;
+  pointer-events: none;
+}
+.inputWrapper:focus-within .textareaLabel {
+  transform: translateY(-272%) scale(0.9);
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.textareActive {
+  transform: translateY(-272%) scale(0.9);
+  background-color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  color: white;
+  background-color: var(--secondary-bg-clr);
+  padding: 10px;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid white;
+  transition: border-color 0.25s ease, outline 0.15s ease;
+}

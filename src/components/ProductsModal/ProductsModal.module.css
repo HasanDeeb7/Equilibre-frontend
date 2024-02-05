@@ -1,0 +1,273 @@
+.modalContainer {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1220;
+}
+.modal {
+  width: 80%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  height: 80%;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal > form {
+  display: flex;
+  flex-direction: column;
+}
+.nameCatWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+}
+
+.textareasWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+}
+.catContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+  overflow-y: scroll;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  z-index: 2;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  max-height: 130px;
+}
+.fileWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 2px dashed rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+}
+.confirmBtn {
+  padding: 8px 30px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.confirmBtn:hover {
+  color: var(--primary-color);
+  background-color: #fff;
+}
+.cancelBtn {
+  padding: 8px 30px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.cancelBtn:hover {
+  color: var(--secondary-color);
+  background-color: #fff;
+}
+.btnsContainer {
+  justify-content: end;
+  display: flex;
+  border-top: 1px solid lightgray;
+  background-color: white;
+  padding: 30px 0;
+  width: 100%;
+  gap: 25px;
+}
+.formContainer {
+  overflow: scroll;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 5px;
+}
+.sizesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.addSizeBtn {
+  padding: 15px 30px;
+  text-align: center;
+  width: 100%;
+  font-weight: 800;
+  border: 2px solid var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.addSizeBtn:hover + span {
+  transform: scale(1.2);
+}
+.sizeInputs {
+  display: flex;
+  gap: 20px;
+}
+.trashIcon{
+  font-size: 100px;
+  height: 47px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.trashIcon:hover{
+  color: red;
+}
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inputForm {
+  width: 100%;
+}
+.loginInput {
+  color: black;
+  padding: 15px 10px;
+  width: 100%;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid black;
+  transition: border-color 0.25s ease, outline 0.15s ease;
+}
+.loginInput:hover {
+  border: 0.1px solid black;
+}
+.loginInput:focus {
+  border: 1px solid var(--primary-color);
+  outline: 2px solid var(--primary-color);
+}
+.loginInputLable {
+  position: absolute;
+  left: 10px;
+  top: 14px;
+  transform: translate(0, 0) scale(1);
+  transform-origin: top left;
+  transition: all 0.3s, font-size 0.3s;
+  pointer-events: none;
+}
+.requiredInput {
+  position: relative;
+}
+
+.requiredInput::after {
+  content: "*";
+  position: absolute;
+  color: red;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  right: 5px;
+  top: -40px;
+  border-radius: 50%;
+}
+.eyeIcon {
+  position: absolute;
+  right: 34px;
+  top: 14px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.inputWrapper:focus-within .loginInputLable {
+  transform: translateY(-121%) scale(0.9);
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.inputActive {
+  transform: translateY(-122%) scale(0.9);
+  background-color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  color: white;
+  background-color: white;
+  padding: 10px;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid white;
+  transition: border-color 0.25s ease, outline 0.15s ease;
+}
+.inputWrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.select {
+  color: black;
+}
+
+.borderGreen {
+  border-color: green;
+}
+.selectContainer {
+  width: 400px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid lightblue;
+  position: relative;
+  padding: 0 10px;
+  border-radius: 5px;
+  user-select: none;
+  cursor: pointer;
+}
+.optionsContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: fit-content;
+  overflow-y: scroll;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  z-index: 2;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  max-height: 130px;
+}
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+.option:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}

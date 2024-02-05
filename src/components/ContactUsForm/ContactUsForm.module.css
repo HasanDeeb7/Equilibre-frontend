@@ -1,0 +1,192 @@
+.FormSection {
+  height: 100vh;
+  background-color: rgba(183, 207, 51, 0.1);
+  text-align: center;
+  padding-top: 3%;
+}
+.FormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 2% auto;
+}
+.ContactBtn {
+  border: none;
+  background-color: #b7cf33;
+  font-size: 1.2rem;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+  margin-top: 6%;
+}
+
+.ContactBtn:hover {
+  background-color:#a2b72c;
+}
+.nameInput {
+  width: 100%;
+  height: 56px;
+
+}
+.nameInput,
+.message,
+.emailInput {
+  flex-shrink: 0;
+  border: none;
+  background: #fff;
+  outline: none;
+  padding: 10px ;
+  font-size: 15px;
+
+}
+
+.message {
+  width: 100%;
+  height: 250px;
+  outline: none;
+
+}
+.emailInput {
+  width: 100%;
+  height: 56px;
+  outline: none;
+
+}
+.inputLabel,
+.nameLabel {
+  color: #4f4f4f;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 175.4%; /* 24.556px */
+  letter-spacing: -0.3px;
+  align-self: flex-start;
+}
+.inputLabel {
+  margin-top: 2%;
+  margin-bottom: 6px;
+}
+.nameContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.nameLabel {
+  text-align: left;
+  display: block;
+  margin-bottom: 6px;
+}
+.divNameContainer {
+  width: 45%;
+}
+.contactTitle {
+  color: #000;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 189.5%; /* 56.85px */
+}
+.contactSubTitle {
+  color: #777;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 189.5%; /* 24.635px */
+  margin-bottom: 4%;
+}
+.contactTitle {
+  color: #1d252c;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 46.6px;
+  letter-spacing: -0.9px;
+  margin-bottom: 2%;
+}
+.contactSubTitle {
+  font-size: 16px;
+  font-weight: 500;
+}
+@media screen and (max-width: 1050px){
+  .FormSection {
+    height: auto;
+  }
+}
+@media screen and (max-width: 1000px){
+  .FormSection {
+    height: 75vh;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .contactTitle {
+    font-size: 24px;
+  }
+  .contactSubTitle {
+    font-size: 12px;
+  }
+  .nameContainer {
+    flex-direction: column;
+  }
+  .divNameContainer {
+    width: 100%;
+  }
+  .FormContainer {
+    width: 60%;
+  }
+  .inputLabel,
+  .nameLabel {
+    font-size: 13px;
+  }
+  .nameLabel {
+    margin-top: 2%;
+  }
+  .ContactBtn {
+    font-size: 1rem;
+    padding: 12px 16px;
+    margin-top: 5%;
+  }
+  .message {
+    height: 200px;
+  }
+  .nameInput {
+    height: 48px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .FormSection {
+    height: 90%;
+  }
+  .contactTitle {
+    font-size: 20px;
+  }
+  .contactSubTitle {
+    font-size: 11px;
+  }
+  .FormContainer,
+  .contactSubTitle {
+    width: 70%;
+  }
+  .contactSubTitle {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .inputLabel,
+  .nameLabel {
+    font-size: 11px;
+  }
+  .ContactBtn {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+  .message {
+    height: 150px;
+  }
+  .nameInput {
+    height: 40px;
+  }
+}

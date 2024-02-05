@@ -1,0 +1,58 @@
+.loginPageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--primary-color);
+  }
+  .header{
+    font-size: 40px;
+  }
+  .loginFormContainer {
+    width: 80%;
+    background-color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10rem;
+    gap: 90px;
+    border-radius: 30px 0 0 30px;
+  }
+  .inputsContainer{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    box-shadow: 1px;
+  }
+  .loginButton {
+    padding: 8px 30px;
+    border: 1px solid var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .loginButton:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+  }
+  .navLink{
+    text-decoration: none;
+  }
+  .navLink:active{
+    color: var(--primary-color);
+  }
+  @media screen and (max-width: 540px) {
+    .loginFormContainer{
+      width: 100%;
+      border-radius: 0;
+    }
+
+  }

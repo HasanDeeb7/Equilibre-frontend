@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import AppRoutes from "./routes/AppRoutes";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useUserStore } from "./Store";
+import ScrollToTop from "./Layout/ScrollToTheTop/ScrollToTheTop";
 function App() {
+  axios.defaults.withCredentials = true;
+  const { user, setUser, removeUser } = useUserStore();
+  const [loading, setLoading] = useState(true);
+  async function getUser() {
+    try {
+      if (!user) {
+        const response = await axios.post(
+          `${process.env.REACT_APP_ENDPOINT}user/login`
+        );
+        if (response) {
+          console.log(response.data);
+          setUser(response.data);
+          setLoading(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false)
+
+    }
+  }
+  useEffect(() => {
+    getUser();
+  }, []);
+  console.clear()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    !loading && (
+      <div className="App">
+        <ScrollToTop/>
+        <AppRoutes />
+      </div>
+    )
   );
 }
 

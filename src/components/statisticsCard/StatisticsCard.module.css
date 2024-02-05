@@ -1,0 +1,43 @@
+.cardContainer {
+    width: 350px;
+    margin:0 20px 20px 0;
+    height: 180px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 54px 0px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    background-color: white;
+
+
+}
+
+.dataContainer {
+width:70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    color: #202224;
+    opacity: 0.7;
+}
+
+.data {
+    color: #202224;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 20px 0 0 0;
+}
+
+.image {
+    width:70px;
+    margin-left: 10px;
+}
+
+@media (width<300px){
+    .data{
+        font-size: 22px;
+    }
+}

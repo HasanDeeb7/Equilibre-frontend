@@ -1,0 +1,66 @@
+.offersContainer {
+  width: 100%;
+  padding: 20px;
+}
+.offersTable {
+  margin: 100px; 
+  display: flex;
+  height: 500px;
+  gap:50px;
+  flex-direction: column;
+}
+
+.btnsContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.editBtn {
+  padding: 10px 30px;
+  width: 100px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.editBtn:hover {
+  background-color: #a2b72c;
+
+}
+
+.deleteBtn {
+  padding: 10px 30px;
+  width: 100px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: #b72c2c;
+
+}
+
+.addBtn {
+  padding: 10px 30px;
+  width: 160px;
+  border: 1px px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .offersTable {
+    margin: 100px 20px; 
+  }
+}

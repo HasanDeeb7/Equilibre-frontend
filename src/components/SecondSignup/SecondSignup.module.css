@@ -1,0 +1,48 @@
+.inputsContainer {
+  width: 30%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  box-shadow: 1px;
+}
+.genderContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.genderWrapper {
+  display: flex;
+  gap: 10px;
+}
+.signUpButton {
+  padding: 8px 30px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.signUpButton:hover {
+  background-color:#a2b72c;
+ 
+}
+.backBtn {
+  padding: 8px 30px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.backBtn:hover {
+  background-color: transparent;
+  color: var(--secondary-color);
+}
+.genderWrapper > label, .genderWrapper > input{
+  cursor: pointer;
+}

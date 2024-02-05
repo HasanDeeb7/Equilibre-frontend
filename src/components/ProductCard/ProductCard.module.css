@@ -1,0 +1,127 @@
+.cardContainer {
+  transition: box-shadow 0.3s;
+  width: 275px;
+  max-height: 430px;
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: white;
+  margin-bottom: 7%;
+  padding-bottom: 15px;
+}
+.cardContainer:hover {
+  box-shadow: 0 0 15px rgba(0,0,0,0.3); 
+}
+.discountRateContainer {
+  background-color: #ffe1e1;
+  width: 83px;
+  height: 30px;
+  border-radius: 10px;
+  z-index: 2;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.discountRate {
+  color: #ff6666;
+}
+.image {
+  width: 275px;
+  height: 275px;
+  object-fit: cover; 
+  z-index: 1;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.description {
+  color: #5a5a5a;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 250px;
+  word-wrap: break-word; 
+  min-height: 40px;
+}
+.PricingPart {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.priceContainer{
+    margin-left: 10px;
+    display: flex;
+    width: 35%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.originalPrice,
+.discoutedPrice {
+  display: inline-block;
+  font-size: 1.5rem;
+}
+
+.originalPrice{
+  position: relative;
+  padding-right: 5px;
+  color: #000;
+}
+.originalPriceDiscount{
+  color: rgb(127, 127, 127);
+}
+.offerLine {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(127, 127, 127);
+}
+
+.discoutedPrice{
+    color: #F66;
+    padding-left: 10px ;
+    font-weight: 900;
+}
+.productName {
+  color: #000;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 10px;
+  width: 95%;
+  min-height: 10px;
+
+}
+
+@media only screen and (max-width: 480px) {
+  .cardContainer{
+    width: 240px;
+    height: 370px;
+  }
+  .image{
+    width: 240px;
+    height: 240px;
+  }
+  .priceContainer{
+    width:40%
+  }
+  .description{
+    font-size: 0.8rem;
+    width: 220px;
+  }
+  .productName{
+    font-size: 1.3rem;
+  }
+}

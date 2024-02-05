@@ -1,0 +1,82 @@
+.section {
+  display: flex;
+  background-color: rgba(183, 207, 51, 0.1);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-block:50px;
+  
+}
+.section>h1,.section>span{
+  margin-bottom: 20px;
+}.section>h1{
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 46.6px;
+}
+.section>span{
+  color: #777;
+  font-size: 16px;
+  font-weight: 500;
+
+}
+.form {
+  padding-block: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 25px;
+  align-items: flex-end;
+}
+.btn {
+  border: none;
+  background-color: #b7cf33;
+  font-size: 1.2rem;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn:hover {
+  background-color: #a2b72c;
+}
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+  color: #4f4f4f;
+  width: 100%;
+}
+.inputs {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  font-size: 15px;
+
+}
+.labelInput > input {
+  flex-shrink: 0;
+  border: none;
+  background: #fff;
+  outline: none;
+  padding: 10px;
+  font-size: 15px;
+  width: 100%;
+  font-size: 15px;
+  height: 56px;
+}
+.packages,
+.email,
+.message {
+  width: 100%;
+}
+.message {
+  height: 200px;
+  padding: 10px;
+
+  outline: none;
+  border: none;
+}

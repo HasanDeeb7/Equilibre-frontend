@@ -1,0 +1,131 @@
+.loadingComponent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 86px);
+}
+.cartPageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 100px;
+}
+.cartItemsContainer {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  overflow-y: scroll;
+  max-height: 700px;
+}
+.cartItemsHeader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.cartItemsHeader > p:nth-child(1) {
+  flex-basis: 55%;
+  min-width: 231px;
+  font-size: 24px;
+}
+.cartItemsHeader > p:nth-child(2) {
+  flex-basis: 15%;
+  min-width: 82px;
+  font-size: 24px;
+}
+.cartItemsHeader > p:nth-child(3) {
+  min-width: 142px;
+  flex-basis: 15%;
+  font-size: 24px;
+}
+.cartItemsHeader > p:nth-child(4) {
+  flex-basis: 15%;
+  min-width: 82px;
+  font-size: 24px;
+}
+.actionsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.proceedActionsContainer {
+  display: flex;
+  gap: 20px;
+}
+.summaryWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+}
+.shippingNote {
+  color: #838383;
+}
+.buttonsContainer {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.secondaryBtn {
+  padding: 10px 30px;
+  width: 180px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: fit-content;
+}
+.secondaryBtn:hover {
+  background-color: #b72c2c;
+}
+.primaryBtn {
+  padding: 10px 30px;
+  width: 180px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.primaryBtn:hover {
+  background-color: #a2b72c;
+}
+.discountIndicator {
+  display: flex;
+  gap: 15px;
+}
+.strokedTotal {
+  color: red;
+  text-decoration: line-through;
+}
+
+@media screen and (max-width: 800px) {
+  .cartPageContainer {
+    margin: 50px;
+  }
+  .cartItemsContainer {
+    height: 500px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .actionsContainer {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .proceedActionsContainer {
+    width: 100%;
+    flex-direction: column;
+  }
+  .buttonsContainer {
+    align-items: flex-end;
+  }
+  .secondaryBtn {
+    align-self: end;
+  }
+}

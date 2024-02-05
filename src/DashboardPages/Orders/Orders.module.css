@@ -1,0 +1,101 @@
+.ordersContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin: 150px 0 0 180px;
+
+}
+
+.shipppingConatiner{
+  width:100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.ordersTable {
+  height: 500px;
+  overflow-y: scroll;
+  width: 100%;
+}
+.btnsContainer {
+  display: flex;
+  gap: 15px;
+}
+.editBtn {
+  padding: 10px 30px;
+  width: 100px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.editBtn:hover {
+  background-color:#a2b72c;
+
+}
+.deleteBtn {
+  padding: 10px 30px;
+  width: 100px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.deleteBtn:hover {
+  background-color:#b72c2c;
+
+}
+.status {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  width: 91px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.onWay {
+  background-color: #deedff;
+  color: #58a5ff;
+}
+.delivered {
+  color: #b7cf33;
+  background-color: #f1f5d6;
+}
+.cancelled {
+  background-color: #fcd7d4;
+  color: #ef3826;
+}
+.pending {
+  background-color: #ffeddd;
+  color: #ffa756;
+}
+.viewMoreBtn {
+  padding: 10px 20px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.viewMoreBtn:hover {
+  background-color:#a2b72c;
+
+}
+
+@media only screen and (width<500px){
+  .ordersContainer {
+    margin: 150px auto 0 auto;
+  
+  }
+}

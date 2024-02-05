@@ -1,0 +1,83 @@
+.categoriesContainer {
+  display: flex;
+  margin-top: 100px;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin: 150px 0 0 180px;
+}
+
+.categoriesTable {
+  width: 70%;
+  height: 500px;
+}
+
+.products {
+  height: 80px;
+  overflow-y: scroll;
+  width: 90%;
+
+}
+
+.products>li {
+  margin: 10px;
+}
+
+.btnsContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.editBtn {
+  padding: 10px 30px;
+  width: 100px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.editBtn:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+}
+
+.deleteBtn {
+  padding: 10px 30px;
+  width: 100px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: transparent;
+  color: var(--secondary-color);
+}
+
+.addBtn {
+  padding: 10px 30px;
+  width: 160px;
+  border: 1px px solid var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+@media (width<500px) {
+  .categoriesContainer {
+    width: 90%;
+    margin:150px auto 0 auto;
+  }
+.categoriesTable{
+  width:90%
+}
+}

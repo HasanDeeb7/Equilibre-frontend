@@ -1,0 +1,36 @@
+.inputContainer {
+  border: 2px solid #bdbdbd;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 45px;
+  width: 30%
+}
+.inputSearch {
+  height: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+.inputSearch:focus {
+  outline: none;
+}
+.searchBtn {
+  height: 100%;
+  width: 50px;
+  cursor: pointer;
+  border: none;
+  background-color: #b7cf33 ;
+
+}
+.searchIcon {
+  height: 30px;
+}
+@media only screen and (max-width: 950px){
+  .inputContainer{
+    width: 100%;
+  } 
+}
