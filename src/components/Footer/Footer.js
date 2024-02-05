@@ -29,12 +29,12 @@ const Footer = () => {
                 <li>Equilibre</li>
                 <li><Link to='/about' className={Styles.Link}>About us</Link></li>
                 <li><Link to='/contact' className={Styles.Link}>Contact us</Link></li>
-                <li><Link to='' className={Styles.Link}>Location</Link></li>
+                <li><a href="https://maps.app.goo.gl/gmSAjxwsf14nttKq5" className={Styles.Link}>Location</a></li>
             </ul>
             <ul>
                 <li>Clinic</li>
                 <li><Link to='/consultation' className={Styles.Link}>Packages</Link></li>
-                <li><Link to='' className={Styles.Link}>Location</Link></li>
+                <li><a href="https://www.google.com/maps/place/34%C2%B026'19.0%22N+35%C2%B050'24.3%22E/@34.4386134,35.8375018,17z/data=!3m1!4b1!4m4!3m3!8m2!3d34.4386134!4d35.8400767?hl=en&entry=ttu" className={Styles.Link}>Location</a></li>
             </ul>
 
         </footer>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Style from './ConsultingInfo.module.css'
 import emailjs from '@emailjs/browser';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 function ConsultingInfo() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -22,7 +22,7 @@ function ConsultingInfo() {
     }))
   }
 
-  const resetForm = () =>{
+  const resetForm = () => {
     setFormData({
       firstName: "",
       lastName: "",
@@ -37,10 +37,10 @@ function ConsultingInfo() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setisLoading(true)
-    emailjs.sendForm(`${process.env.REACT_APP_SERVICE_ID}, ${process.env.REACT_APP_TEMPLATEFORCONSULTING_ID}, ${event.target}, ${process.env.REACT_APP_PUBLIC_KEY}`)
+    emailjs.sendForm(process.env.REACT_APP_SERVICE_ID,process.env.REACT_APP_TEMPLATEFORCONSULTING_ID,event.target,process.env.REACT_APP_PUBLIC_KEY)
 
       .then((result) => {
-        if(result.status){
+        if (result.status) {
           resetForm()
           console.log(result);
           setisLoading(false)
@@ -54,16 +54,12 @@ function ConsultingInfo() {
 
       });
   };
-
-  // const buttonStyle = !isLoading ? 
-
   return (
     <section className={Style.section}>
       <h1>Book Now</h1>
-      <span>Lorem ipsum is simple dummy test of printing.</span>
+      <span>Consulting for Health and Vitality.</span>
       <form className={Style.form} onSubmit={handleSubmit}>
         <div className={Style.inputs}>
-
           <div className={Style.labelInput}>
             <label htmlFor="firstName">First Name</label>
             <input
@@ -124,6 +120,7 @@ function ConsultingInfo() {
             name="packages"
             value={formData.packages}
             onChange={handleChange}
+            className={Style.packages}
             id='packages'
             required
           />
@@ -134,25 +131,25 @@ function ConsultingInfo() {
             type='email'
             name="email"
             value={formData.email}
+            className={Style.email}
             onChange={handleChange}
             id='email'
             required
           />
         </div>
         <div className={Style.labelInput}>
-          <label htmlFor="message">Message</label>
+          <label htmlFor="message">Message (if you have any health problem please mention it below)</label>
           <textarea
             type='texteara'
             name="message"
+            className={Style.message}
             value={formData.message}
             onChange={handleChange}
             id='message'
-            
+
           />
         </div>
-        <button type='submit' disabled={isLoading} /* style={{
-          color : 
-        }} */>Get in touch</button>
+        <button type='submit' disabled={isLoading} className={Style.btn}>Get in touch</button>
       </form>
     </section>
   )
