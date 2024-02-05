@@ -14,12 +14,10 @@ function ConstultingPackages({
     isReverse = false
 }) {
     return (
-        <section className={isReverse?Style.section:Style.reverse}>
-            <article className={Style.article_a}>
-                <img src={image} width="100%"  height="90%"  />
-            </article>
-            <article className={isReverse?Style.article_b:Style.article_bb}>
-                <Line />
+        <section className={isReverse ? Style.section : Style.reverse}>
+            <img src={image} className={Style.img} />
+            <article className={isReverse ? Style.article_b : Style.article_bb}>
+        
                 <h1 className={Style.h1}>Package {packages}: diet plan</h1>
                 <div>
                     <span className={Style.span}>Cost: ${cost}</span>

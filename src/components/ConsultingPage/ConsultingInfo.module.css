@@ -1,68 +1,35 @@
 .section {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 50px;
   background-color: rgba(183, 207, 51, 0.1);
-  padding-block: 3%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-block:50px;
+  
 }
-.section > h1 {
-  font-size: 2rem;
+.section>h1,.section>span{
+  margin-bottom: 20px;
+}.section>h1{
+  font-size: 40px;
   font-weight: 500;
+  line-height: 46.6px;
 }
-.section > span {
+.section>span{
   color: #777;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
-} 
+
+}
 .form {
+  padding-block: 10px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 35%;
+  width: 50%;
+  gap: 25px;
+  align-items: flex-end;
 }
-.labelInput {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.inputs {
-  gap: 3.85rem;
-  display: flex;
-
-  width: 100%;
-}
-.inputs >div> input {
-width: 120%;
-}
-.labelInput > input {
-  border: none;
-  width: 100%;
-  height: 56px;
-  outline: none;
-  padding: 10px;
-}
-
-.labelInput > textarea {
-  border: none;
-  border-radius: 5px;
-  width: 100%;
-  height: 40px;
-  outline: none;
-  padding: 10px;
-  height: 150px;
-}
-
-.labelInput > label {
-  color: #4f4f4f;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 175.4%; /* 24.556px */
-  letter-spacing: -0.3px;
-  align-self: flex-start;
-}
-.form > button {
+.btn {
   border: none;
   background-color: #b7cf33;
   font-size: 1.2rem;
@@ -71,12 +38,45 @@ width: 120%;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-end;
-  margin-top: 6%;
 }
-.form > button:hover {
-  background-color:#a2b72c;
+.btn:hover {
+  background-color: #a2b72c;
 }
-.inputText {
-  width: 200%;
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+  color: #4f4f4f;
+  width: 100%;
+}
+.inputs {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  font-size: 15px;
+
+}
+.labelInput > input {
+  flex-shrink: 0;
+  border: none;
+  background: #fff;
+  outline: none;
+  padding: 10px;
+  font-size: 15px;
+  width: 100%;
+  font-size: 15px;
+  height: 56px;
+}
+.packages,
+.email,
+.message {
+  width: 100%;
+}
+.message {
+  height: 200px;
+  padding: 10px;
+
+  outline: none;
+  border: none;
 }

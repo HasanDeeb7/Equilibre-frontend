@@ -1,13 +1,13 @@
 .section {
   display: flex;
-  gap: 300px;
-  /* margin-top: 50px; */
+  margin-block: 50px;
+  justify-content: space-around;
+  align-items: center;
 }
-.reverse{
+.reverse {
   display: flex;
   gap: 300px;
   flex-direction: row-reverse;
-  padding-left: 80px;
 }
 .h1 {
   font-size: 3rem;
@@ -15,12 +15,11 @@
 }
 .list {
   line-height: 2.8rem;
-  letter-spacing: 3px;
   font-weight: 400;
   margin-left: 20px;
   font-size: 1.3rem;
 }
- .span {
+.span {
   font-size: 1.5rem;
   font-weight: 400;
 }
@@ -33,20 +32,143 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-top: 50px;
-  width: 50%;
+  width: 30%;
 }
-.article_bb{
-    display: flex;
+.article_bb {
+  display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 50%;
-
 }
 .article_bb > div {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
+.img {
+  width: 27%;
+  height: auto;
+}
+@media (max-width: 1550px) {
+  .img {
+    width: 30%;
+  }
+  .article_b {
+    width: 35%;
+  }
+}
+@media (max-width: 1400px) {
+  .img {
+    width: 35%;
+  }
+  .article_b {
+    width: 40%;
+  }
+}
+@media (max-width: 1385px) {
+  .img {
+    width: 36%;
+  }
+  .article_b {
+    width: 40%;
+  }
+}
+@media (max-width: 1200px) {
+  .img {
+    width: 40%;
+  }
+  .h1 {
+    font-size: 2.7rem;
+  }
+  .list {
+    font-size: 1.2rem;
+  }
+  .span {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 1000px) {
+  .section {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+  }
+  .img {
+    width: 70%;
+  }
+  .article_b {
+    width: 40%;
+  }
+  .linee {
+    width: 142%;
+  }
+  .h1 {
+    font-size: 2.5rem;
+  }
+  .list {
+    font-size: 1.1rem;
+  }
+  .span {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 902px) {
+  .h1 {
+    width: max-content;
+  }
+}
+@media (max-width: 849px) {
+  .article_b {
+    width: 45%;
+  }
+}
+@media (max-width: 754px) {
+  .article_b {
+    width: 50%;
+  }
+}
+@media (max-width: 679px) {
+  .article_b {
+    gap: 15px;
+    width: 60%;
+  }
+  .article_b > div {
+    gap: 15px;
+  }
+  .linee {
+    width: 100%;
+  }
+  .list {
+    line-height: 2rem;
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 566px) {
+  .article_b {
+    width: 70%;
+  }
+}
+@media (max-width: 485px) {
+  .h1 {
+    width: 100%;
+  }
+  .article_b {
+    width: 80%;
+  }
+  .list {
+    line-height: 2rem;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 392px) {
+  .h1 {
+    font-size: 2rem;
+  }
+  .img {
+    width: 85%;
+  }
 
-
+  .list {
+    line-height: 2rem;
+    font-size: 1rem;
+  }
+}

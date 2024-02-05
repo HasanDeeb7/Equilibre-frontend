@@ -4,7 +4,7 @@ import Style from "./ConsultingPackage.module.css"
 function ConsultingPackage() {
   return (
     <header className={Style.header}>
-      <section className={Style.titleParagraph}>
+      <section className={Style.container}>
         <h1>Action sentence for consultation</h1>
         <article>
 
@@ -33,10 +33,7 @@ function ConsultingPackage() {
           </ul>
         </article>
       </section>
-      <section className={Style.imgBackgroud}>
-        <div className={Style.sideBackground}></div>
-        <img src={image} className={Style.img} width="400px" height="600px" />
-      </section>
+        <img src={image} className={Style.img}  />
     </header>
   )
 }
