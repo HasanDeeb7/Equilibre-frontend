@@ -40,7 +40,6 @@ const icons = [
   <ContactMail />,
   <Diversity1 />,
   <Category />,
-  <MedicationLiquid />,
 ];
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -140,7 +139,6 @@ export default function SideBar() {
     ["dashboard/testimonials", "Testimonials"],
     ["dashboard/users", "Users"],
     ["dashboard/categories", "Categories"],
-    ["dashboard/consultation", "Consultation Package"],
   ];
 
   return (

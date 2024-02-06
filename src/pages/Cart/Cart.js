@@ -73,7 +73,7 @@ function Cart() {
     <section className={style.loadingComponent}>
       <Loder />
     </section>
-  ) : cartItems.length < 1 ? (
+  ) : cartItems && cartItems.length < 1 ? (
     <EmtyCart />
   ) : (
     <section className={style.cartPageContainer}>
@@ -104,8 +104,8 @@ function Cart() {
             ))}
           </section>
         ) : (
-          "No items in your cart"
-        )}
+          <EmtyCart />
+          )}
       </section>
       <section className={style.actionsContainer}>
         <button onClick={clearCart} className={style.secondaryBtn}>
